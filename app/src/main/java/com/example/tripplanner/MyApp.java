@@ -4,15 +4,18 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class MyApp extends Application {
-    public String orderId;
     SharedPreferences sharedPref;
+    public ArrayList<TripModel> myTrips;
 
     public MyApp(Context context){
-        this.orderId="";
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        loadOrderId();
+        loadMyTrips();
     }
 
     @Override
@@ -20,13 +23,19 @@ public class MyApp extends Application {
         super.onCreate();
     }
 
-    public void loadOrderId() {
-        this.orderId= sharedPref.getString("order", "");
+    public void loadMyTrips() {
+        myTrips= new ArrayList<>();
+        String tripsJson = sharedPref.getString("myTrips", "");
+        if (!tripsJson.equals("")) {
+            Type listType = new TypeToken<ArrayList<TripModel>>(){}.getType();
+            myTrips = new Gson().fromJson(tripsJson, listType);
+        }
     }
 
-    public void saveOrderId(String id) {
-        this.orderId=id;
-        sharedPref.edit().putString("order", this.orderId).apply();
+    public void saveMyTrips() {
+        myTrips= new ArrayList<>();
+        String itemsJson = new Gson().toJson(myTrips);
+        sharedPref.edit().putString("myTrips", itemsJson).apply();
     }
 
 }
