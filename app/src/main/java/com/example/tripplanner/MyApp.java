@@ -32,8 +32,8 @@ public class MyApp extends Application {
         }
     }
 
-    public void saveMyTrips() {
-        myTrips= new ArrayList<>();
+    public void saveMyTrips(ArrayList<TripModel> trips) {
+        myTrips=trips;
         String itemsJson = new Gson().toJson(myTrips);
         sharedPref.edit().putString("myTrips", itemsJson).apply();
     }
