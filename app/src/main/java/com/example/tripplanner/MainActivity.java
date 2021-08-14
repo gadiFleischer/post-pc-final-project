@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         createTripButton.setOnClickListener(view -> {
             Intent createNewActivity = new Intent(this, NewTrip.class);
             this.startActivity(createNewActivity);
-
         });
     }
 }
