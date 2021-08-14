@@ -21,7 +21,6 @@ public class EditEvent extends AppCompatActivity {
             Intent editMapActivity = new Intent(this, EditMap.class);
             this.startActivity(editMapActivity);
         });
-
         deleteEditButton.setOnClickListener(view -> {
             Intent editMapActivity = new Intent(this, EditMap.class);
             this.startActivity(editMapActivity);
