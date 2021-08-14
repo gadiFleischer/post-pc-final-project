@@ -20,7 +20,7 @@ public class EditMap extends AppCompatActivity {
         editEventButton = findViewById(R.id.editEventButton);
 
         finishPlanningButton.setOnClickListener(view -> {
-            Intent finishEditingActivity = new Intent(this, MainActivity.class);
+            Intent finishEditingActivity = new Intent(this, TripDetails.class);
             this.startActivity(finishEditingActivity);
         });
         addNewEventButton.setOnClickListener(view -> {

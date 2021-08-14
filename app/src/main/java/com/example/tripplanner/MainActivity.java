@@ -24,5 +24,10 @@ public class MainActivity extends AppCompatActivity {
             Intent createNewActivity = new Intent(this, NewTrip.class);
             this.startActivity(createNewActivity);
         });
+
+        mytripsButton.setOnClickListener(view -> {
+            Intent myTripsActivity = new Intent(this, MyTrips.class);
+            this.startActivity(myTripsActivity);
+        });
     }
 }
