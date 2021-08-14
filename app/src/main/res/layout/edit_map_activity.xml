@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/createNewTripTitle"
+        android:id="@+id/editMapTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create new trip"
+        android:text="activity for adding to map"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,10 +19,33 @@
         app:layout_constraintVertical_bias="0.089" />
 
     <Button
-        android:id="@+id/startPlanningButton"
+        android:id="@+id/addNewEventButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start planning"
+        android:text="add event(click first time on marker)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+    <Button
+        android:id="@+id/editEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="edit event(click existing marker)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <Button
+        android:id="@+id/finishPlanningButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish Planning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

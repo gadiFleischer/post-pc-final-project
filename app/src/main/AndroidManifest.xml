@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewTrip" />
+        <activity android:name=".EditMap" />
+        <activity android:name=".NewEvent" />
+        <activity android:name=".EditEvent" />
     </application>
 
 </manifest>

@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/createNewTripTitle"
+        android:id="@+id/editEventTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create new trip"
+        android:text="Edit Event"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,14 +19,24 @@
         app:layout_constraintVertical_bias="0.089" />
 
     <Button
-        android:id="@+id/startPlanningButton"
+        android:id="@+id/DoneEditButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start planning"
+        android:text="Done edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.758" />
+
+    <Button
+        android:id="@+id/deleteEditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887" />
 </androidx.constraintlayout.widget.ConstraintLayout>

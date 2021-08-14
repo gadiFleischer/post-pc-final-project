@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/activity_main.xml" value="0.23072916666666668" />
+        <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/add_new_event_activity.xml" value="0.26666666666666666" />
+        <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/edit_event_activty.xml" value="0.26666666666666666" />
+        <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/edit_map_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/new_trip_activity.xml" value="0.23072916666666668" />
       </map>
     </option>
