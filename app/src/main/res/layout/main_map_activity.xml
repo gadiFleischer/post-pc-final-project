@@ -25,17 +25,23 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         />
 
-    <SearchView
-        android:id="@+id/sv_location"
+    <fragment android:id="@+id/autocomplete_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/bg_round"
-        android:elevation="5dp"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search...">
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        />
 
-    </SearchView>
+<!--    <SearchView-->
+<!--        android:id="@+id/sv_location"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:background="@drawable/bg_round"-->
+<!--        android:elevation="5dp"-->
+<!--        app:iconifiedByDefault="false"-->
+<!--        app:queryHint="Search...">-->
+
+<!--    </SearchView>-->
 
 <!--    <Button-->
 <!--        android:id="@+id/editEventMarkerButton"-->

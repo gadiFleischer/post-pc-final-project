@@ -10,4 +10,6 @@
     <string name="date">Date</string>
     <string name="join_sale">Join Sale</string>
     <string name="address">Address</string>
+
+    <string name="api_key">AIzaSyA9mzs2u9iP8ajs1_12yqf_zMC_Q_e4xtE</string>
 </resources>

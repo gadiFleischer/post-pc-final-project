@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentContainerView;
 
 import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -35,6 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,8 +47,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -61,6 +69,9 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
     SupportMapFragment mapFragment;
     SearchView searchView;
     Geocoder geocoder;
+
+;
+
 //
     EventModel[] addedEvents = { //TODO: not hardcoded options
             new EventModel("Pnina Pie", "Sweets", CategoryEvent.FOOD,new LatLng(31.777883, 35.198348), 2, new Date(),
@@ -69,45 +80,74 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
     };
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.main_map_activity);
 
         //Todo: ADD PLACES AUTOCOMPLETE
 
-        searchView = findViewById(R.id.sv_location);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.main_map);
+//        searchView = findViewById(R.id.sv_location);
+//        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.main_map);
+//
+//        geocoder = new Geocoder(this, Locale.getDefault());
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                String location = searchView.getQuery().toString();
+//                List<Address> addressList = null;
+//
+//                if (location != null || !location.equals("")) {
+//                    Geocoder geocoder = new Geocoder(MainMapActivity.this);
+//                    try {
+//                        addressList = geocoder.getFromLocationName(location, 1);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Address address = addressList.get(0);
+//                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+//                    map.addMarker(new MarkerOptions().position(latLng).title(location));
+//                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
+//        mapFragment.getMapAsync(this);
 
-        geocoder = new Geocoder(this, Locale.getDefault());
+        String apiKey = getString(R.string.api_key);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), apiKey);
+        }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        PlacesClient placesClient = Places.createClient(this);
+
+        final AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        autocompleteSupportFragment.setHint("Your location");
+
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG,Place.Field.NAME));
+
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                String location = searchView.getQuery().toString();
-                List<Address> addressList = null;
-
-                if (location != null || !location.equals("")) {
-                    Geocoder geocoder = new Geocoder(MainMapActivity.this);
-                    try {
-                        addressList = geocoder.getFromLocationName(location, 1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    map.addMarker(new MarkerOptions().position(latLng).title(location));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                }
-                return false;
+            public void onPlaceSelected(@NonNull Place place) {
+                // TODO: Get info about the selected place.
+                Toast.makeText(getApplicationContext(), place.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+            public void onError(@NonNull Status status) {
+                // TODO: Handle the error.
+                Toast.makeText(getApplicationContext(), status.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -195,4 +235,6 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
     }
+
+
 }
