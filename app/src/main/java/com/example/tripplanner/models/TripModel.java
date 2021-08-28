@@ -11,7 +11,7 @@ public class TripModel implements Serializable {
     public String destination;
     public Date startDate;
     public Date endDate;
-    public String countryCode; //this is for the flag
+    public String countryCode;
     public ArrayList<DayModel> days;
 
     public TripModel(String title,String destination,Date startDate,Date endDate,String countryCode){
