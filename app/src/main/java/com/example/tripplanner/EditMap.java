@@ -21,6 +21,7 @@ public class EditMap extends AppCompatActivity {
         addNewEventButton = findViewById(R.id.addNewEventButton);
         editEventButton = findViewById(R.id.editEventButton);
 
+
         Intent getTripIntent=getIntent();
         this.myTrip = (TripModel) getTripIntent.getSerializableExtra("newTrip");
 
