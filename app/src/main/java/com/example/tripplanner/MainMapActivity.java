@@ -67,19 +67,13 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     GoogleMap map;
     SupportMapFragment mapFragment;
-    SearchView searchView;
     Geocoder geocoder;
 
-;
-
-//
     EventModel[] addedEvents = { //TODO: not hardcoded options
             new EventModel("Pnina Pie", "Sweets", CategoryEvent.FOOD,new LatLng(31.777883, 35.198348), 2, new Date(),
                     new Date(), "comment"),
 
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,40 +81,8 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         setContentView(R.layout.main_map_activity);
 
-        //Todo: ADD PLACES AUTOCOMPLETE
-
-//        searchView = findViewById(R.id.sv_location);
-//        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.main_map);
-//
-//        geocoder = new Geocoder(this, Locale.getDefault());
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                String location = searchView.getQuery().toString();
-//                List<Address> addressList = null;
-//
-//                if (location != null || !location.equals("")) {
-//                    Geocoder geocoder = new Geocoder(MainMapActivity.this);
-//                    try {
-//                        addressList = geocoder.getFromLocationName(location, 1);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Address address = addressList.get(0);
-//                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-//                    map.addMarker(new MarkerOptions().position(latLng).title(location));
-//                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
-//        mapFragment.getMapAsync(this);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.main_map);
+        geocoder = new Geocoder(this, Locale.getDefault());
 
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
@@ -136,10 +98,28 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
         autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG,Place.Field.NAME));
 
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 // TODO: Get info about the selected place.
                 Toast.makeText(getApplicationContext(), place.getName(), Toast.LENGTH_SHORT).show();
+
+                String location = place.getName();
+                List<Address> addressList = null;
+
+                if (location != null || !location.equals("")) {
+                    Geocoder geocoder = new Geocoder(MainMapActivity.this);
+                    try {
+                        addressList = geocoder.getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Address address = addressList.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    map.addMarker(new MarkerOptions().position(latLng).title(location));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                }
             }
 
             @Override
@@ -148,6 +128,8 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Toast.makeText(getApplicationContext(), status.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        mapFragment.getMapAsync(this);
     }
 
     @Override
