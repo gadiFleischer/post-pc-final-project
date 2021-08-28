@@ -1,6 +1,6 @@
 package com.example.tripplanner.models;
 
-enum CategoryEvent {
+public enum CategoryEvent {
     FOOD,
     SIGHT,
     HOTEL,

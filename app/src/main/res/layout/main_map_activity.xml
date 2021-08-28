@@ -18,16 +18,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.089" />
 
-    <Button
-        android:id="@+id/editEventMarkerButton"
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        />
+
+    <SearchView
+        android:id="@+id/sv_location"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="edit Event from Marker"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_round"
+        android:elevation="5dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search...">
+
+    </SearchView>
+
+<!--    <Button-->
+<!--        android:id="@+id/editEventMarkerButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="edit Event from Marker"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.758" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

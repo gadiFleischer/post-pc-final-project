@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Trip Planner</string>
+    <string name="eventTime">TextView</string>
+    <string name="title">title</string>
+    <string name="go_to_sale">Go to Sale</string>
+    <string name="sale_title">sale title</string>
+    <string name="todo">TODO</string>
+    <string name="category">Category</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="join_sale">Join Sale</string>
+    <string name="address">Address</string>
 </resources>
