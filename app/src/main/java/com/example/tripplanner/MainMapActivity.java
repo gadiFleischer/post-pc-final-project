@@ -117,8 +117,56 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                     }
                     Address address = addressList.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    map.addMarker(new MarkerOptions().position(latLng).title(location));
+                    Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(location));
+                    marker.setTag(0);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                    map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(@NonNull Marker marker) {
+                        if ((int) (marker.getTag()) == -1) {
+                            return false;
+                        } else {
+                            final int position = (int) (marker.getTag());
+                            Log.d("TAG", addedEvents[position].name);
+                            LayoutInflater inflater = (LayoutInflater)
+                                    getSystemService(LAYOUT_INFLATER_SERVICE);
+                            View popupView = inflater.inflate(R.layout.popup_window, null);
+
+
+                            // create the popup window
+                            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                            boolean focusable = true; // lets taps outside the popup also dismiss it
+                            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+
+                            // show the popup window
+                            // which view you pass in doesn't matter, it is only used for the window tolken
+                            popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
+                            TextView title = popupView.findViewById(R.id.title);
+                            TextView location = popupView.findViewById(R.id.location);
+                            Button button = popupView.findViewById(R.id.button);
+                            ImageView imageView = popupView.findViewById(R.id.imageView);
+                            Picasso.get().load(addedEvents[position].comment).centerCrop()
+                                    .resize(400, 400)
+                                    .into(imageView);
+                            title.setText(marker.getTitle());
+                            location.setText(marker.getPosition().toString());
+
+                            // dismiss the popup window when touched
+                            popupView.setOnTouchListener(new View.OnTouchListener() {
+                                @Override
+                                public boolean onTouch(View v, MotionEvent event) {
+                                    popupWindow.dismiss();
+                                    return true;
+                                }
+                            });
+                        }
+                        return false;
+                    }
+                });
+
+
                 }
             }
 
