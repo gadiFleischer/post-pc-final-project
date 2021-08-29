@@ -23,7 +23,6 @@ public class NewEvent extends AppCompatActivity {
     Date EndTime;
     String comment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
