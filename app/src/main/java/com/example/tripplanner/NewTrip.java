@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.TripModel;
 import com.hbb20.CountryPickerView;
@@ -28,7 +30,9 @@ public class NewTrip extends AppCompatActivity {
     CountryPickerView ccp;
     String countryName="";
     String countryCode="";
+    String title="";
     final Calendar myCalendar = Calendar.getInstance();
+    MyApp myApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +43,31 @@ public class NewTrip extends AppCompatActivity {
         tripTitleEdit = findViewById(R.id.tripTitleEdit);
         startDateEdit = findViewById(R.id.startDateEdit);
         endDateEdit = findViewById(R.id.endDateEdit);
-        ccp=(CountryPickerView)findViewById(R.id.ccp);
+        ccp=findViewById(R.id.ccp);
+        myApp = new MyApp(this);
 
         startPlanningButton.setOnClickListener(view -> {
-            this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
-            this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
-
-            TripModel newTrip = new TripModel(tripTitleEdit.getText().toString(), countryName, startDate, endDate, countryCode);
+            //TODO: uncomment after finishing event edit
+//            if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
+//                Toast toast = Toast.makeText(this,"your order has been Deleted", Toast.LENGTH_LONG);
+//                toast.show();
+//                return;
+//            }
+//            this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
+//            this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
+//            this.title =tripTitleEdit.getText().toString();
+//            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||startDate.compareTo(endDate)<0){
+//                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+//                toast.show();
+//                return;
+//            }
+//            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
+//            this.myApp.myTrips.add(newTrip);
+//            this.myApp.saveMyTrips();
             Intent editMapActivity = new Intent(this, EditMap.class);
-            editMapActivity.putExtra("newTrip", newTrip);
+            editMapActivity.putExtra("newTrip", this.myApp.myTrips.get(0)); //TODO: change back to mytrips
             this.startActivity(editMapActivity);
+            finish();
         });
 
 
@@ -80,7 +99,7 @@ public class NewTrip extends AppCompatActivity {
     }
 
     private void updateLabel(boolean isStart) {
-        String myFormat = "dd/MM/yy"; //In which you need put here
+        String myFormat = "dd/MM/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
         if(isStart){
             startDateEdit.setText(sdf.format(myCalendar.getTime()));

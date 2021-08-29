@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MyApp extends Application {
     SharedPreferences sharedPref;
     public ArrayList<TripModel> myTrips;
-
+    public String curAdress="";
     public MyApp(Context context){
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         loadMyTrips();
@@ -39,5 +39,10 @@ public class MyApp extends Application {
         String itemsJson = new Gson().toJson(myTrips);
         sharedPref.edit().putString("myTrips", itemsJson).apply();
     }
+    public void saveMyTrips() {
+        String itemsJson = new Gson().toJson(myTrips);
+        sharedPref.edit().putString("myTrips", itemsJson).apply();
+    }
+
 
 }

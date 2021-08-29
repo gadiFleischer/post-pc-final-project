@@ -15,12 +15,12 @@ public class TripModel implements Serializable {
     public ArrayList<DayModel> days;
 
     public TripModel(String title,String destination,Date startDate,Date endDate,String countryCode){
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.destination = destination;
         this.startDate = startDate;
         this.endDate = endDate;
         this.countryCode = countryCode;
-        this.id = UUID.randomUUID().toString();
         this.days= new ArrayList<>();
     }
 }
