@@ -52,7 +52,7 @@
             android:background="@drawable/rounded_button"
             android:foregroundGravity="center_horizontal"
             android:gravity="center"
-            android:text="@string/go_to_sale"
+            android:text="Add to trip"
 
             android:textColor="#FFFFFF" />
     </LinearLayout>
