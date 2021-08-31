@@ -1,15 +1,11 @@
 package com.example.tripplanner;
 
-import android.content.Intent;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentContainerView;
 
 import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
@@ -18,31 +14,20 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-
-import android.content.Intent;
 import android.location.Address;
-import android.location.Geocoder;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -130,7 +115,7 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                             Log.d("TAG", addedEvents[position].name);
                             LayoutInflater inflater = (LayoutInflater)
                                     getSystemService(LAYOUT_INFLATER_SERVICE);
-                            View popupView = inflater.inflate(R.layout.popup_window, null);
+                            View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
 
 
                             // create the popup window
@@ -143,15 +128,21 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                             // show the popup window
                             // which view you pass in doesn't matter, it is only used for the window tolken
                             popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
-                            TextView title = popupView.findViewById(R.id.title);
-                            TextView location = popupView.findViewById(R.id.location);
-                            Button button = popupView.findViewById(R.id.button);
-                            ImageView imageView = popupView.findViewById(R.id.imageView);
+                            TextView title = popupView.findViewById(R.id.title_add_to_trip);
+                            TextView location = popupView.findViewById(R.id.location_add_to_trip);
+                            Button button = popupView.findViewById(R.id.button_add_to_trip);
+                            ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
                             Picasso.get().load(addedEvents[position].comment).centerCrop()
                                     .resize(400, 400)
                                     .into(imageView);
                             title.setText(marker.getTitle());
                             location.setText(marker.getPosition().toString());
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+//                                    goToSaleIntent(position);
+                                }
+                            });
 
                             // dismiss the popup window when touched
                             popupView.setOnTouchListener(new View.OnTouchListener() {
@@ -202,7 +193,7 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                     Log.d("TAG", addedEvents[position].name);
                     LayoutInflater inflater = (LayoutInflater)
                             getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.popup_window, null);
+                    View popupView = inflater.inflate(R.layout.go_to_edit_event_window, null);
 
 
                     // create the popup window
@@ -215,12 +206,12 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                     // show the popup window
                     // which view you pass in doesn't matter, it is only used for the window tolken
                     popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
-                    TextView title = popupView.findViewById(R.id.title);
-                    TextView location = popupView.findViewById(R.id.location);
-                    Button button = popupView.findViewById(R.id.button);
-                    ImageView imageView = popupView.findViewById(R.id.imageView);
+                    TextView title = popupView.findViewById(R.id.title_edit_event);
+                    TextView location = popupView.findViewById(R.id.location_edit_event);
+                    Button button = popupView.findViewById(R.id.button_edit_event);
+                    ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
                     Picasso.get().load(addedEvents[position].comment).centerCrop()
-                            .resize(400, 200)
+                            .resize(400, 400)
                             .into(imageView);
                     title.setText(addedEvents[position].name);
                     location.setText(addedEvents[position].address);
