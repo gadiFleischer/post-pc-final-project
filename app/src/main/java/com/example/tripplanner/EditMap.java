@@ -34,7 +34,6 @@ public class EditMap extends AppCompatActivity {
         String id= getTripIntent.getStringExtra("tripId");
         this.myTrip=myApp.getTripById(id);
 
-
         finishPlanningButton.setOnClickListener(view -> {
             Intent finishEditingActivity = new Intent(this, TripDetails.class);
             this.startActivity(finishEditingActivity);

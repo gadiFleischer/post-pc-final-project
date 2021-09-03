@@ -44,6 +44,16 @@ public class MyApp extends Application {
         String itemsJson = new Gson().toJson(myTrips);
         sharedPref.edit().putString("myTrips", itemsJson).apply();
     }
+    public void saveTrip(TripModel toSaveTrip) {
+        ArrayList<TripModel> trips = this.myTrips;
+        for (int i = 0, tripsSize = trips.size(); i < tripsSize; i++) {
+            if (trips.get(i).id.equals(toSaveTrip.id)) {
+               this.myTrips.set(i,toSaveTrip);
+            }
+        }
+        String itemsJson = new Gson().toJson(myTrips);
+        sharedPref.edit().putString("myTrips", itemsJson).apply();
+    }
 
     public CategoryEvent getCategoryFromString(String name){
         switch(name) {
