@@ -6,8 +6,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.Serializable;
+import java.util.Date;
 
 public class EditMap extends AppCompatActivity {
     Button finishPlanningButton;
@@ -26,7 +31,8 @@ public class EditMap extends AppCompatActivity {
 
 
         Intent getTripIntent=getIntent();
-        this.myTrip = (TripModel) getTripIntent.getSerializableExtra("newTrip");
+        String id= getTripIntent.getStringExtra("tripId");
+        this.myTrip=myApp.getTripById(id);
 
 
         finishPlanningButton.setOnClickListener(view -> {
@@ -34,9 +40,12 @@ public class EditMap extends AppCompatActivity {
             this.startActivity(finishEditingActivity);
         });
         addNewEventButton.setOnClickListener(view -> {
-            this.myApp.curAdress="keren hayesod 15";//get from marker
+            String address = "keren hayesod 15";//TODO: get from marker
+            LatLng pos= new LatLng(100,100);//TODO:get from marker
+            EventModel newEvent = new EventModel("",address,CategoryEvent.OTHER,pos,1,"","","");
             Intent addEventActivity = new Intent(this, NewEvent.class);
-            addEventActivity.putExtra("newTrip",this.myTrip );
+            addEventActivity.putExtra("newEvent", (Serializable) newEvent);
+            addEventActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(addEventActivity);
         });
         editEventButton.setOnClickListener(view -> {

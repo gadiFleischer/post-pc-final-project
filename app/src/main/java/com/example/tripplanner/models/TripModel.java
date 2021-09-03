@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class TripModel implements Serializable {
     public String id;
@@ -22,5 +23,13 @@ public class TripModel implements Serializable {
         this.endDate = endDate;
         this.countryCode = countryCode;
         this.days= new ArrayList<>();
+    }
+
+    public void initDaysArray(){
+        long diff = endDate.getTime() - startDate.getTime();
+        long res= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)+1;
+        for (int i=0;i<res;i++){
+            this.days.add(new DayModel(i+1,"red"));//TODO:think about color default
+        }
     }
 }

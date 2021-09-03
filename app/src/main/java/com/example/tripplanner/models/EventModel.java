@@ -4,23 +4,24 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class EventModel implements Parcelable {
+public class EventModel implements Parcelable, Serializable {
 
     public String id;
     public String name;
     public String address;
     public CategoryEvent category;
     public int day;
-    public Date startTime;
-    public Date endTime;
+    public String startTime;
+    public String endTime;
     public String comment;
     public LatLng position;
 
     public EventModel(String name,String address,CategoryEvent category, LatLng position
-            ,int day,Date startTime,Date endTime,String comment){
+            ,int day,String startTime,String endTime,String comment){
 
         this.id = UUID.randomUUID().toString();
         this.name = name;

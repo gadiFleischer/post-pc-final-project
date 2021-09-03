@@ -55,8 +55,7 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
     Geocoder geocoder;
 
     EventModel[] addedEvents = { //TODO: not hardcoded options
-            new EventModel("Pnina Pie", "Sweets", CategoryEvent.FOOD,new LatLng(31.777883, 35.198348), 2, new Date(),
-                    new Date(), "comment"),
+            new EventModel("Pnina Pie", "Sweets", CategoryEvent.FOOD,new LatLng(31.777883, 35.198348), 2, "", "", "comment"),
 
     };
 

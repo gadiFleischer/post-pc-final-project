@@ -46,26 +46,28 @@ public class NewTrip extends AppCompatActivity {
         ccp=findViewById(R.id.ccp);
         myApp = new MyApp(this);
 
+
         startPlanningButton.setOnClickListener(view -> {
             //TODO: uncomment after finishing event edit
 //            if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
-//                Toast toast = Toast.makeText(this,"your order has been Deleted", Toast.LENGTH_LONG);
+//                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
 //                toast.show();
 //                return;
 //            }
 //            this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
 //            this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
 //            this.title =tripTitleEdit.getText().toString();
-//            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||startDate.compareTo(endDate)<0){
+//            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||endDate.compareTo(startDate)<0){
 //                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
 //                toast.show();
 //                return;
 //            }
 //            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
 //            this.myApp.myTrips.add(newTrip);
+//            newTrip.initDaysArray();
 //            this.myApp.saveMyTrips();
             Intent editMapActivity = new Intent(this, EditMap.class);
-            editMapActivity.putExtra("newTrip", this.myApp.myTrips.get(0)); //TODO: change back to mytrips
+            editMapActivity.putExtra("tripId", this.myApp.myTrips.get(0).id); //TODO: change back to newTrip.id
             this.startActivity(editMapActivity);
             finish();
         });
@@ -76,25 +78,25 @@ public class NewTrip extends AppCompatActivity {
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel(true);
+            startDate = myCalendar.getTime();
         };
         DatePickerDialog.OnDateSetListener endDateListener = (view, year, monthOfYear, dayOfMonth) -> {
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel(false);
+            endDate = myCalendar.getTime();
         };
 
         startDateEdit.setOnClickListener(v -> {
             new DatePickerDialog(NewTrip.this, startDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            startDate = myCalendar.getTime();
         });
         endDateEdit.setOnClickListener(v -> {
             new DatePickerDialog(NewTrip.this, endDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            endDate = myCalendar.getTime();
         });
     }
 
