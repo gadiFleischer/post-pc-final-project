@@ -50,8 +50,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
-        />
+        app:layout_constraintVertical_bias="0.904" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerTodoItemsList"
+        android:layout_width="408dp"
+        android:layout_height="467dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tripExampleButton"
+        app:layout_constraintTop_toBottomOf="@+id/myTripsTitle2"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="3dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
