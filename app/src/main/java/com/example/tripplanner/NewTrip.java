@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.TripModel;
 import com.hbb20.CountryPickerView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,9 +65,15 @@ public class NewTrip extends AppCompatActivity {
 //            }
 //            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
 //            this.myApp.myTrips.add(newTrip);
-//            newTrip.initDaysArray();
+//            newTrip.initDaysArrayAndPicker();
 //            this.myApp.saveMyTrips();
             Intent editMapActivity = new Intent(this, EditMap.class);
+            try {
+                this.myApp.myTrips.get(0).initDaysArrayAndPicker();
+                this.myApp.saveTrip(this.myApp.myTrips.get(0));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             editMapActivity.putExtra("tripId", this.myApp.myTrips.get(0).id); //TODO: change back to newTrip.id
             this.startActivity(editMapActivity);
             finish();
@@ -101,8 +108,7 @@ public class NewTrip extends AppCompatActivity {
     }
 
     private void updateLabel(boolean isStart) {
-        String myFormat = "dd/MM/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
         if(isStart){
             startDateEdit.setText(sdf.format(myCalendar.getTime()));
         }else{

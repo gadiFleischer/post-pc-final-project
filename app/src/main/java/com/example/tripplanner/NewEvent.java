@@ -4,29 +4,23 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.EventLog;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class NewEvent extends AppCompatActivity {
     Button addNewEventButton;
     TextView addressTitle;
     EditText nickNameEdit;
-    EditText dayEdit;
     EditText startTimeEdit;
     EditText endTimeEdit;
     EditText commentEdit;
@@ -37,7 +31,6 @@ public class NewEvent extends AppCompatActivity {
     TripModel myTrip;
     MyApp myApp;
 
-    int day=0;
     String startTime;
     String endTime;
 
@@ -47,22 +40,24 @@ public class NewEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_event_activity);
         addNewEventButton = findViewById(R.id.addThisEventButton);
-        Spinner dropdown = findViewById(R.id.categorySpinner);
+        Spinner categoryDropdown = findViewById(R.id.categorySpinner);
         addressTitle = findViewById(R.id.addressTitle);
         nickNameEdit = findViewById(R.id.nickNameEdit);
-        dayEdit = findViewById(R.id.dayEdit);
+        Spinner daysDropDown = findViewById(R.id.daySpinner);
         startTimeEdit = findViewById(R.id.startTimeEdit);
         endTimeEdit = findViewById(R.id.endTimeEdit);
         commentEdit = findViewById(R.id.commentEdit);
         final Calendar cldr = Calendar.getInstance();
 
         myApp = new MyApp(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categoryItems);
-        dropdown.setAdapter(adapter);
-
-
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
+
+        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categoryItems);
+        categoryDropdown.setAdapter(adapterCategorys);
+        ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
+        daysDropDown.setAdapter(adapterDays);
+
         EventModel event = (EventModel) getTripIntent.getSerializableExtra("newEvent");
         this.addressTitle.setText(event.address);
 
@@ -89,14 +84,13 @@ public class NewEvent extends AppCompatActivity {
         });
 
         addNewEventButton.setOnClickListener(view -> {
-            event.category=myApp.getCategoryFromString(dropdown.getSelectedItem().toString());
+            event.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
             event.comment=this.commentEdit.getText().toString();
             event.startTime=this.startTime;
             event.endTime=this.endTime;
-            String dayString = this.dayEdit.getText().toString();
-            int day = dayString.equals("")?0:Integer.parseInt(dayString);
+            String dayString = daysDropDown.getSelectedItem().toString();
+            int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             this.myTrip.days.get(day).events.add(event);
-
             this.myApp.saveTrip(myTrip);
 
             Intent editMapActivity = new Intent(this, EditMap.class);
