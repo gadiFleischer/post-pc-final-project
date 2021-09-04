@@ -16,7 +16,7 @@ public class TripDetails extends AppCompatActivity {
         showOnMapButton = findViewById(R.id.showOnMapButton);
 
         showOnMapButton.setOnClickListener(view -> {
-            Intent showOnMapButtonActivity = new Intent(this, MainMapActivity.class);
+            Intent showOnMapButtonActivity = new Intent(this, EditMapActivity.class);
             this.startActivity(showOnMapButtonActivity);
         });
     }

@@ -1,5 +1,6 @@
 package com.example.tripplanner;
 
+import android.content.Intent;
 import android.location.Geocoder;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,6 +37,8 @@ public class ShowMapActivity extends FragmentActivity implements OnMapReadyCallb
     SupportMapFragment mapFragment;
     Geocoder geocoder;
 
+    Intent intent = getIntent();
+
     EventModel[] addedEvents = { //TODO: not hardcoded options
             new EventModel("Pnina Pie", "Sweets", CategoryEvent.FOOD,new LatLng(31.777883, 35.198348), 2, "",  "", "comment"),
     };
@@ -63,7 +66,7 @@ public class ShowMapActivity extends FragmentActivity implements OnMapReadyCallb
                     Log.d("TAG", addedEvents[position].name);
                     LayoutInflater inflater = (LayoutInflater)
                             getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
+                    View popupView = inflater.inflate(R.layout.go_to_edit_event_window, null);
 
 
                     // create the popup window
@@ -76,10 +79,10 @@ public class ShowMapActivity extends FragmentActivity implements OnMapReadyCallb
                     // show the popup window
                     // which view you pass in doesn't matter, it is only used for the window tolken
                     popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
-                    TextView title = popupView.findViewById(R.id.title_add_to_trip);
-                    TextView location = popupView.findViewById(R.id.location_add_to_trip);
-                    Button button = popupView.findViewById(R.id.button_add_to_trip);
-                    ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
+                    TextView title = popupView.findViewById(R.id.title_edit_event);
+                    TextView location = popupView.findViewById(R.id.location_edit_event);
+                    Button button = popupView.findViewById(R.id.button_edit_event);
+                    ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
                     Picasso.get().load(addedEvents[position].comment).centerCrop()
                             .resize(400, 200)
                             .into(imageView);

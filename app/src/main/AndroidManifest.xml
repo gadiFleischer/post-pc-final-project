@@ -33,7 +33,7 @@
         <activity android:name=".EditEvent" />
         <activity android:name=".MyTrips" />
         <activity android:name=".TripDetails" />
-        <activity android:name=".MainMapActivity" />
+        <activity android:name=".EditMapActivity" />
     </application>
 
 </manifest>

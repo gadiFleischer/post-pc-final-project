@@ -1,7 +1,9 @@
 package com.example.tripplanner;
 
+import android.content.Intent;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -40,14 +42,13 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
-import java.util.Date;
 
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MainMapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class EditMapActivity extends FragmentActivity implements OnMapReadyCallback {
     Button editEventMarkerButton;
 
     GoogleMap map;
@@ -79,7 +80,7 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         autocompleteSupportFragment.setHint("Your location");
 
-        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG,Place.Field.NAME));
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG,Place.Field.NAME, Place.Field.ADDRESS));
 
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
 
@@ -88,20 +89,22 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
             public void onPlaceSelected(@NonNull Place place) {
                 // TODO: Get info about the selected place.
                 Toast.makeText(getApplicationContext(), place.getName(), Toast.LENGTH_SHORT).show();
-
+                String address = place.getAddress();
+                System.out.println("*** check " + place + " ***");
                 String location = place.getName();
                 List<Address> addressList = null;
 
                 if (location != null || !location.equals("")) {
-                    Geocoder geocoder = new Geocoder(MainMapActivity.this);
+                    Geocoder geocoder = new Geocoder(EditMapActivity.this);
                     try {
                         addressList = geocoder.getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(location));
+                    Address latlong = addressList.get(0);
+                    LatLng latLng = new LatLng(latlong.getLatitude(), latlong.getLongitude());
+                    Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(location).
+                            snippet(address));
                     marker.setTag(0);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                     map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -135,11 +138,13 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                                     .resize(400, 400)
                                     .into(imageView);
                             title.setText(marker.getTitle());
-                            location.setText(marker.getPosition().toString());
+//                            location.setText(marker.getPosition().toString());
+
+                            location.setText(marker.getSnippet());
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-//                                    goToSaleIntent(position);
+                                    goToNewEventIntent(marker.getTitle(), address, marker.getPosition());
                                 }
                             });
 
@@ -173,10 +178,11 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
-        CameraUpdate point = CameraUpdateFactory.newLatLng(new LatLng(31.777028899999998, 35.1980509));
         LatLng latLng = new LatLng(31.777028899999998, 35.1980509);
-        Marker home = map.addMarker(new MarkerOptions().position(latLng).title("Home"));
-        home.setTag(-1);
+        CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
+
+//        Marker home = map.addMarker(new MarkerOptions().position(latLng).title("Home"));
+//        home.setTag(-1);
         populateLocations();
         // moves camera to coordinates
         map.moveCamera(point);
@@ -214,12 +220,12 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
                             .into(imageView);
                     title.setText(addedEvents[position].name);
                     location.setText(addedEvents[position].address);
-//                    button.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            goToSaleIntent(position);
-//                        }
-//                    });
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            goToEditEventIntent(addedEvents[position]);
+                        }
+                    });
                     // dismiss the popup window when touched
                     popupView.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -255,6 +261,20 @@ public class MainMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
     }
+
+    public void goToNewEventIntent(String name, String address, LatLng position){
+        Intent newEventIntent = new Intent(this, NewEvent.class);
+        EventModel event = new EventModel(name, address, null, position, 1, null, null, null);
+        newEventIntent.putExtra("event item", (Parcelable) event);
+        this.startActivity(newEventIntent);
+    }
+
+    public void goToEditEventIntent(EventModel event){
+        Intent editEventIntent = new Intent(this, EditEvent.class);
+        editEventIntent.putExtra("event item", (Parcelable) event);
+        this.startActivity(editEventIntent);
+    }
+
 
 
 }
