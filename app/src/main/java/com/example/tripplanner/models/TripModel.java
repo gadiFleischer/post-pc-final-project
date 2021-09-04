@@ -50,6 +50,7 @@ public class TripModel implements Serializable {
             curDate = addDays(curDate, 1);
         }
     }
+
     public static Date addDays(Date date, int days)
     {
         Calendar cal = Calendar.getInstance();
