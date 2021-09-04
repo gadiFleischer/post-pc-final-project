@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.example.tripplanner.models.CategoryEvent;
+import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -76,6 +77,17 @@ public class MyApp extends Application {
             }
         }
         return null;
+    }
+    public static int getEventByIdIndex(TripModel trip, int day, String eventId){
+
+        ArrayList<EventModel> events = trip.days.get(day).events;
+        for (int i = 0, eventsSize = events.size(); i < eventsSize; i++) {
+            EventModel event = events.get(i);
+            if (event.id.equals(eventId)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 

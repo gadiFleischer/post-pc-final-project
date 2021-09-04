@@ -64,16 +64,15 @@ public class NewTrip extends AppCompatActivity {
 //                return;
 //            }
 //            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
+//            try {
+//                newTrip.initDaysArrayAndPicker();
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
 //            this.myApp.myTrips.add(newTrip);
-//            newTrip.initDaysArrayAndPicker();
 //            this.myApp.saveMyTrips();
+
             Intent editMapActivity = new Intent(this, EditMap.class);
-            try {
-                this.myApp.myTrips.get(0).initDaysArrayAndPicker();
-                this.myApp.saveTrip(this.myApp.myTrips.get(0));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
             editMapActivity.putExtra("tripId", this.myApp.myTrips.get(0).id); //TODO: change back to newTrip.id
             this.startActivity(editMapActivity);
             finish();

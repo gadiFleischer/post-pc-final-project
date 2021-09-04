@@ -25,12 +25,9 @@ public class NewEvent extends AppCompatActivity {
     EditText endTimeEdit;
     EditText commentEdit;
     String[] categoryItems = new String[]{"FOOD", "SIGHT", "HOTEL","OTHER"};
-    //TODO: create picker for days
     TimePickerDialog picker;
-
     TripModel myTrip;
     MyApp myApp;
-
     String startTime;
     String endTime;
 
@@ -52,14 +49,15 @@ public class NewEvent extends AppCompatActivity {
         myApp = new MyApp(this);
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
+        EventModel event = (EventModel) getTripIntent.getSerializableExtra("newEvent");
+        this.addressTitle.setText(event.address);
 
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
         ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
 
-        EventModel event = (EventModel) getTripIntent.getSerializableExtra("newEvent");
-        this.addressTitle.setText(event.address);
+
 
         startTimeEdit.setInputType(InputType.TYPE_NULL);
         startTimeEdit.setOnClickListener(v -> {
@@ -76,11 +74,9 @@ public class NewEvent extends AppCompatActivity {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
             int minutes = cldr.get(Calendar.MINUTE);
             picker = new TimePickerDialog(NewEvent.this,
-                    (tp, sHour, sMinute) -> {
-                        endTimeEdit.setText(sHour + ":" + sMinute);
-                    }, hour, minutes, true);
+                    (tp, sHour, sMinute) -> endTimeEdit.setText(sHour + ":" + sMinute), hour, minutes, true);
             picker.show();
-            this.endTime=startTimeEdit.getText().toString();
+            this.endTime=endTimeEdit.getText().toString();
         });
 
         addNewEventButton.setOnClickListener(view -> {
@@ -88,6 +84,7 @@ public class NewEvent extends AppCompatActivity {
             event.comment=this.commentEdit.getText().toString();
             event.startTime=this.startTime;
             event.endTime=this.endTime;
+            event.name=this.nickNameEdit.getText().toString();
             String dayString = daysDropDown.getSelectedItem().toString();
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             this.myTrip.days.get(day).events.add(event);
