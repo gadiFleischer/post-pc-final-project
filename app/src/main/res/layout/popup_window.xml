@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/title"
+                android:text="Title"
                 android:textColor="#D53E71"
                 android:textStyle="bold"
                 android:textSize="22sp" />

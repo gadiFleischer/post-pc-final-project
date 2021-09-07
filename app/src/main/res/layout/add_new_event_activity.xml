@@ -7,17 +7,38 @@
 
 
     <TextView
+        android:id="@+id/addNewEventTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#00ccff"
+        android:text="Add          Event"
+        android:textColor="#D53E71"
+        android:textSize="52dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.327"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036" />
+
+
+    <TextView
         android:id="@+id/addNewEventTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add new event"
-        android:textSize="32dp"
+        android:shadowColor="#00ccff"
+        android:text="New"
+        android:textColor="#8BC34A"
+        android:textSize="52dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.036" />
+
 
     <EditText
         android:id="@+id/nickNameEdit"
@@ -26,54 +47,62 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="enter Nick name here..."
+        android:hint=" Please enter nickname here..."
         android:text=""
+
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.634"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
-
+        app:layout_constraintVertical_bias="0.252" />
 
     <TextView
         android:id="@+id/addressTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
-        android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.168" />
+
 
     <TextView
         android:id="@+id/nickNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nick name:"
-        android:textSize="20dp"
+        android:text="Nickname"
+        android:textColor="#D53E71"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintVertical_bias="0.256" />
 
     <TextView
         android:id="@+id/categoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose category"
-        android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintVertical_bias="0.352" />
 
     <Spinner
         android:id="@+id/categorySpinner"
@@ -81,79 +110,91 @@
         android:layout_height="38dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintVertical_bias="0.349" />
 
     <TextView
         android:id="@+id/dayTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Day:"
-        android:textSize="20dp"
+        android:text="Choose Day"
+        android:textColor="#D53E71"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-
+        app:layout_constraintVertical_bias="0.444" />
 
     <TextView
         android:id="@+id/startTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start time:"
-        android:textSize="20dp"
+        android:text="Start time"
+        android:textColor="#D53E71"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.536" />
 
     <TextView
         android:id="@+id/endTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="End time:"
+        android:text="End time"
+        android:textColor="#D53E71"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
+        app:layout_constraintVertical_bias="0.617" />
 
     <TextView
         android:id="@+id/commentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comment:"
-        android:textSize="20dp"
+        android:text="Comment"
+        android:textColor="#D53E71"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
+        app:layout_constraintVertical_bias="0.688" />
+
 
     <Button
         android:id="@+id/addThisEventButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="288dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#8BC34A"
         android:text="Add event"
+        app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
-
+        app:layout_constraintVertical_bias="0.963" />
 
     <EditText
         android:id="@+id/startTimeEdit"
@@ -161,12 +202,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter start Time"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.486" />
+        app:layout_constraintVertical_bias="0.534" />
 
     <EditText
         android:id="@+id/endTimeEdit"
@@ -176,10 +218,10 @@
         android:hint="Enter end Time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintHorizontal_bias="0.88"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587" />
+        app:layout_constraintVertical_bias="0.619" />
 
     <Spinner
         android:id="@+id/daySpinner"
@@ -189,10 +231,10 @@
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <EditText
         android:id="@+id/commentEdit"
@@ -203,10 +245,12 @@
         android:gravity="top"
         android:hint="add comment"
         android:inputType="textMultiLine"
+
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776"></EditText>
+        app:layout_constraintVertical_bias="0.807"></EditText>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

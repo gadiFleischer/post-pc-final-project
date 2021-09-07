@@ -10,6 +10,8 @@
         android:id="@+id/tripName"
         android:layout_width="320dp"
         android:layout_height="30dp"
+        android:textColor="#D53E71"
+
         android:layout_marginStart="10dp"
         android:text="please_enter_task"
         android:textAlignment="viewStart"
@@ -17,6 +19,8 @@
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/markCheckbox"
         app:layout_constraintTop_toBottomOf="parent" />
+
+
 
     <CheckBox
         android:id="@+id/markCheckbox"
@@ -27,6 +31,8 @@
         app:layout_constraintBottom_toBottomOf="@id/tripName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
+        android:backgroundTint="#D53E71"
+
         app:layout_constraintVertical_bias="0.95" />
 
     <ImageButton
@@ -41,6 +47,7 @@
         app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tripName"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

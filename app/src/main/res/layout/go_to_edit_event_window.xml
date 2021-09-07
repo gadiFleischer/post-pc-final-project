@@ -31,9 +31,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/title"
-                android:textSize="22sp"
-                android:layout_marginLeft="10dp" />
+                android:text="Title"
+                android:textColor="#D53E71"
+                android:textSize="18dp"
+                android:textStyle="bold"                 android:layout_marginLeft="10dp" />
 
             <TextView
                 android:id="@+id/location_edit_event"
@@ -42,21 +43,29 @@
                 android:layout_margin="10dp"
                 android:layout_marginStart="10dp"
                 android:text="@string/eventTime"
+                android:textColor="#D53E71"
+
                 android:layout_marginLeft="10dp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/button_edit_event"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_button"
-            android:foregroundGravity="center_horizontal"
-            android:gravity="center"
-            android:text="Edit event"
-
-            android:textColor="#FFFFFF" />
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#8BC34A"
+            android:text="Edit Event"
+            app:cornerRadius="28dp"
+            android:layout_marginLeft="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.976"
+            />
     </LinearLayout>
 
 </LinearLayout>
