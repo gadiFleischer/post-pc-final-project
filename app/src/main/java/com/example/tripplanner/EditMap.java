@@ -48,10 +48,10 @@ public class EditMap extends AppCompatActivity {
             this.startActivity(addEventActivity);
         });
         editEventButton.setOnClickListener(view -> {
-            //TODO: get event from marker
-            EventModel newEvent = this.myTrip.days.get(0).events.get(0);
+            //TODO: get Id from marker and use Trip.getEventById()
+            String toEditEvent = this.myTrip.days.get(0).events.get(0).id;
             Intent editEventActivity = new Intent(this, EditEvent.class);
-            editEventActivity.putExtra("newEvent", (Serializable) newEvent);
+            editEventActivity.putExtra("EventId", toEditEvent);
             editEventActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editEventActivity);
         });

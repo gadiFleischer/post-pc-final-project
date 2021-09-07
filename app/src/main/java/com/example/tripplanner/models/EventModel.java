@@ -69,20 +69,4 @@ public class EventModel implements Parcelable, Serializable {
             return new EventModel[size];
         }
     };
-
-    public int getCategoryPosition(){
-        switch(this.category.toString()) {
-            case "FOOD":
-                return 0;
-            case "HOTEL":
-                return 1;
-            case "SIGHT":
-                return 2;
-            default:
-                return 3;
-        }
-    }
-
-
-
 }

@@ -57,4 +57,16 @@ public class TripModel implements Serializable {
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
     }
+    public EventModel getEventById(String id){
+        for (DayModel day : this.days)
+        {
+            for (EventModel event: day.events) {
+                if (event.id.equals(id))
+                {
+                    return event;
+                }
+            }
+        }
+        return null;
+    }
 }

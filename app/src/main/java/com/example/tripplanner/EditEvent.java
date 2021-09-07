@@ -27,12 +27,11 @@ public class EditEvent extends AppCompatActivity {
     EditText startTimeEdit;
     EditText endTimeEdit;
     EditText commentEdit;
-    String[] categoryItems = new String[]{"FOOD", "SIGHT", "HOTEL","OTHER"};
     TimePickerDialog picker;
     TripModel myTrip;
+    EventModel myEvent;
     MyApp myApp;
-    String startTime;
-    String endTime;
+    int lastDay;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -54,60 +53,57 @@ public class EditEvent extends AppCompatActivity {
         myApp = new MyApp(this);
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
-        EventModel event = (EventModel) getTripIntent.getSerializableExtra("newEvent");
+        this.myEvent = myTrip.getEventById(getTripIntent.getStringExtra("EventId"));
         //Edit fields
-        this.addressTitle.setText(event.address);
-        this.nickNameEdit.setText(event.name);
-        this.startTimeEdit.setText(event.startTime);
-        this.endTimeEdit.setText(event.endTime);
-        this.commentEdit.setText(event.comment);
-        this.startTime=event.startTime;
-        this.endTime=event.endTime;
+        this.addressTitle.setText(myEvent.address);
+        this.nickNameEdit.setText(myEvent.name);
+        this.startTimeEdit.setText(myEvent.startTime);
+        this.endTimeEdit.setText(myEvent.endTime);
+        this.commentEdit.setText(myEvent.comment);
+        lastDay=myEvent.day;
 
-        //TODO: set adapters with given input
-        //TODO: fix bugfix for time
-        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categoryItems);
+        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
-        if(event.category==null){
-            categoryDropdown.setSelection(3);
-        }else{
-            categoryDropdown.setSelection(event.category.ordinal());
-        }
+        categoryDropdown.setSelection(myEvent.category.ordinal());
 
         ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
-        daysDropDown.setSelection(event.day);
+        daysDropDown.setSelection(myEvent.day);
 
         startTimeEdit.setOnClickListener(v -> {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
             int minutes = cldr.get(Calendar.MINUTE);
             picker = new TimePickerDialog(EditEvent.this,
-                    (tp, sHour, sMinute) -> startTimeEdit.setText(sHour + ":" + sMinute), hour, minutes, true);
+                    (tp, sHour, sMinute) -> startTimeEdit.setText(String.format("%02d:%02d", sHour, sMinute)), hour, minutes, true);
             picker.show();
-            this.startTime=startTimeEdit.getText().toString();
         });
 
         endTimeEdit.setOnClickListener(v -> {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
             int minutes = cldr.get(Calendar.MINUTE);
             picker = new TimePickerDialog(EditEvent.this,
-                    (tp, sHour, sMinute) -> endTimeEdit.setText(sHour + ":" + sMinute), hour, minutes, true);
+                    (tp, sHour, sMinute) -> endTimeEdit.setText(String.format("%02d:%02d", sHour, sMinute)), hour, minutes, true);
             picker.show();
-            this.endTime=endTimeEdit.getText().toString();
+            this.myEvent.endTime=endTimeEdit.getText().toString();
         });
 
         DoneEditButton.setOnClickListener(view -> {
-            event.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
-            event.comment=this.commentEdit.getText().toString();
-            event.startTime=this.startTime;
-            event.endTime=this.endTime;
-            event.name=this.nickNameEdit.getText().toString();
+            myEvent.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
+            myEvent.comment=this.commentEdit.getText().toString();
+            myEvent.name=this.nickNameEdit.getText().toString();
             String dayString = daysDropDown.getSelectedItem().toString();
+            myEvent.startTime=startTimeEdit.getText().toString();
+            myEvent.endTime=endTimeEdit.getText().toString();
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
-            event.day=day;
-            int index = MyApp.getEventByIdIndex(this.myTrip,day,event.id);
-            if(index!=-1){
-                this.myTrip.days.get(day).events.set(index,event);
+            if(lastDay!=day){
+                myTrip.days.get(lastDay).events.removeIf(x->x.id.equals(myEvent.id));
+                myTrip.days.get(day).events.add(myEvent);
+                myEvent.day=day;
+            }else{
+                int index = MyApp.getEventByIdIndex(this.myTrip,day,myEvent.id);
+                if(index!=-1){
+                    this.myTrip.days.get(day).events.set(index,myEvent);
+                }
             }
             this.myApp.saveTrip(myTrip);
             Intent editMapActivity = new Intent(this, EditMap.class);
@@ -115,12 +111,12 @@ public class EditEvent extends AppCompatActivity {
             this.startActivity(editMapActivity);
         });
         deleteEditButton.setOnClickListener(view -> {
-            String dayString = daysDropDown.getSelectedItem().toString();
-            int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
-            int index = MyApp.getEventByIdIndex(this.myTrip,day,event.id);
+            int day = myEvent.day;
+            int index = MyApp.getEventByIdIndex(this.myTrip,day,myEvent.id);
             if(index!=-1){
                 this.myTrip.days.get(day).events.remove(index);
             }
+            this.myApp.saveTrip(myTrip);
             Intent editMapActivity = new Intent(this, EditMap.class);
             editMapActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editMapActivity);

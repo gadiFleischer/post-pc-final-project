@@ -24,12 +24,9 @@ public class NewEvent extends AppCompatActivity {
     EditText startTimeEdit;
     EditText endTimeEdit;
     EditText commentEdit;
-    String[] categoryItems = new String[]{"FOOD", "SIGHT", "HOTEL","OTHER"};
     TimePickerDialog picker;
     TripModel myTrip;
     MyApp myApp;
-    String startTime;
-    String endTime;
 
 
     @Override
@@ -52,7 +49,7 @@ public class NewEvent extends AppCompatActivity {
         EventModel event = (EventModel) getTripIntent.getSerializableExtra("newEvent");
         this.addressTitle.setText(event.address);
 
-        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categoryItems);
+        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
         ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
@@ -64,9 +61,8 @@ public class NewEvent extends AppCompatActivity {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
             int minutes = cldr.get(Calendar.MINUTE);
             picker = new TimePickerDialog(NewEvent.this,
-                    (tp, sHour, sMinute) -> startTimeEdit.setText(sHour + ":" + sMinute), hour, minutes, true);
+                    (tp, sHour, sMinute) -> startTimeEdit.setText(String.format("%02d:%02d", sHour, sMinute)), hour, minutes, true);
             picker.show();
-            this.startTime=startTimeEdit.getText().toString();
         });
 
         endTimeEdit.setInputType(InputType.TYPE_NULL);
@@ -74,17 +70,18 @@ public class NewEvent extends AppCompatActivity {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
             int minutes = cldr.get(Calendar.MINUTE);
             picker = new TimePickerDialog(NewEvent.this,
-                    (tp, sHour, sMinute) -> endTimeEdit.setText(sHour + ":" + sMinute), hour, minutes, true);
+                    (tp, sHour, sMinute) -> endTimeEdit.setText(String.format("%02d:%02d", sHour, sMinute)), hour, minutes, true);
             picker.show();
-            this.endTime=endTimeEdit.getText().toString();
+            event.endTime=endTimeEdit.getText().toString();
         });
 
         addNewEventButton.setOnClickListener(view -> {
             event.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
             event.comment=this.commentEdit.getText().toString();
-            event.startTime=this.startTime;
-            event.endTime=this.endTime;
             event.name=this.nickNameEdit.getText().toString();
+            event.startTime=startTimeEdit.getText().toString();
+            event.endTime=endTimeEdit.getText().toString();
+
             String dayString = daysDropDown.getSelectedItem().toString();
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             event.day=day;

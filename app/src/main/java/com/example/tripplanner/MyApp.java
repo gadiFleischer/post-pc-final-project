@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyApp extends Application {
+    String[] categoryItems = new String[]{"FOOD", "SIGHT", "HOTEL","OTHER"};
+
     SharedPreferences sharedPref;
     public ArrayList<TripModel> myTrips;
     public MyApp(Context context){
