@@ -73,7 +73,7 @@ public class NewTrip extends AppCompatActivity {
             this.myApp.saveMyTrips();
 
             Intent editMapActivity = new Intent(this, EditMap.class);
-            editMapActivity.putExtra("tripId", this.myApp.myTrips.get(0).id); //TODO: change back to newTrip.id
+            editMapActivity.putExtra("tripId", newTrip); //TODO: change back to newTrip.id
             this.startActivity(editMapActivity);
             finish();
         });
