@@ -68,8 +68,15 @@ public class EditEvent extends AppCompatActivity {
         //TODO: fix bugfix for time
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
+        if(event.category==null){
+            categoryDropdown.setSelection(3);
+        }else{
+            categoryDropdown.setSelection(event.category.ordinal());
+        }
+
         ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
+        daysDropDown.setSelection(event.day);
 
         startTimeEdit.setOnClickListener(v -> {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
@@ -97,6 +104,7 @@ public class EditEvent extends AppCompatActivity {
             event.name=this.nickNameEdit.getText().toString();
             String dayString = daysDropDown.getSelectedItem().toString();
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
+            event.day=day;
             int index = MyApp.getEventByIdIndex(this.myTrip,day,event.id);
             if(index!=-1){
                 this.myTrip.days.get(day).events.set(index,event);

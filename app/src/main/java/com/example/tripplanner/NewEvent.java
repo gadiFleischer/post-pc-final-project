@@ -87,6 +87,7 @@ public class NewEvent extends AppCompatActivity {
             event.name=this.nickNameEdit.getText().toString();
             String dayString = daysDropDown.getSelectedItem().toString();
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
+            event.day=day;
             this.myTrip.days.get(day).events.add(event);
             this.myApp.saveTrip(myTrip);
 

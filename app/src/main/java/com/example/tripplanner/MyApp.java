@@ -68,6 +68,7 @@ public class MyApp extends Application {
                 return CategoryEvent.OTHER;
         }
     }
+
     public TripModel getTripById(String id){
         for (TripModel trip : this.myTrips)
         {
