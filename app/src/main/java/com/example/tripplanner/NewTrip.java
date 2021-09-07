@@ -50,30 +50,30 @@ public class NewTrip extends AppCompatActivity {
 
         startPlanningButton.setOnClickListener(view -> {
             //TODO: uncomment after finishing event edit
-            if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
-                toast.show();
-                return;
-            }
-            this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
-            this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
-            this.title =tripTitleEdit.getText().toString();
-            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||endDate.compareTo(startDate)<0){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
-                toast.show();
-                return;
-            }
-            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
-            try {
-                newTrip.initDaysArrayAndPicker();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            this.myApp.myTrips.add(newTrip);
-            this.myApp.saveMyTrips();
-
+//            if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
+//                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+//                toast.show();
+//                return;
+//            }
+//            this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
+//            this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
+//            this.title =tripTitleEdit.getText().toString();
+//            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||endDate.compareTo(startDate)<0){
+//                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+//                toast.show();
+//                return;
+//            }
+//            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
+//            try {
+//                newTrip.initDaysArrayAndPicker();
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            this.myApp.myTrips.add(newTrip);
+//            this.myApp.saveMyTrips();
+//
             Intent editMapActivity = new Intent(this, EditMap.class);
-            editMapActivity.putExtra("tripId", newTrip); //TODO: change back to newTrip.id
+            editMapActivity.putExtra("tripId", this.myApp.myTrips.get(0).id); //TODO: change back to newTrip.id
             this.startActivity(editMapActivity);
             finish();
         });

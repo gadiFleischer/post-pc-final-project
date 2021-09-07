@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,7 +73,6 @@ public class NewEvent extends AppCompatActivity {
             picker = new TimePickerDialog(NewEvent.this,
                     (tp, sHour, sMinute) -> endTimeEdit.setText(String.format("%02d:%02d", sHour, sMinute)), hour, minutes, true);
             picker.show();
-            event.endTime=endTimeEdit.getText().toString();
         });
 
         addNewEventButton.setOnClickListener(view -> {
@@ -81,8 +81,13 @@ public class NewEvent extends AppCompatActivity {
             event.name=this.nickNameEdit.getText().toString();
             event.startTime=startTimeEdit.getText().toString();
             event.endTime=endTimeEdit.getText().toString();
-
             String dayString = daysDropDown.getSelectedItem().toString();
+            if(event.name.equals("") || event.endTime.compareTo(event.startTime)<0){
+                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             event.day=day;
             this.myTrip.days.get(day).events.add(event);

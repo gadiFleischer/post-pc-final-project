@@ -1,5 +1,6 @@
 package com.example.tripplanner;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,7 @@ public class EditEvent extends AppCompatActivity {
     MyApp myApp;
     int lastDay;
 
+    @SuppressLint("DefaultLocale")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,11 @@ public class EditEvent extends AppCompatActivity {
             String dayString = daysDropDown.getSelectedItem().toString();
             myEvent.startTime=startTimeEdit.getText().toString();
             myEvent.endTime=endTimeEdit.getText().toString();
+            if(myEvent.name.equals("") || myEvent.endTime.compareTo(myEvent.startTime)<0){
+                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             if(lastDay!=day){
                 myTrip.days.get(lastDay).events.removeIf(x->x.id.equals(myEvent.id));
