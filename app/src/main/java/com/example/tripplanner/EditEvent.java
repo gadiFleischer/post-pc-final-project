@@ -19,9 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class EditEvent extends AppCompatActivity {
+public class EditEvent extends AppCompatActivity implements Serializable {
     Button deleteEditButton;
     Button DoneEditButton;
     TextView addressTitle;
@@ -114,6 +115,8 @@ public class EditEvent extends AppCompatActivity {
                 }
             }
             this.myApp.saveTrip(myTrip);
+
+
             Intent editMapActivity = new Intent(this, EditMap.class);
             editMapActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editMapActivity);

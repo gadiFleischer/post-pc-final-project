@@ -31,6 +31,8 @@
         <activity android:name=".MyTrips" />
         <activity android:name=".TripDetails" />
         <activity android:name=".EditMapActivity" />
+        <activity android:name=".EditScreenActivity" />
+
     </application>
 
 </manifest>

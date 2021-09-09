@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.io.Serializable;
 import java.util.Date;
 
-public class EditMap extends AppCompatActivity {
+public class EditMap extends AppCompatActivity implements Serializable{
     Button finishPlanningButton;
     Button addNewEventButton;
     Button editEventButton;

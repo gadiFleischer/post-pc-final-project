@@ -1,11 +1,16 @@
 package com.example.tripplanner;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,21 +18,51 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tripplanner.models.TripModel;
 
-class TripItemViewHolder extends RecyclerView.ViewHolder{
-    TextView taskDescription;
-    CheckBox checkBox;
-    ImageView deleteButton;
+import java.io.Serializable;
+
+class TripItemViewHolder extends RecyclerView.ViewHolder implements Serializable,View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+    TextView countryCodeView;
+    TextView tripNameView;
+    ImageView actionButton;
+    private static final String TAG = "MyViewHolder";
+
 
 
     public TripItemViewHolder(@NonNull View itemView) {
         super(itemView);
-//        this.taskDescription = itemView.findViewById(R.id.taskDescription);
-//        this.checkBox = itemView.findViewById(R.id.markCheckbox);
-//        this.deleteButton = itemView.findViewById(R.id.deleteButton);
+        this.countryCodeView = itemView.findViewById(R.id.countryCode);
+        this.tripNameView = itemView.findViewById(R.id.tripName);
+        this.actionButton = itemView.findViewById(R.id.actionButton);
+        this.actionButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        showPopupMenu(v);
+    }
+
+    private void showPopupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(actionButton.getContext(), view);
+        popupMenu.inflate(R.menu.popup_menu);
+        popupMenu.setOnMenuItemClickListener( this);
+        popupMenu.show();
+    }
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_popup_edit:
+                Log.d(TAG, "onMenuItemClick: action_popup_edit @ " + getAdapterPosition());
+                return true;
+            case R.id.action_popup_delete:
+                Log.d(TAG, "onMenuItemClick: action_popup_delete @ " + getAdapterPosition());
+                return true;
+            default:
+                return false;
+        }
     }
 }
 
-public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder>{
+public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder> implements Serializable {
     private TripItemsHolder itemHolder;
     Context context;
     LayoutInflater inflater;
@@ -47,9 +82,17 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull TripItemViewHolder holder, int position) {
-        TripModel curItem = this.itemHolder.getCurrentItems().get(position);
-//        holder.taskDescription.setText(curItem.getTaskDescription());
-//        holder.checkBox.setChecked(curItem.getIsDone());
+        TripModel curTrip = this.itemHolder.getCurrentItems().get(position);
+        holder.tripNameView.setText(curTrip.title);
+        holder.countryCodeView.setText(curTrip.countryCode);
+        holder.tripNameView.setOnClickListener(view ->{
+            Intent editIntent = new Intent(this.context, TripDetails.class);
+            editIntent.putExtra("tripId", curTrip);
+            this.context.startActivity(editIntent);
+        });
+
+        }
+//        holder.checkBox.setChecked(curTrip.getIsDone());
 //        holder.checkBox.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View view){
@@ -65,26 +108,26 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder>{
 //                }
 //            }
 //        });
+//
 
-//        holder.taskDescription.setOnClickListener(view ->{
+
+//        holder.actionButton.setOnClickListener(v -> {
 //            Intent editIntent = new Intent(this.context, EditScreenActivity.class);
-//            editIntent.putExtra("Item", curItem);
+//            editIntent.putExtra("tripId", curTrip);
+//        });
+
+//        holder.actionButton.setOnClickListener(view ->{
+//            Intent editIntent = new Intent(this.context, EditScreenActivity.class);
+//            editIntent.putExtra("tripId", curTrip);
 //            this.context.startActivity(editIntent);
 //        });
 
 
-//        holder.deleteButton.setOnClickListener(new View.OnClickListener(){
-//                                                   @Override
-//                                                   public void onClick(View view){
-//                                                       itemHolder.deleteItem(curItem);
-//                                                       notifyDataSetChanged();
-//                                                   }
-//                                               }
-//        );
-    }
 
     @Override
     public int getItemCount() {
         return this.itemHolder.getCurrentItems().size();
     }
+
+
 }

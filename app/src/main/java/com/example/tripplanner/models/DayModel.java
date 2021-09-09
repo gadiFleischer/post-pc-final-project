@@ -1,8 +1,9 @@
 package com.example.tripplanner.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DayModel {
+public class DayModel implements Serializable {
     public int dayNum;
     public String color;
     public ArrayList<EventModel> events;

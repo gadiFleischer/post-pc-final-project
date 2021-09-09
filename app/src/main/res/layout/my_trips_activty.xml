@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:text="My  "
         android:textColor="#D53E71"
-        android:textSize="62dp"
+        android:textSize="82dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.249"
+        app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <TextView
         android:id="@+id/myTripsTitle2"
@@ -26,14 +26,14 @@
         android:layout_height="wrap_content"
         android:text="Trips"
         android:textColor="#8BC34A"
-        android:textSize="62dp"
+        android:textSize="82dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintHorizontal_bias="0.797"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <Button
         android:id="@+id/tripExampleButton"
@@ -53,14 +53,16 @@
         app:layout_constraintVertical_bias="0.904" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerTodoItemsList"
-        android:layout_width="408dp"
-        android:layout_height="467dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/recyclerTrips"
+        android:layout_width="413dp"
+        android:layout_height="405dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toTopOf="@+id/tripExampleButton"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myTripsTitle2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="3dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

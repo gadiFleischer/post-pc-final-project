@@ -1,5 +1,7 @@
 package com.example.tripplanner.models;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,7 +13,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public class TripModel implements Serializable {
+public class TripModel implements Serializable{
     public String id;
     public String title;
     public String destination;

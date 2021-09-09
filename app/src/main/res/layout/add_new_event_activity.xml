@@ -7,17 +7,39 @@
 
 
     <TextView
-        android:id="@+id/addNewEventTitle"
+        android:id="@+id/addNewEventTitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add new event"
-        android:textSize="32dp"
+        android:text="Add          Event"
+        android:textSize="58dp"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#D53E71"
         app:layout_constraintVertical_bias="0.023" />
+
+
+    <TextView
+        android:id="@+id/addNewEventTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New"
+        android:textSize="58dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#8BC34A"
+
+        app:layout_constraintVertical_bias="0.023" />
+
 
     <EditText
         android:id="@+id/nickNameEdit"
@@ -30,37 +52,42 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.634"
+        app:layout_constraintHorizontal_bias="0.794"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
-
+        app:layout_constraintVertical_bias="0.22" />
 
     <TextView
         android:id="@+id/addressTitle"
+        android:textStyle="bold"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
+        android:textColor="#D53E71"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.159" />
 
     <TextView
         android:id="@+id/nickNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nick name:"
+        android:text="Nick name"
         android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintVertical_bias="0.228" />
 
     <TextView
         android:id="@+id/categoryTitle"
@@ -68,139 +95,161 @@
         android:layout_height="wrap_content"
         android:text="Choose category"
         android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.302" />
 
+
     <Spinner
         android:id="@+id/categorySpinner"
-        android:layout_width="231dp"
-        android:layout_height="38dp"
+        android:layout_width="220dp"
+        android:layout_height="34dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintVertical_bias="0.305" />
+
 
     <TextView
         android:id="@+id/dayTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Day:"
+        android:text="Choose Day"
         android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-
+        app:layout_constraintVertical_bias="0.389" />
 
     <TextView
         android:id="@+id/startTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start time:"
+        android:text="start time"
         android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.475" />
 
     <TextView
         android:id="@+id/endTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="End time:"
+        android:text="End time"
         android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
+        app:layout_constraintVertical_bias="0.575" />
 
     <TextView
         android:id="@+id/commentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comment:"
+        android:text="Comment"
         android:textSize="20dp"
+        android:textColor="#D53E71"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
+        app:layout_constraintVertical_bias="0.657" />
+
 
     <Button
         android:id="@+id/addThisEventButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#8BC34A"
         android:text="Add event"
+        app:cornerRadius="28dp"
+        android:textSize="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
-
+        app:layout_constraintVertical_bias="0.94" />
 
     <EditText
         android:id="@+id/startTimeEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:focusableInTouchMode="false"
         android:hint="Enter start Time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:focusableInTouchMode="false"
-        app:layout_constraintVertical_bias="0.486" />
+        app:layout_constraintVertical_bias="0.472" />
 
     <EditText
         android:id="@+id/endTimeEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:focusableInTouchMode="false"
         android:hint="Enter end Time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:focusableInTouchMode="false"
-        app:layout_constraintVertical_bias="0.587" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <Spinner
         android:id="@+id/daySpinner"
-        android:layout_width="231dp"
-        android:layout_height="38dp"
+        android:layout_width="212dp"
+        android:layout_height="28dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.389" />
 
     <EditText
         android:id="@+id/commentEdit"
         android:layout_width="371dp"
         android:layout_height="83dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:ems="10"
         android:gravity="top"
         android:hint="add comment"
@@ -209,6 +258,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776"></EditText>
+        app:layout_constraintVertical_bias="0.77"></EditText>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

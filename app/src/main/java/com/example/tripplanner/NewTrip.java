@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.TripModel;
 import com.hbb20.CountryPickerView;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,7 +22,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-public class NewTrip extends AppCompatActivity {
+public class NewTrip extends AppCompatActivity implements Serializable {
     Button startPlanningButton;
     EditText tripTitleEdit;
     EditText startDateEdit;
@@ -67,15 +68,18 @@ public class NewTrip extends AppCompatActivity {
             try {
                 newTrip.initDaysArrayAndPicker();
             } catch (ParseException e) {
+                System.out.println("Shir 10 ");
                 e.printStackTrace();
             }
             this.myApp.myTrips.add(newTrip);
             this.myApp.saveMyTrips();
 
             Intent editMapActivity = new Intent(this, EditMap.class);
+
             editMapActivity.putExtra("tripId", newTrip); //TODO: change back to newTrip.id
             this.startActivity(editMapActivity);
             finish();
+
         });
 
 

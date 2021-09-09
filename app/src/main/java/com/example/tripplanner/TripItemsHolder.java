@@ -1,48 +1,46 @@
 package com.example.tripplanner;
 
-import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TripItemsHolder implements Serializable {
-    private List<TripModel> todoItems;
+    private List<TripModel> myTripsList;
 
     public TripItemsHolder(){
-        this.todoItems = new ArrayList<>();
+        this.myTripsList = new ArrayList<>();
     }
 
     public List<TripModel> getCurrentItems() {
-        return new ArrayList<>(this.todoItems);
+        return new ArrayList<>(this.myTripsList);
     }
 
-//    @Override
-//    public void addNewInProgressItem(String description){
-//        this.todoItems.add(0,new TripModel());
+    public void addNewInProgressItem(TripModel newTrip){
+
+        this.myTripsList.add(0,newTrip);
 //        this.sortList();
-//    }
+    }
 
     public void markItemDone(int index) throws IndexOutOfBoundsException {
-        if (index >= this.todoItems.size()){
+        if (index >= this.myTripsList.size()){
             throw new IndexOutOfBoundsException();
         }
-        TripModel item = this.todoItems.get(index);
+        TripModel item = this.myTripsList.get(index);
 //        this.sortList();
     }
 
     public void markItemInProgress(int index) throws IndexOutOfBoundsException {
-        if (index >= this.todoItems.size()){
+        if (index >= this.myTripsList.size()){
             throw new IndexOutOfBoundsException();
         }
-        TripModel item = this.todoItems.get(index);
+        TripModel item = this.myTripsList.get(index);
 //        this.sortList();
     }
 
     public void deleteItem(TripModel item){
-        this.todoItems.remove(item);
+        this.myTripsList.remove(item);
     }
 
 //    private void sortList(){
@@ -69,6 +67,6 @@ public class TripItemsHolder implements Serializable {
 //    }
 
     public void setItems(List<TripModel> items){
-        this.todoItems = items;
+        this.myTripsList = items;
     }
 }
