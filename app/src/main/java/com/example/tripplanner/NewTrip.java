@@ -68,16 +68,14 @@ public class NewTrip extends AppCompatActivity implements Serializable {
             try {
                 newTrip.initDaysArrayAndPicker();
             } catch (ParseException e) {
-                System.out.println("Shir 10 ");
                 e.printStackTrace();
             }
             this.myApp.myTrips.add(newTrip);
             this.myApp.saveMyTrips();
 
-            Intent editMapActivity = new Intent(this, EditMap.class);
-
-            editMapActivity.putExtra("tripId", newTrip); //TODO: change back to newTrip.id
-            this.startActivity(editMapActivity);
+            Intent tripDetailsActivity = new Intent(this, TripDetails.class);
+            tripDetailsActivity.putExtra("tripId", newTrip.id); //TODO: change back to newTrip.id
+            this.startActivity(tripDetailsActivity);
             finish();
 
         });

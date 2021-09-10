@@ -25,14 +25,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewTrip" />
-        <activity android:name=".EditMap" />
         <activity android:name=".NewEvent" />
         <activity android:name=".EditEvent" />
         <activity android:name=".MyTrips" />
         <activity android:name=".TripDetails" />
         <activity android:name=".EditMapActivity" />
-        <activity android:name=".EditScreenActivity" />
-
     </application>
 
 </manifest>

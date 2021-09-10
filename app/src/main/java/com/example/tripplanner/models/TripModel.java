@@ -71,4 +71,14 @@ public class TripModel implements Serializable{
         }
         return null;
     }
+
+    public ArrayList<EventModel> getEvents(){
+        ArrayList<EventModel> events = new  ArrayList<>();
+        for (DayModel day : this.days)
+        {
+            events.addAll(day.events);
+        }
+        return events;
+    }
+
 }

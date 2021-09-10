@@ -41,13 +41,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.083" />
 
+
     <Button
         android:id="@+id/showOnMapButton"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
-        android:text="show on map"
+        android:text="Go to map"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,8 +57,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
-       />
+        app:layout_constraintVertical_bias="0.728" />
+
+
+    <Button
+
+        android:id="@+id/finishPlanningButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#8BC34A"
+        android:text="Finish Planning"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.849"/>
+
 
 
 

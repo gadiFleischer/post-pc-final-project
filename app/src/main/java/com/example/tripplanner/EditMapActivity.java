@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
+import com.example.tripplanner.models.TripModel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -42,6 +43,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -55,11 +57,10 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     GoogleMap map;
     SupportMapFragment mapFragment;
     Geocoder geocoder;
+    MyApp myApp;
+    TripModel myTrip;
 
-    EventModel[] addedEvents = { //TODO: not hardcoded options
-            new EventModel("Pnina Pie", "Sweets", CategoryEvent.FOOD,new LatLng(31.777883, 35.198348), 2, "", "", "comment"),
-
-    };
+    ArrayList<EventModel> addedEvents ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,13 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.main_map);
         geocoder = new Geocoder(this, Locale.getDefault());
+        myApp = new MyApp(this);
+
+
+        Intent getTripIntent=getIntent();
+        String id= getTripIntent.getStringExtra("tripId");
+        myTrip=myApp.getTripById(id);
+        addedEvents = myTrip.getEvents();
 
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
@@ -114,7 +122,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                             return false;
                         } else {
                             final int position = (int) (marker.getTag());
-                            Log.d("TAG", addedEvents[position].name);
+                            Log.d("TAG", addedEvents.get(position).name);
                             LayoutInflater inflater = (LayoutInflater)
                                     getSystemService(LAYOUT_INFLATER_SERVICE);
                             View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
@@ -134,7 +142,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                             TextView location = popupView.findViewById(R.id.location_add_to_trip);
                             Button button = popupView.findViewById(R.id.button_add_to_trip);
                             ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
-                            Picasso.get().load(addedEvents[position].comment).centerCrop()
+                            Picasso.get().load(addedEvents.get(position).comment).centerCrop()
                                     .resize(400, 400)
                                     .into(imageView);
                             title.setText(marker.getTitle());
@@ -195,7 +203,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                     return false;
                 } else {
                     final int position = (int) (marker.getTag());
-                    Log.d("TAG", addedEvents[position].name);
+                    Log.d("TAG", addedEvents.get(position).name);
                     LayoutInflater inflater = (LayoutInflater)
                             getSystemService(LAYOUT_INFLATER_SERVICE);
                     View popupView = inflater.inflate(R.layout.go_to_edit_event_window, null);
@@ -215,15 +223,15 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                     TextView location = popupView.findViewById(R.id.location_edit_event);
                     Button button = popupView.findViewById(R.id.button_edit_event);
                     ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
-                    Picasso.get().load(addedEvents[position].comment).centerCrop()
+                    Picasso.get().load(addedEvents.get(position).comment).centerCrop()
                             .resize(400, 400)
                             .into(imageView);
-                    title.setText(addedEvents[position].name);
-                    location.setText(addedEvents[position].address);
+                    title.setText(addedEvents.get(position).name);
+                    location.setText(addedEvents.get(position).address);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            goToEditEventIntent(addedEvents[position]);
+                            goToEditEventIntent(addedEvents.get(position));
                         }
                     });
                     // dismiss the popup window when touched
@@ -242,16 +250,21 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     public void populateLocations() {
         float iconColor = BitmapDescriptorFactory.HUE_RED;
-        for (int i = 0; i < addedEvents.length; i++) {
-            EventModel l = addedEvents[i];
-            if (l.category.equals("Sweets")) { //TODO: refactor this shit
-                iconColor = BitmapDescriptorFactory.HUE_ROSE;
-            } else if (l.category.equals("Farm")) {
-                iconColor = BitmapDescriptorFactory.HUE_CYAN;
-            } else if (l.category.equals("Drinks")) {
-                iconColor = BitmapDescriptorFactory.HUE_GREEN;
-            } else if (l.category.equals("Homemade")) {
-                iconColor = BitmapDescriptorFactory.HUE_AZURE;
+        for (int i = 0; i < addedEvents.size(); i++) {
+            EventModel l = addedEvents.get(i);
+            switch (l.category) {
+                case FOOD:
+                    iconColor = BitmapDescriptorFactory.HUE_ROSE;
+                    break;
+                case SIGHT:
+                    iconColor = BitmapDescriptorFactory.HUE_CYAN;
+                    break;
+                case HOTEL:
+                    iconColor = BitmapDescriptorFactory.HUE_GREEN;
+                    break;
+                case OTHER:
+                    iconColor = BitmapDescriptorFactory.HUE_AZURE;
+                    break;
             }
             Marker marker = map.addMarker(new MarkerOptions()
                     .position(l.position)
