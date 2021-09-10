@@ -103,20 +103,20 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 String address = place.getAddress();
                 System.out.println("*** check " + place + " ***");
                 String location = place.getName();
-                List<Address> addressList = null;
+//                List<Address> addressList = null;
 
                 if (location != null || !location.equals("")) {
                     Geocoder geocoder = new Geocoder(EditMapActivity.this);
-                    try {
-                        addressList = geocoder.getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Address latlong = addressList.get(0);
-                    LatLng latLng = new LatLng(latlong.getLatitude(), latlong.getLongitude());
+//                    try {
+////                        addressList = geocoder.getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Address latlong = addressList.get(0);
+                    LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
                     Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(location).
                             snippet(address));
-                    marker.setTag(0);
+//                    marker.setTag(0);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                     map.setOnMarkerClickListener(marker1 -> {
 //                        final int position = (int) (marker.getTag());
@@ -174,7 +174,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
-        LatLng latLng = new LatLng(31.777028899999998, 35.1980509);
+        LatLng latLng = new LatLng(31.777028899999998, 35.1980509); //TODO: get pos from country address or first event address
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
 
 //        Marker home = map.addMarker(new MarkerOptions().position(latLng).title("Home"));
@@ -184,55 +184,44 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         map.moveCamera(point);
         // animates camera to coordinates
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
-                if ((int) (marker.getTag()) == -1) {
-                    return false;
-                } else {
-                    final int position = (int) (marker.getTag());
-                    Log.d("TAG", addedEvents.get(position).name);
-                    LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.go_to_edit_event_window, null);
-
-
-                    // create the popup window
-                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    boolean focusable = true; // lets taps outside the popup also dismiss it
-                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-
-                    // show the popup window
-                    // which view you pass in doesn't matter, it is only used for the window tolken
-                    popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
-                    TextView title = popupView.findViewById(R.id.title_edit_event);
-                    TextView location = popupView.findViewById(R.id.location_edit_event);
-                    Button button = popupView.findViewById(R.id.button_edit_event);
-                    ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
-                    Picasso.get().load(addedEvents.get(position).comment).centerCrop()
-                            .resize(400, 400)
-                            .into(imageView);
-                    title.setText(addedEvents.get(position).name);
-                    location.setText(addedEvents.get(position).address);
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            goToEditEventIntent(addedEvents.get(position));
-                        }
-                    });
-                    // dismiss the popup window when touched
-                    popupView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            popupWindow.dismiss();
-                            return true;
-                        }
-                    });
-                }
+        map.setOnMarkerClickListener(marker -> {
+            if ((int) (marker.getTag()) == -1) {
                 return false;
+            } else {
+                final int position = (int) (marker.getTag());
+                Log.d("TAG", addedEvents.get(position).name);
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.go_to_edit_event_window, null);
+
+
+                // create the popup window
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // lets taps outside the popup also dismiss it
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+
+                // show the popup window
+                // which view you pass in doesn't matter, it is only used for the window tolken
+                popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
+                TextView title = popupView.findViewById(R.id.title_edit_event);
+                TextView location = popupView.findViewById(R.id.location_edit_event);
+                Button button = popupView.findViewById(R.id.button_edit_event);
+                ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
+                Picasso.get().load(addedEvents.get(position).name).centerCrop()
+                        .resize(400, 400)
+                        .into(imageView);
+                title.setText(addedEvents.get(position).name);
+                location.setText(addedEvents.get(position).address);
+                button.setOnClickListener(v -> goToEditEventIntent(addedEvents.get(position)));
+                // dismiss the popup window when touched
+                popupView.setOnTouchListener((v, event) -> {
+                    popupWindow.dismiss();
+                    return true;
+                });
             }
+            return false;
         });
     }
 

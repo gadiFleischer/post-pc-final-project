@@ -57,7 +57,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         myApp = new MyApp(this);
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
-        this.myEvent = myTrip.getEventById(getTripIntent.getStringExtra("EventId"));
+        this.myEvent = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
         //Edit fields
         this.addressTitle.setText(myEvent.address);
         this.nickNameEdit.setText(myEvent.name);

@@ -55,19 +55,17 @@
             android:id="@+id/addButton"
             android:layout_width="300dp"
             android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:layout_gravity="center_horizontal"
             android:backgroundTint="#8BC34A"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.76"
-            app:cornerRadius="28dp"
             android:foregroundGravity="center_horizontal"
             android:gravity="center"
-            android:text="Add to trip"
-
-          />
+            android:text="Add new Event"
+            app:cornerRadius="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.76" />
     </LinearLayout>
 
 
