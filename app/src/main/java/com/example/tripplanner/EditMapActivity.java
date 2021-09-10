@@ -1,6 +1,7 @@
 package com.example.tripplanner;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -79,9 +80,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         final AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         autocompleteSupportFragment.setHint("Your location");
-
         autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG,Place.Field.NAME, Place.Field.ADDRESS));
-
+        autocompleteSupportFragment.getView().setBackgroundColor(Color.WHITE);
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
 
 
