@@ -86,9 +86,9 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder> im
         holder.tripNameView.setText(curTrip.title);
         holder.countryCodeView.setText(curTrip.countryCode);
         holder.tripNameView.setOnClickListener(view ->{
-            Intent editIntent = new Intent(this.context, TripDetails.class);
-            editIntent.putExtra("tripId", curTrip);
-            this.context.startActivity(editIntent);
+            Intent tripDetailsEvent = new Intent(this.context, TripDetails.class);
+            tripDetailsEvent.putExtra("tripId", curTrip.id);
+            this.context.startActivity(tripDetailsEvent);
         });
 
         }

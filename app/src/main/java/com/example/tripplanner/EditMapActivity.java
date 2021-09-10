@@ -44,6 +44,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -265,7 +266,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     public void goToNewEventIntent(String address, LatLng position){
         EventModel event = new EventModel("", address, null, position, 0, "", "", "");
         Intent addEventActivity = new Intent(this, NewEvent.class);
-        addEventActivity.putExtra("eventId", event.id);
+        addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);
         this.startActivity(addEventActivity);
     }

@@ -35,7 +35,6 @@ public class TripDetails extends AppCompatActivity {
         Intent getTripIntent=getIntent();
         String id= getTripIntent.getStringExtra("tripId");
         myTrip=myApp.getTripById(id);
-        String x = "";
 
         finishPlanningButton.setOnClickListener(view -> {
             Intent MyTripsActivity = new Intent(this, MyTrips.class);
