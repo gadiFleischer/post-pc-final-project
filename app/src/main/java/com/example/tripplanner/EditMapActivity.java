@@ -1,5 +1,6 @@
 package com.example.tripplanner;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Geocoder;
@@ -93,6 +94,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
 
 
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 // TODO: Get info about the selected place.
@@ -115,59 +117,44 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                             snippet(address));
                     marker.setTag(0);
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-                    map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(@NonNull Marker marker) {
-                        if ((int) (marker.getTag()) == -1) {
-                            return false;
-                        } else {
-                            final int position = (int) (marker.getTag());
-                            Log.d("TAG", addedEvents.get(position).name);
-                            LayoutInflater inflater = (LayoutInflater)
-                                    getSystemService(LAYOUT_INFLATER_SERVICE);
-                            View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
+                    map.setOnMarkerClickListener(marker1 -> {
+//                        final int position = (int) (marker.getTag());
+//                        Log.d("TAG", addedEvents.get(position).name);
+                        LayoutInflater inflater = (LayoutInflater)
+                                getSystemService(LAYOUT_INFLATER_SERVICE);
+                        View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
 
 
-                            // create the popup window
-                            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                            boolean focusable = true; // lets taps outside the popup also dismiss it
-                            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+                        // create the popup window
+                        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                        boolean focusable = true; // lets taps outside the popup also dismiss it
+                        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
 
-                            // show the popup window
-                            // which view you pass in doesn't matter, it is only used for the window tolken
-                            popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
-                            TextView title = popupView.findViewById(R.id.title_add_to_trip);
-                            TextView location = popupView.findViewById(R.id.location_add_to_trip);
-                            Button button = popupView.findViewById(R.id.button_add_to_trip);
-                            ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
-                            Picasso.get().load(addedEvents.get(position).comment).centerCrop()
-                                    .resize(400, 400)
-                                    .into(imageView);
-                            title.setText(marker.getTitle());
+                        // show the popup window
+                        // which view you pass in doesn't matter, it is only used for the window tolken
+                        popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
+                        TextView title = popupView.findViewById(R.id.title_add_to_trip);
+                        TextView location1 = popupView.findViewById(R.id.location_add_to_trip);
+                        Button button = popupView.findViewById(R.id.button_add_to_trip);
+                        ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
+                        Picasso.get().load(marker1.getSnippet()).centerCrop()
+                                .resize(400, 400)
+                                .into(imageView);
+                        title.setText(marker1.getTitle());
 //                            location.setText(marker.getPosition().toString());
 
-                            location.setText(marker.getSnippet());
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    goToNewEventIntent(marker.getTitle(), address, marker.getPosition());
-                                }
-                            });
+                        location1.setText(marker1.getSnippet());
+                        button.setOnClickListener(v -> goToNewEventIntent(address, marker1.getPosition()));
 
-                            // dismiss the popup window when touched
-                            popupView.setOnTouchListener(new View.OnTouchListener() {
-                                @Override
-                                public boolean onTouch(View v, MotionEvent event) {
-                                    popupWindow.dismiss();
-                                    return true;
-                                }
-                            });
-                        }
+                        // dismiss the popup window when touched
+                        popupView.setOnTouchListener((v, event) -> {
+                            popupWindow.dismiss();
+                            return true;
+                        });
                         return false;
-                    }
-                });
+                        });
 
 
                 }
@@ -275,16 +262,18 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
-    public void goToNewEventIntent(String name, String address, LatLng position){
-        Intent newEventIntent = new Intent(this, NewEvent.class);
-        EventModel event = new EventModel(name, address, null, position, 1, null, null, null);
-        newEventIntent.putExtra("event item", (Parcelable) event);
-        this.startActivity(newEventIntent);
+    public void goToNewEventIntent(String address, LatLng position){
+        EventModel event = new EventModel("", address, null, position, 0, "", "", "");
+        Intent addEventActivity = new Intent(this, NewEvent.class);
+        addEventActivity.putExtra("eventId", event.id);
+        addEventActivity.putExtra("tripId", this.myTrip.id);
+        this.startActivity(addEventActivity);
     }
 
     public void goToEditEventIntent(EventModel event){
         Intent editEventIntent = new Intent(this, EditEvent.class);
-        editEventIntent.putExtra("event item", (Parcelable) event);
+        editEventIntent.putExtra("eventId", event.id);
+        editEventIntent.putExtra("tripId", this.myTrip.id);
         this.startActivity(editEventIntent);
     }
 

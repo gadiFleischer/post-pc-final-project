@@ -41,23 +41,6 @@ public class TripDetails extends AppCompatActivity {
             Intent MyTripsActivity = new Intent(this, MyTrips.class);
             this.startActivity(MyTripsActivity);
         });
-//        addNewEventButton.setOnClickListener(view -> {
-//            String address = "keren hayesod 15";//TODO: get from marker
-//            LatLng pos= new LatLng(100,100);//TODO:get from marker
-//            EventModel newEvent = new EventModel("",address, CategoryEvent.OTHER,pos,1,"","","");
-//            Intent addEventActivity = new Intent(this, NewEvent.class);
-//            addEventActivity.putExtra("newEvent", (Serializable) newEvent);
-//            addEventActivity.putExtra("tripId", this.myTrip.id);
-//            this.startActivity(addEventActivity);
-//        });
-//        editEventButton.setOnClickListener(view -> {
-//            //TODO: get Id from marker and use Trip.getEventById()
-//            String toEditEvent = this.myTrip.days.get(0).events.get(0).id;
-//            Intent editEventActivity = new Intent(this, EditEvent.class);
-//            editEventActivity.putExtra("EventId", toEditEvent);
-//            editEventActivity.putExtra("tripId", this.myTrip.id);
-//            this.startActivity(editEventActivity);
-//        });
 
         showOnMapButton.setOnClickListener(view -> {
             Intent showOnMapButtonActivity = new Intent(this, EditMapActivity.class);
