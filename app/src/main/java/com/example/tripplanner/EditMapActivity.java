@@ -1,5 +1,6 @@
 package com.example.tripplanner;
-
+import com.example.tripplanner.models.DayModel;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -61,6 +62,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     Geocoder geocoder;
     MyApp myApp;
     TripModel myTrip;
+    LatLng searchedLocation=new LatLng(0,0);
+    String searchedAddress="";
 
     ArrayList<EventModel> addedEvents ;
 
@@ -87,6 +90,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         PlacesClient placesClient = Places.createClient(this);
 
+
+
         final AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         autocompleteSupportFragment.setHint("Your location");
@@ -94,106 +99,82 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         autocompleteSupportFragment.getView().setBackgroundColor(Color.WHITE);
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
 
-
             @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 // TODO: Get info about the selected place.
                 Toast.makeText(getApplicationContext(), place.getName(), Toast.LENGTH_SHORT).show();
-                String address = place.getAddress();
-                System.out.println("*** check " + place + " ***");
+                searchedAddress = place.getAddress();
                 String location = place.getName();
-//                List<Address> addressList = null;
 
                 if (location != null || !location.equals("")) {
-                    Geocoder geocoder = new Geocoder(EditMapActivity.this);
-//                    try {
-////                        addressList = geocoder.getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Address latlong = addressList.get(0);
+
                     LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-                    Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(location).
-                            snippet(address));
-//                    marker.setTag(0);
+
+                    map.addMarker(new MarkerOptions().position(latLng).title(location).
+                            snippet(searchedAddress));
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-                    map.setOnMarkerClickListener(marker1 -> {
-//                        final int position = (int) (marker.getTag());
-//                        Log.d("TAG", addedEvents.get(position).name);
-                        LayoutInflater inflater = (LayoutInflater)
-                                getSystemService(LAYOUT_INFLATER_SERVICE);
-                        View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
-
-
-                        // create the popup window
-                        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                        boolean focusable = true; // lets taps outside the popup also dismiss it
-                        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-
-                        // show the popup window
-                        // which view you pass in doesn't matter, it is only used for the window tolken
-                        popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
-                        TextView title = popupView.findViewById(R.id.title_add_to_trip);
-                        TextView location1 = popupView.findViewById(R.id.location_add_to_trip);
-                        Button button = popupView.findViewById(R.id.button_add_to_trip);
-                        ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
-                        Picasso.get().load(marker1.getSnippet()).centerCrop()
-                                .resize(400, 400)
-                                .into(imageView);
-                        title.setText(marker1.getTitle());
-//                            location.setText(marker.getPosition().toString());
-
-                        location1.setText(marker1.getSnippet());
-                        button.setOnClickListener(v -> goToNewEventIntent(address, marker1.getPosition()));
-
-                        // dismiss the popup window when touched
-                        popupView.setOnTouchListener((v, event) -> {
-                            popupWindow.dismiss();
-                            return true;
-                        });
-                        return false;
-                        });
-
-
+                    searchedLocation=latLng;
                 }
             }
-
             @Override
             public void onError(@NonNull Status status) {
                 // TODO: Handle the error.
                 Toast.makeText(getApplicationContext(), status.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-
         mapFragment.getMapAsync(this);
     }
+
+
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
         LatLng latLng = new LatLng(31.777028899999998, 35.1980509); //TODO: get pos from country address or first event address
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
+        map.setOnMarkerClickListener((Marker marker) -> {
+            LatLng pos = marker.getPosition();
+            if(searchedLocation.latitude==pos.latitude && searchedLocation.longitude== pos.longitude) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.add_to_trip_window, null);
+                // create the popup window
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // lets taps outside the popup also dismiss it
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-//        Marker home = map.addMarker(new MarkerOptions().position(latLng).title("Home"));
-//        home.setTag(-1);
-        populateLocations();
-        // moves camera to coordinates
-        map.moveCamera(point);
-        // animates camera to coordinates
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
-        map.setOnMarkerClickListener(marker -> {
-            if ((int) (marker.getTag()) == -1) {
+
+                // show the popup window
+                // which view you pass in doesn't matter, it is only used for the window tolken
+                popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
+                TextView title = popupView.findViewById(R.id.title_add_to_trip);
+                TextView location1 = popupView.findViewById(R.id.location_add_to_trip);
+                Button button = popupView.findViewById(R.id.button_add_to_trip);
+                ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
+                Picasso.get().load(marker.getSnippet()).centerCrop()
+                        .resize(400, 400)
+                        .into(imageView);
+                title.setText(marker.getTitle());
+
+                location1.setText(marker.getSnippet());
+                button.setOnClickListener(v -> goToNewEventIntent(searchedAddress, marker.getPosition()));
+
+                // dismiss the popup window when touched
+                popupView.setOnTouchListener((v, event) -> {
+                    popupWindow.dismiss();
+                    return true;
+                });
                 return false;
-            } else {
-                final int position = (int) (marker.getTag());
-                Log.d("TAG", addedEvents.get(position).name);
+            }else{
+                int position = findEventByPos(pos);
+                if(position==-1){
+                    return false;
+                }
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.go_to_edit_event_window, null);
-
 
                 // create the popup window
                 int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -223,6 +204,20 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
             return false;
         });
+
+        populateLocations();
+        map.moveCamera(point);
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+    }
+
+    public int findEventByPos(LatLng pos){
+        for (int i = 0, addedEventsSize = addedEvents.size(); i < addedEventsSize; i++) {
+            EventModel event = addedEvents.get(i);
+            if (event.position.latitude == pos.latitude && event.position.longitude == pos.longitude) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void populateLocations() {

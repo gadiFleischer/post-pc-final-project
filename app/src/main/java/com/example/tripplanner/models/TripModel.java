@@ -81,4 +81,17 @@ public class TripModel implements Serializable{
         return events;
     }
 
+    public EventModel findEventByAddress(String address){
+        for (DayModel day : this.days)
+        {
+            for (EventModel event: day.events) {
+                if (event.address.equals(address))
+                {
+                    return event;
+                }
+            }
+        }
+        return null;
+    }
+
 }
