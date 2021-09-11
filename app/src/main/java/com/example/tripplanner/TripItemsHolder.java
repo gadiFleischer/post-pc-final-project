@@ -17,6 +17,10 @@ public class TripItemsHolder implements Serializable {
         return new ArrayList<>(this.myTripsList);
     }
 
+    public TripModel getItemByIndex(int index){
+        return myTripsList.get(index);
+    }
+
     public void addNewInProgressItem(TripModel newTrip){
 
         this.myTripsList.add(0,newTrip);

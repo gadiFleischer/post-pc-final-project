@@ -99,6 +99,11 @@ public class MyApp extends Application {
         return -1;
     }
 
+    public void deleteTrip(int index){
+        this.myTrips.remove(index);
+        this.saveMyTrips();
+    }
+
 
 
 }

@@ -20,58 +20,22 @@ import com.example.tripplanner.models.TripModel;
 
 import java.io.Serializable;
 
-class TripItemViewHolder extends RecyclerView.ViewHolder implements Serializable,View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-    TextView countryCodeView;
-    TextView tripNameView;
-    ImageView actionButton;
-    private static final String TAG = "MyViewHolder";
 
 
 
-    public TripItemViewHolder(@NonNull View itemView) {
-        super(itemView);
-        this.countryCodeView = itemView.findViewById(R.id.countryCode);
-        this.tripNameView = itemView.findViewById(R.id.tripName);
-        this.actionButton = itemView.findViewById(R.id.actionButton);
-        this.actionButton.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View v) {
-        showPopupMenu(v);
-    }
-
-    private void showPopupMenu(View view) {
-        PopupMenu popupMenu = new PopupMenu(actionButton.getContext(), view);
-        popupMenu.inflate(R.menu.popup_menu);
-        popupMenu.setOnMenuItemClickListener( this);
-        popupMenu.show();
-    }
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_popup_edit:
-                Log.d(TAG, "onMenuItemClick: action_popup_edit @ " + getAdapterPosition());
-
-                return true;
-            case R.id.action_popup_delete:
-                Log.d(TAG, "onMenuItemClick: action_popup_delete @ " + getAdapterPosition());
-                return true;
-            default:
-                return false;
-        }
-    }
-}
-
-public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder> implements Serializable {
+public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripItemViewHolder> implements Serializable {
     TripItemsHolder itemHolder;
     Context context;
     LayoutInflater inflater;
+    MyApp myApp;
+
 
     public TripItemAdapter(TripItemsHolder itemHolder, Context context){
         this.itemHolder = itemHolder;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
+        myApp = new MyApp(context);
     }
 
     @NonNull
@@ -98,6 +62,56 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder> im
     @Override
     public int getItemCount() {
         return this.itemHolder.getCurrentItems().size();
+    }
+
+    class TripItemViewHolder extends RecyclerView.ViewHolder implements Serializable,View.OnClickListener {
+        TextView countryCodeView;
+        TextView tripNameView;
+        ImageView actionButton;
+        private static final String TAG = "MyViewHolder";
+
+
+
+        public TripItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.countryCodeView = itemView.findViewById(R.id.countryCode);
+            this.tripNameView = itemView.findViewById(R.id.tripName);
+            this.actionButton = itemView.findViewById(R.id.actionButton);
+            this.actionButton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            showPopupMenu(v);
+        }
+
+        private void showPopupMenu(View view) {
+            PopupMenu popupMenu = new PopupMenu(actionButton.getContext(), view);
+            popupMenu.inflate(R.menu.popup_menu);
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_popup_edit:
+                            TripModel myTrip = itemHolder.getItemByIndex(getAdapterPosition());
+                            Intent editEventIntent = new Intent(view.getContext(), TripDetails.class);
+                            editEventIntent.putExtra("tripId", myTrip.id);
+                            view.getContext().startActivity(editEventIntent);
+                            Log.d(TAG, "onMenuItemClick: action_popup_edit @ " + getAdapterPosition());
+                            return true;
+                        case R.id.action_popup_delete:
+                            itemHolder.deleteItem(itemHolder.getItemByIndex(getAdapterPosition()));
+                            myApp.deleteTrip(getAdapterPosition());
+                            notifyDataSetChanged();
+                            Log.d(TAG, "onMenuItemClick: action_popup_delete @ " + getAdapterPosition());
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+            });
+            popupMenu.show();
+        }
     }
 
 }
