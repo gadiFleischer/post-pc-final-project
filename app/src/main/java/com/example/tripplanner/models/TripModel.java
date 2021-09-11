@@ -81,4 +81,16 @@ public class TripModel implements Serializable{
         }
         return events;
     }
+    public EventModel getEventByName(String name){
+        for (DayModel day : this.days)
+        {
+            for (EventModel event: day.events) {
+                if (event.name.equals(name))
+                {
+                    return event;
+                }
+            }
+        }
+        return null;
+    }
 }

@@ -73,6 +73,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     String searchedAddress="";
     int mMarkerCount = 0;
     Marker mMarker;
+    double lat;
+    double lon;
 
     ArrayList<EventModel> addedEvents ;
 
@@ -89,6 +91,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         Intent getTripIntent=getIntent();
         String id= getTripIntent.getStringExtra("tripId");
+        lat= getTripIntent.getDoubleExtra("lat",0.00);
+        lon= getTripIntent.getDoubleExtra("long",0.00);
         myTrip=myApp.getTripById(id);
         addedEvents = myTrip.getEvents();
 
@@ -145,7 +149,12 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
-        LatLng latLng = new LatLng(31.777028899999998, 35.1980509); //TODO: get pos from country address or first event address
+        LatLng latLng;
+        if(lat!=0 && lon !=0){
+            latLng= new LatLng(lat, lon);
+        }else{
+            latLng= new LatLng(0, 0); //TODO: get country pos
+        }
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
 
 
