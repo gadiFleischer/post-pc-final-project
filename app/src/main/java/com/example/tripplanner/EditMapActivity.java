@@ -2,7 +2,9 @@ package com.example.tripplanner;
 import com.example.tripplanner.models.DayModel;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -141,9 +143,23 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Toast.makeText(getApplicationContext(), status.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
         mapFragment.getMapAsync(this);
     }
-
+    @Override
+    public void onBackPressed() {
+//        new AlertDialog.Builder(this)
+//                .setTitle("Exit Map?")
+//                .setMessage("Are you sure you want to exit?")
+//                .setNegativeButton(android.R.string.no, null)
+//                .setPositiveButton(android.R.string.yes,
+//                        (DialogInterface.OnClickListener) v -> {
+//                            String x ="5";
+//                        }).create().show();
+        Intent tripDetails = new Intent(this, NewEvent.class);
+        tripDetails.putExtra("tripId", this.myTrip.id);
+        finish();
+    }
 
 
     @Override
@@ -236,6 +252,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 // dismiss the popup window when touched
                 popupView.setOnTouchListener((v, event) -> {
                     popupWindow.dismiss();
+                    finish();
                     return true;
                 });
             }
@@ -287,6 +304,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);
         this.startActivity(addEventActivity);
+        finish();
     }
 
     public void goToEditEventIntent(EventModel event){
@@ -294,6 +312,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         editEventIntent.putExtra("eventId", event.id);
         editEventIntent.putExtra("tripId", this.myTrip.id);
         this.startActivity(editEventIntent);
+        finish();
     }
 
 
