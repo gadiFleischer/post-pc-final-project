@@ -2,14 +2,19 @@ package com.example.tripplanner;
 import com.example.tripplanner.models.DayModel;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.tripplanner.models.CategoryEvent;
@@ -34,6 +39,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -55,6 +61,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class EditMapActivity extends FragmentActivity implements OnMapReadyCallback {
+
     Button editEventMarkerButton;
 
     GoogleMap map;
@@ -234,28 +241,24 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         float iconColor = BitmapDescriptorFactory.HUE_RED;
 
         for (int i = 0; i < addedEvents.size(); i++) {
-            EventModel l = addedEvents.get(i);
-            switch (l.category) {
-                case FOOD:
-                    iconColor = BitmapDescriptorFactory.HUE_ROSE;
-                    break;
-                case SIGHT:
-                    iconColor = BitmapDescriptorFactory.HUE_CYAN;
-                    break;
-                case HOTEL:
-                    iconColor = BitmapDescriptorFactory.HUE_GREEN;
-                    break;
-                case OTHER:
-                    iconColor = BitmapDescriptorFactory.HUE_AZURE;
-                    break;
-            }
+            EventModel event = addedEvents.get(i);
+            float color = myApp.colors[event.day];
             Marker marker = map.addMarker(new MarkerOptions()
-                    .position(l.position)
-                    .title(l.name)
-                    .icon(BitmapDescriptorFactory.defaultMarker(iconColor)));
+                    .position(event.position)
+                    .title(event.name)
+                    .icon(BitmapDescriptorFactory.defaultMarker(color)));
             marker.setTag(i);
         }
 
+    }
+
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     public void goToNewEventIntent(String address, LatLng position){

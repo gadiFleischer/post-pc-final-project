@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -15,6 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyApp extends Application {
+    float[] colors = new float[]{
+            15, 180, 255, 135, 240, 330, 210, 75, 270, 315, 90, 105, 45, 345, 120, 60, 165, 90, 30, 195,
+            225, 285, 150, 300, 0,
+    };
+
     String[] categoryItems = new String[]{"FOOD", "SIGHT", "HOTEL","OTHER"};
 
     SharedPreferences sharedPref;
