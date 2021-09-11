@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
 
-
     <TextView
         android:id="@+id/tripDetailsTitle1"
         android:layout_width="wrap_content"
@@ -18,12 +17,11 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083"
+        app:layout_constraintVertical_bias="0.024" />
 
-        />
 
     <TextView
         android:id="@+id/tripDetailsTitle2"
@@ -36,15 +34,27 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.024" />
 
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="398dp"
+        android:layout_height="465dp"
+        android:layout_marginStart="4dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.417" />
 
     <Button
         android:id="@+id/showOnMapButton"
-        android:layout_width="300dp"
+        android:layout_width="258dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
@@ -52,34 +62,29 @@
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728" />
-
+        app:layout_constraintVertical_bias="0.872" />
 
     <Button
 
         android:id="@+id/finishPlanningButton"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_width="267dp"
+        android:layout_height="58dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="Finish Planning"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849"/>
-
-
-
+        app:layout_constraintVertical_bias="0.976" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

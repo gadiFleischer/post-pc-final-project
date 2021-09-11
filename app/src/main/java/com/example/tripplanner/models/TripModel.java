@@ -39,7 +39,7 @@ public class TripModel implements Serializable{
         long diff = endDate.getTime() - startDate.getTime();
         long res= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)+1;
         for (int i=0;i<res;i++){
-            this.days.add(new DayModel(i+1,"red"));//TODO:think about color default
+            this.days.add(new DayModel(i+1,"red"));
         }
         this.daysDropdown = new String[(int)res];
         this.dayToInt = new HashMap<>();
@@ -49,6 +49,7 @@ public class TripModel implements Serializable{
             String dayStr = dateFormat.format(curDate);
             daysDropdown[i]=dayStr;
             dayToInt.put(dayStr,i);
+            days.get(i).dayString=dayStr;
             curDate = addDays(curDate, 1);
         }
     }
@@ -80,18 +81,4 @@ public class TripModel implements Serializable{
         }
         return events;
     }
-
-    public EventModel findEventByAddress(String address){
-        for (DayModel day : this.days)
-        {
-            for (EventModel event: day.events) {
-                if (event.address.equals(address))
-                {
-                    return event;
-                }
-            }
-        }
-        return null;
-    }
-
 }

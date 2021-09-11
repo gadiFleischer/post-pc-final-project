@@ -52,6 +52,7 @@ class TripItemViewHolder extends RecyclerView.ViewHolder implements Serializable
         switch (item.getItemId()) {
             case R.id.action_popup_edit:
                 Log.d(TAG, "onMenuItemClick: action_popup_edit @ " + getAdapterPosition());
+
                 return true;
             case R.id.action_popup_delete:
                 Log.d(TAG, "onMenuItemClick: action_popup_delete @ " + getAdapterPosition());

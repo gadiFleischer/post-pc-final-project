@@ -96,6 +96,7 @@ public class NewEvent extends AppCompatActivity {
             Intent editMapActivity = new Intent(this, EditMapActivity.class);
             editMapActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editMapActivity);
+            finish();
         });
 
     }

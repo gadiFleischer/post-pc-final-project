@@ -120,6 +120,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             Intent editMapActivity = new Intent(this, EditMapActivity.class);
             editMapActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editMapActivity);
+            finish();
         });
         deleteEditButton.setOnClickListener(view -> {
             int day = myEvent.day;
@@ -131,6 +132,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             Intent editMapActivity = new Intent(this, EditMapActivity.class);
             editMapActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editMapActivity);
+            finish();
         });
     }
 }

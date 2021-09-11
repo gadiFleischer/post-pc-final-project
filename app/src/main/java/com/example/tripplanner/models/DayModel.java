@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class DayModel implements Serializable {
     public int dayNum;
     public String color;
+    public String dayString="";
     public ArrayList<EventModel> events;
 
     public DayModel(int dayNum,String color){
