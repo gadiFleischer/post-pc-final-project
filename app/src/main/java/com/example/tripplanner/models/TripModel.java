@@ -93,4 +93,13 @@ public class TripModel implements Serializable{
         }
         return null;
     }
+    public boolean isNameTaken(EventModel eventToCheck){
+        for (EventModel event: days.get(eventToCheck.day).events) {
+            if (event.name.equals(eventToCheck.name) && !event.id.equals(eventToCheck.id))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

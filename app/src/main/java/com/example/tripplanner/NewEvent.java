@@ -87,6 +87,11 @@ public class NewEvent extends AppCompatActivity {
                 toast.show();
                 return;
             }
+            if(myTrip.isNameTaken(event)){
+                Toast toast = Toast.makeText(this,"name already taken", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
 
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             event.day=day;

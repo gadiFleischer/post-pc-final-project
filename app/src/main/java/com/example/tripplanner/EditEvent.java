@@ -103,6 +103,11 @@ public class EditEvent extends AppCompatActivity implements Serializable {
                 toast.show();
                 return;
             }
+            if(myTrip.isNameTaken(myEvent)){
+                Toast toast = Toast.makeText(this,"name already taken", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             if(lastDay!=day){
                 myTrip.days.get(lastDay).events.removeIf(x->x.id.equals(myEvent.id));

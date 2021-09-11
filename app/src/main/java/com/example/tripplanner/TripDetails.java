@@ -52,13 +52,6 @@ public class TripDetails extends AppCompatActivity {
         Collections.sort(expandableListTitle);
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
-//        expandableListView.setOnGroupExpandListener(groupPosition -> Toast.makeText(getApplicationContext(),
-//                expandableListTitle.get(groupPosition) + " List Expanded.",
-//                Toast.LENGTH_SHORT).show());
-
-//        expandableListView.setOnGroupCollapseListener(groupPosition -> Toast.makeText(getApplicationContext(),
-//                expandableListTitle.get(groupPosition) + " List Collapsed.",
-//                Toast.LENGTH_SHORT).show());
 
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             String name = expandableListDetail.get( expandableListTitle.get(groupPosition)).get(childPosition);
@@ -68,6 +61,7 @@ public class TripDetails extends AppCompatActivity {
             showOnMapButtonActivity.putExtra("lat", event.position.latitude);
             showOnMapButtonActivity.putExtra("long", event.position.longitude);
             this.startActivity(showOnMapButtonActivity);
+            finish();
             return false;
         });
 
@@ -75,12 +69,14 @@ public class TripDetails extends AppCompatActivity {
         finishPlanningButton.setOnClickListener(view -> {
             Intent MyTripsActivity = new Intent(this, MyTrips.class);
             this.startActivity(MyTripsActivity);
+            finish();
         });
 
         showOnMapButton.setOnClickListener(view -> {
             Intent showOnMapButtonActivity = new Intent(this, EditMapActivity.class);
             showOnMapButtonActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(showOnMapButtonActivity);
+            finish();
         });
     }
 }
