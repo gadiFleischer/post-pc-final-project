@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.TripModel;
 import com.hbb20.CountryPickerView;
+import com.hbb20.countrypicker.models.CPCountry;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -22,8 +23,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-public class NewTrip extends AppCompatActivity implements Serializable {
-    Button startPlanningButton;
+public class EditTrip extends AppCompatActivity implements Serializable {
+    Button finishEditingButton;
     EditText tripTitleEdit;
     EditText startDateEdit;
     EditText endDateEdit;
@@ -35,47 +36,58 @@ public class NewTrip extends AppCompatActivity implements Serializable {
     String title="";
     final Calendar myCalendar = Calendar.getInstance();
     MyApp myApp;
+    TripModel myTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_trip_activity);
+        setContentView(R.layout.edit_trip_activity);
 
-        startPlanningButton = findViewById(R.id.startPlanningButton);
-        tripTitleEdit = findViewById(R.id.tripTitleEdit);
-        startDateEdit = findViewById(R.id.startDateEdit);
-        endDateEdit = findViewById(R.id.endDateEdit);
-        ccp=findViewById(R.id.ccp);
+        finishEditingButton = findViewById(R.id.finishEditingButton);
+        tripTitleEdit = findViewById(R.id.editTripTitleEdit);
+        startDateEdit = findViewById(R.id.editStartDateEdit);
+        endDateEdit = findViewById(R.id.editEndDateEdit);
+        ccp=findViewById(R.id.editCountry);
         myApp = new MyApp(this);
 
+        Intent getTripIntent=getIntent();
+        myTrip=myApp.getTripById(getTripIntent.getStringExtra("tripId"));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
+        startDate=myTrip.startDate;
+        endDate=myTrip.endDate;
+        tripTitleEdit.setText(myTrip.title);
+        startDateEdit.setText(sdf.format(myTrip.startDate));
+        endDateEdit.setText(sdf.format((myTrip.endDate)));
 
 
-        startPlanningButton.setOnClickListener(view -> {
+        finishEditingButton.setOnClickListener(view -> {
             //TODO: uncomment after finishing event edit
             if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
+                Toast toast = Toast.makeText(this,"Please choose a country", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            myTrip.destination = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
+            myTrip.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
+            myTrip.title =tripTitleEdit.getText().toString();
+            myTrip.startDate = startDate;
+            myTrip.endDate = endDate;
+            if(myTrip.title.equals("") || myTrip.destination.equals("") ||myTrip.startDate==null||myTrip.endDate==null||myTrip.endDate.compareTo(myTrip.startDate)<0){
                 Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
                 toast.show();
                 return;
             }
-            this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
-            this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
-            this.title =tripTitleEdit.getText().toString();
-            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||endDate.compareTo(startDate)<0){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
-                toast.show();
-                return;
-            }
-            TripModel newTrip = new TripModel(title, countryName, startDate, endDate, countryCode);
+
             try {
-                newTrip.initDaysArrayAndPicker();
+                myTrip.setDaysArrayAndPicker();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            this.myApp.myTrips.add(newTrip);
+
             this.myApp.saveMyTrips();
 
-            Intent tripDetailsActivity = new Intent(this, TripDetails.class);
-            tripDetailsActivity.putExtra("tripId", newTrip.id); //TODO: change back to newTrip.id
+            Intent tripDetailsActivity = new Intent(this, MyTrips.class);
+            tripDetailsActivity.putExtra("tripId", myTrip.id);
             this.startActivity(tripDetailsActivity);
             finish();
 
@@ -98,12 +110,12 @@ public class NewTrip extends AppCompatActivity implements Serializable {
         };
 
         startDateEdit.setOnClickListener(v -> {
-            new DatePickerDialog(NewTrip.this, startDateListener, myCalendar
+            new DatePickerDialog(EditTrip.this, startDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
         });
         endDateEdit.setOnClickListener(v -> {
-            new DatePickerDialog(NewTrip.this, endDateListener, myCalendar
+            new DatePickerDialog(EditTrip.this, endDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
         });

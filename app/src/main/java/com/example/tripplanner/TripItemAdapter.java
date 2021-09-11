@@ -94,7 +94,7 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripIt
                     switch (item.getItemId()) {
                         case R.id.action_popup_edit:
                             TripModel myTrip = itemHolder.getItemByIndex(getAdapterPosition());
-                            Intent editEventIntent = new Intent(view.getContext(), TripDetails.class);
+                            Intent editEventIntent = new Intent(view.getContext(), EditTrip.class);
                             editEventIntent.putExtra("tripId", myTrip.id);
                             view.getContext().startActivity(editEventIntent);
                             Log.d(TAG, "onMenuItemClick: action_popup_edit @ " + getAdapterPosition());

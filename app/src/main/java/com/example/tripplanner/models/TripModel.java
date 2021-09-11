@@ -2,6 +2,8 @@ package com.example.tripplanner.models;
 
 import android.os.Parcelable;
 
+import com.hbb20.CountryPickerView;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,7 +23,7 @@ public class TripModel implements Serializable{
     public Date endDate;
     public String countryCode;
     public ArrayList<DayModel> days;
-    public  String[] daysDropdown;
+    public String[] daysDropdown;
     public HashMap<String,Integer> dayToInt;
 
     public TripModel(String title,String destination,Date startDate,Date endDate,String countryCode){
@@ -53,6 +55,47 @@ public class TripModel implements Serializable{
             curDate = addDays(curDate, 1);
         }
     }
+
+    public void setDaysArrayAndPicker() throws ParseException {
+        long len;
+        long diff = endDate.getTime() - startDate.getTime();
+        long res= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)+1;
+        ArrayList<DayModel> newDays = new ArrayList<>();
+        for (int i=0;i<res;i++){
+            newDays.add(new DayModel(i+1,"red"));
+        }
+        if (res >= days.size()){
+            len = days.size();
+        }
+        else{
+            len = res;
+        }
+        for (long i=0; i<len ; i++){
+            for (int j=0; j<days.size(); j++){
+                if (j == i){
+                    for (EventModel event: days.get((int)i).events) {
+                        newDays.get((int)i).events.add(event);
+                    }
+                }
+
+            }
+        }
+        this.days.clear();
+        this.days = newDays;
+        this.daysDropdown = new String[(int)res];
+        this.dayToInt = new HashMap<>();
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        Date curDate=startDate;
+        for (int i=0;i<res;i++){
+            String dayStr = dateFormat.format(curDate);
+            daysDropdown[i]=dayStr;
+            dayToInt.put(dayStr,i);
+            days.get(i).dayString=dayStr;
+            curDate = addDays(curDate, 1);
+        }
+
+    }
+
     public static Date addDays(Date date, int days)
     {
         Calendar cal = Calendar.getInstance();
@@ -60,6 +103,7 @@ public class TripModel implements Serializable{
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
     }
+
     public EventModel getEventById(String id){
         for (DayModel day : this.days)
         {
