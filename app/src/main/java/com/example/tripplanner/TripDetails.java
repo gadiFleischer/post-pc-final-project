@@ -61,10 +61,7 @@ public class TripDetails extends AppCompatActivity {
 //                Toast.LENGTH_SHORT).show());
 
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
-            //TODO: add intent here
-            String name = expandableListDetail.get(
-                    expandableListTitle.get(groupPosition)).get(
-                    childPosition);
+            String name = expandableListDetail.get( expandableListTitle.get(groupPosition)).get(childPosition);
             EventModel event = myTrip.getEventByName(name);
             Intent showOnMapButtonActivity = new Intent(this, EditMapActivity.class);
             showOnMapButtonActivity.putExtra("tripId", this.myTrip.id);

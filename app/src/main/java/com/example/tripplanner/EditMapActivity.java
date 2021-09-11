@@ -153,11 +153,22 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         if(lat!=0 && lon !=0){
             latLng= new LatLng(lat, lon);
         }else{
-            latLng= new LatLng(0, 0); //TODO: get country pos
+            try {
+                if(addedEvents.size()==0){
+                    double lat = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLatitude();
+                    double lon = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLongitude();
+                    latLng= new LatLng(lat, lon);
+                }else{
+                    LatLng defaultPos = addedEvents.get(0).position;
+                    latLng= new LatLng(defaultPos.latitude, defaultPos.longitude);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                latLng= new LatLng(0, 0);
+            }
+
         }
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
-
-
 
         map.setOnMarkerClickListener((Marker marker) -> {
             LatLng pos = marker.getPosition();
