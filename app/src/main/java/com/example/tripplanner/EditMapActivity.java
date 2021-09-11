@@ -232,6 +232,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     public void populateLocations() {
         float iconColor = BitmapDescriptorFactory.HUE_RED;
+
         for (int i = 0; i < addedEvents.size(); i++) {
             EventModel l = addedEvents.get(i);
             switch (l.category) {

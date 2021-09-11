@@ -63,7 +63,7 @@ class TripItemViewHolder extends RecyclerView.ViewHolder implements Serializable
 }
 
 public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder> implements Serializable {
-    private TripItemsHolder itemHolder;
+    TripItemsHolder itemHolder;
     Context context;
     LayoutInflater inflater;
 
@@ -92,42 +92,11 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemViewHolder> im
         });
 
         }
-//        holder.checkBox.setChecked(curTrip.getIsDone());
-//        holder.checkBox.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                int position = holder.getLayoutPosition();
-//                TodoItem item = itemHolder.getCurrentItems().get(position);
-//                if (holder.checkBox.isChecked()){
-//                    itemHolder.markItemDone(position);
-//                    notifyDataSetChanged();
-//                }
-//                else{
-//                    itemHolder.markItemInProgress(position);
-//                    notifyDataSetChanged();
-//                }
-//            }
-//        });
-//
-
-
-//        holder.actionButton.setOnClickListener(v -> {
-//            Intent editIntent = new Intent(this.context, EditScreenActivity.class);
-//            editIntent.putExtra("tripId", curTrip);
-//        });
-
-//        holder.actionButton.setOnClickListener(view ->{
-//            Intent editIntent = new Intent(this.context, EditScreenActivity.class);
-//            editIntent.putExtra("tripId", curTrip);
-//            this.context.startActivity(editIntent);
-//        });
-
 
 
     @Override
     public int getItemCount() {
         return this.itemHolder.getCurrentItems().size();
     }
-
 
 }

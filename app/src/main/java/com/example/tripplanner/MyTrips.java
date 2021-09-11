@@ -27,7 +27,6 @@ import java.util.Objects;
 public class MyTrips extends AppCompatActivity implements Serializable {
 
     public TripItemsHolder holder = null;
-    Button tripExampleButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +45,6 @@ public class MyTrips extends AppCompatActivity implements Serializable {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
-        tripExampleButton = findViewById(R.id.tripExampleButton);
-        tripExampleButton.setOnClickListener(view -> {
-            Intent tripDetailsActivity = new Intent(this, TripDetails.class);
-            this.startActivity(tripDetailsActivity);
-        });
 
     }
 }
