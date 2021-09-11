@@ -64,6 +64,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     TripModel myTrip;
     LatLng searchedLocation=new LatLng(0,0);
     String searchedAddress="";
+    int mMarkerCount = 0;
+    Marker mMarker;
 
     ArrayList<EventModel> addedEvents ;
 
@@ -103,6 +105,11 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 // TODO: Get info about the selected place.
+                if(mMarkerCount > 0){
+                    mMarker.remove();
+                    mMarkerCount=0;
+                }
+                mMarkerCount++;
                 Toast.makeText(getApplicationContext(), place.getName(), Toast.LENGTH_SHORT).show();
                 searchedAddress = place.getAddress();
                 String location = place.getName();
@@ -111,7 +118,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
                     LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
 
-                    map.addMarker(new MarkerOptions().position(latLng).title(location).
+                    mMarker=map.addMarker(new MarkerOptions().position(latLng).title(location).
                             snippet(searchedAddress));
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                     searchedLocation=latLng;
@@ -133,6 +140,9 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         map = googleMap;
         LatLng latLng = new LatLng(31.777028899999998, 35.1980509); //TODO: get pos from country address or first event address
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
+
+
+
         map.setOnMarkerClickListener((Marker marker) -> {
             LatLng pos = marker.getPosition();
             if(searchedLocation.latitude==pos.latitude && searchedLocation.longitude== pos.longitude) {
