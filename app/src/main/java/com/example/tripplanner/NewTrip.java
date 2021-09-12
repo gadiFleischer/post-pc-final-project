@@ -1,12 +1,9 @@
 package com.example.tripplanner;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -42,12 +39,11 @@ public class NewTrip extends AppCompatActivity implements Serializable {
         setContentView(R.layout.new_trip_activity);
 
         startPlanningButton = findViewById(R.id.startPlanningButton);
-        tripTitleEdit = findViewById(R.id.tripTitleEdit);
-        startDateEdit = findViewById(R.id.startDateEdit);
-        endDateEdit = findViewById(R.id.endDateEdit);
-        ccp=findViewById(R.id.ccp);
+        tripTitleEdit = findViewById(R.id.editTripTitleEdit);
+        startDateEdit = findViewById(R.id.editStartDateEdit);
+        endDateEdit = findViewById(R.id.editEndDateEdit);
+        ccp=findViewById(R.id.editCountry);
         myApp = new MyApp(this);
-
 
 
         startPlanningButton.setOnClickListener(view -> {
@@ -74,9 +70,10 @@ public class NewTrip extends AppCompatActivity implements Serializable {
             this.myApp.myTrips.add(newTrip);
             this.myApp.saveMyTrips();
 
-            Intent tripDetailsActivity = new Intent(this, TripDetails.class);
-            tripDetailsActivity.putExtra("tripId", newTrip.id); //TODO: change back to newTrip.id
-            this.startActivity(tripDetailsActivity);
+            Intent editMapActivity = new Intent(this, EditMapActivity.class);
+
+            editMapActivity.putExtra("tripId", newTrip); //TODO: change back to newTrip.id
+            this.startActivity(editMapActivity);
             finish();
 
         });

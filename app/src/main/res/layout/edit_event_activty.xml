@@ -20,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
+        android:layout_marginStart="4dp"
 
         />
 
@@ -63,33 +64,66 @@
         android:id="@+id/addressTitleEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Address"
-        android:textColor="#D53E71"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"
-
-        app:layout_constraintVertical_bias="0.198" />
-
-    <TextView
-        android:id="@+id/nickNameTitleEditEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nickname"
+        android:paddingTop="30dp"
+        android:paddingBottom="70dp"
+        android:text="Trip Title"
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="0.168"
+
+        />
+
+    <TextView
+        android:id="@+id/nickNameTitleEditEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
+        android:text="Nickname"
+        android:textColor="#D53E71"
+        android:textSize="20dp"
+
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBottomOf="@id/addressTitleEditEvent"
+        app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
+        tools:layout_editor_absoluteY="213dp" />
+
+
+
+    <EditText
+        android:id="@+id/nickNameEditEditEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        app:layout_constraintStart_toEndOf="@id/nickNameTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@id/titleEditEvent"
+        android:paddingBottom="35dp"
+        android:layout_marginLeft="26dp"
+
+
+        />
+
+    <EditText
+        android:id="@+id/titleEditEvent"
+        android:layout_width="179dp"
+        android:layout_height="38dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:text=""
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toEndOf="@+id/addressTitleEditEvent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addressTitleEditEvent"
+
+        />
+
+
 
     <TextView
         android:id="@+id/endTimeTitleEditEvent"
@@ -100,12 +134,10 @@
         android:textSize="20dp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589" />
+        app:layout_constraintStart_toStartOf="@id/startTimeTitleEditEvent"
+        app:layout_constraintBaseline_toBottomOf="@id/startTimeTitleEditEvent"
+        android:paddingBottom="70dp"
+        />
 
     <TextView
         android:id="@+id/dayTitleEditEvent"
@@ -116,40 +148,22 @@
         android:textSize="20dp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintStart_toStartOf="@id/categoryTitleEditEvent"
+        app:layout_constraintBaseline_toBottomOf="@id/categoryTitleEditEvent"
+        android:paddingBottom="50dp"
+        />
 
-    <EditText
-        android:id="@+id/nickNameEditEvent"
-        android:layout_width="179dp"
-        android:layout_height="38dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.629"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.264" />
 
     <Spinner
         android:id="@+id/daySpinnerEditEvent"
         android:layout_width="231dp"
         android:layout_height="38dp"
+        android:layout_marginStart="124dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.418" />
+        app:layout_constraintBaseline_toBottomOf="@id/categorySpinnerEditEvent"
+        app:layout_constraintStart_toStartOf="@id/dayTitleEditEvent"
+        tools:layout_editor_absoluteY="318dp" />
 
     <EditText
         android:id="@+id/commentEditEvent"
@@ -170,14 +184,15 @@
         android:id="@+id/categorySpinnerEditEvent"
         android:layout_width="231dp"
         android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="32dp"
         android:background="@android:drawable/btn_dropdown"
+        android:paddingTop="60dp"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
+        app:layout_constraintStart_toEndOf="@+id/categoryTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@+id/nickNameEditEditEvent"
+        />
 
     <EditText
         android:id="@+id/startTimeEditEditEvent"
@@ -185,25 +200,24 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:focusableInTouchMode="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.726"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintStart_toEndOf="@+id/startTimeTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@+id/daySpinnerEditEvent"
+        android:layout_marginStart="16dp"
+
+
+        />
 
     <EditText
         android:id="@+id/endTimeEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:focusableInTouchMode="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.726"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589" />
+        app:layout_constraintStart_toEndOf="@id/endTimeTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@id/startTimeEditEditEvent"
+        />
 
     <TextView
         android:id="@+id/commentTitleEditEvent"
@@ -214,28 +228,24 @@
         android:textSize="20dp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintBaseline_toBottomOf="@id/endTimeTitleEditEvent"
+        app:layout_constraintStart_toStartOf="@id/endTimeTitleEditEvent"
+
+        />
 
     <TextView
         android:id="@+id/startTimeTitleEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
         android:text="Start Time"
         android:textColor="#D53E71"
         android:textSize="20dp"
-        android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.492" />
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBottomOf="@id/dayTitleEditEvent"
+        app:layout_constraintStart_toStartOf="@id/dayTitleEditEvent"
+        tools:layout_editor_absoluteY="381dp" />
 
     <TextView
         android:id="@+id/categoryTitleEditEvent"
@@ -246,12 +256,10 @@
         android:textSize="20dp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintStart_toStartOf="@id/nickNameTitleEditEvent"
+        app:layout_constraintBaseline_toBottomOf="@id/nickNameTitleEditEvent"
+        android:paddingBottom="50dp"
+        />
 
 
     <Button

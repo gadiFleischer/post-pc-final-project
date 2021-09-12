@@ -10,36 +10,35 @@
         android:id="@+id/addNewEventTitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add          Event"
-        android:textSize="58dp"
-        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:text="Add           Event"
+        android:textColor="#D53E71"
+        android:textSize="55dp"
 
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#D53E71"
-        app:layout_constraintVertical_bias="0.023" />
-
+        app:layout_constraintVertical_bias="0.024" />
 
     <TextView
         android:id="@+id/addNewEventTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New"
-        android:textSize="58dp"
-        android:textStyle="bold"
+        android:textColor="#8BC34A"
+        android:textSize="55dp"
 
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#8BC34A"
 
-        app:layout_constraintVertical_bias="0.023" />
-
+        app:layout_constraintVertical_bias="0.024" />
 
     <EditText
         android:id="@+id/nickNameEdit"
@@ -48,30 +47,49 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="enter Nick name here..."
+        android:hint="Enter nickname here..."
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toEndOf="@+id/nickNameTitle"
+        app:layout_constraintBaseline_toBaselineOf="@+id/nickNameTitle"
+
+        />
 
     <TextView
         android:id="@+id/addressTitle"
         android:textStyle="bold"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
         android:textColor="#D53E71"
         android:textSize="20dp"
+        app:layout_constraintVertical_bias="0.159"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.159" />
+        android:paddingBottom="60dp"
+        />
+
+
+    <TextView
+        android:id="@+id/addressTitleEditEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="Enter adress here..."
+        android:ems="10"
+
+        android:text=""
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toEndOf="@+id/addressTitle"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addressTitle"
+
+        android:paddingTop="30dp"
+        />
 
     <TextView
         android:id="@+id/nickNameTitle"
@@ -81,13 +99,11 @@
         android:textSize="20dp"
         android:textColor="#D53E71"
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/addressTitle"
+        app:layout_constraintBaseline_toBottomOf="@id/addressTitle"
+        android:paddingBottom="60dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
+        />
 
     <TextView
         android:id="@+id/categoryTitle"
@@ -97,44 +113,38 @@
         android:textSize="20dp"
         android:textColor="#D53E71"
         android:textStyle="bold"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintStart_toStartOf="@id/nickNameTitle"
+        app:layout_constraintBaseline_toBottomOf="@id/nickNameTitle"
+        android:paddingBottom="60dp"
+        />
 
 
     <Spinner
         android:id="@+id/categorySpinner"
         android:layout_width="220dp"
         android:layout_height="34dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="28dp"
         android:background="@android:drawable/btn_dropdown"
+        android:paddingTop="40dp"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.921"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintStart_toEndOf="@+id/categoryTitle"
 
+        app:layout_constraintTop_toBottomOf="@+id/nickNameEdit" />
 
     <TextView
         android:id="@+id/dayTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
         android:text="Choose Day"
-        android:textSize="20dp"
         android:textColor="#D53E71"
+        android:textSize="20dp"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBottomOf="@id/categoryTitle"
+        app:layout_constraintStart_toStartOf="@id/categoryTitle"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        tools:layout_editor_absoluteY="299dp" />
 
     <TextView
         android:id="@+id/startTimeTitle"
@@ -144,13 +154,10 @@
         android:textSize="20dp"
         android:textColor="#D53E71"
         android:textStyle="bold"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintStart_toStartOf="@id/dayTitle"
+        app:layout_constraintBaseline_toBottomOf="@id/dayTitle"
+        android:paddingBottom="60dp"
+        />
 
     <TextView
         android:id="@+id/endTimeTitle"
@@ -160,29 +167,24 @@
         android:textSize="20dp"
         android:textColor="#D53E71"
         android:textStyle="bold"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+        app:layout_constraintStart_toStartOf="@id/startTimeTitle"
+        app:layout_constraintBaseline_toBottomOf="@id/startTimeTitle"
+        android:paddingBottom="60dp"
+        />
 
     <TextView
         android:id="@+id/commentTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="84dp"
+        android:layout_height="74dp"
+        android:paddingBottom="50dp"
         android:text="Comment"
-        android:textSize="20dp"
         android:textColor="#D53E71"
-        android:textStyle="bold"
+        android:textSize="20dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBottomOf="@id/endTimeTitle"
+        app:layout_constraintStart_toStartOf="@id/endTimeTitle"
+        tools:layout_editor_absoluteY="491dp" />
 
 
     <Button
@@ -208,48 +210,48 @@
         android:id="@+id/startTimeEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:focusableInTouchMode="false"
         android:hint="Enter start Time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472" />
+
+
+        app:layout_constraintStart_toEndOf="@+id/startTimeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/daySpinner"
+        />
 
     <EditText
         android:id="@+id/endTimeEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:focusableInTouchMode="false"
         android:hint="Enter end Time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        android:layout_marginStart="20dp"
+
+        app:layout_constraintStart_toEndOf="@+id/endTimeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/startTimeEdit" />
 
     <Spinner
         android:id="@+id/daySpinner"
         android:layout_width="212dp"
         android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+
+
+        app:layout_constraintStart_toEndOf="@+id/dayTitle"
+        app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
 
     <EditText
         android:id="@+id/commentEdit"
         android:layout_width="371dp"
         android:layout_height="83dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:ems="10"
         android:gravity="top"
         android:hint="add comment"
@@ -258,6 +260,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77"></EditText>
+        app:layout_constraintVertical_bias="0.785">
+
+    </EditText>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

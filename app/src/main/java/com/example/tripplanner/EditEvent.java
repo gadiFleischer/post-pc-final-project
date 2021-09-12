@@ -47,7 +47,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         DoneEditButton = findViewById(R.id.DoneEditButton);
         Spinner categoryDropdown = findViewById(R.id.categorySpinnerEditEvent);
         addressTitle = findViewById(R.id.addressTitleEditEvent);
-        nickNameEdit = findViewById(R.id.nickNameEditEvent);
+        nickNameEdit = findViewById(R.id.nickNameEditEditEvent);
         Spinner daysDropDown = findViewById(R.id.daySpinnerEditEvent);
         startTimeEdit = findViewById(R.id.startTimeEditEditEvent);
         endTimeEdit = findViewById(R.id.endTimeEditEvent);
