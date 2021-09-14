@@ -47,7 +47,6 @@ public class TripDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Shir 0");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trip_details_activity);
