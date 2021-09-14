@@ -38,6 +38,8 @@ public class TripDetails extends AppCompatActivity {
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
+    List<String> expandableListFilterTitle;
+
     HashMap<String, List<String>> expandableListDetail;
 
     private DrawerLayout dl;
@@ -52,6 +54,7 @@ public class TripDetails extends AppCompatActivity {
         setContentView(R.layout.trip_details_activity);
         showOnMapButton = findViewById(R.id.showOnMapButton);
         finishPlanningButton = findViewById(R.id.finishPlanningButton);
+        System.out.println("Shir 0");
 
         myApp = new MyApp(this);
         Intent getTripIntent = getIntent();
@@ -61,8 +64,14 @@ public class TripDetails extends AppCompatActivity {
         expandableListDetail = ExpandableListDataPump.getData(myTrip);
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         Collections.sort(expandableListTitle);
+        System.out.println("Shir 97");
+        System.out.println("Shir 1 : " + expandableListDetail.keySet());
+        System.out.println("Shir 2: " + expandableListTitle);
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
+        System.out.println("Shir 98");
+
         expandableListView.setAdapter(expandableListAdapter);
+        System.out.println("Shir 99");
 
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             System.out.println("Shir 100");
