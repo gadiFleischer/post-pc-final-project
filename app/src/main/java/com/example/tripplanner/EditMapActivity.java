@@ -90,6 +90,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         geocoder = new Geocoder(this, Locale.getDefault());
         myApp = new MyApp(this);
 
+        Geocoder geocoder;
+        geocoder = new Geocoder(this, Locale.getDefault());
 
         Intent getTripIntent=getIntent();
         String id= getTripIntent.getStringExtra("tripId");
@@ -148,14 +150,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
     @Override
     public void onBackPressed() {
-//        new AlertDialog.Builder(this)
-//                .setTitle("Exit Map?")
-//                .setMessage("Are you sure you want to exit?")
-//                .setNegativeButton(android.R.string.no, null)
-//                .setPositiveButton(android.R.string.yes,
-//                        (DialogInterface.OnClickListener) v -> {
-//                            String x ="5";
-//                        }).create().show();
         Intent tripDetails = new Intent(this, NewEvent.class);
         tripDetails.putExtra("tripId", this.myTrip.id);
         finish();
@@ -185,6 +179,35 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         }
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
+
+
+
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng point) {
+                List<Address> addresses = null;
+                try {
+                    addresses = geocoder.getFromLocation(point.latitude, point.longitude, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(mMarkerCount > 0){
+                    mMarker.remove();
+                    mMarkerCount=0;
+                }
+                mMarkerCount++;
+//                Toast.makeText(getApplicationContext(), addresses.get(0).getAddressLine(0), Toast.LENGTH_SHORT).show();
+                searchedAddress = addresses.get(0).getAddressLine(0);
+                String location = addresses.get(0).getAddressLine(0).split(",")[0];
+
+                if (location != null || !location.equals("")) {
+                    mMarker=map.addMarker(new MarkerOptions().position(point).title(location).
+                            snippet(searchedAddress));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 15));
+                    searchedLocation=point;
+                }
+            }
+        });
 
         map.setOnMarkerClickListener((Marker marker) -> {
             LatLng pos = marker.getPosition();
