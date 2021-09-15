@@ -2,43 +2,28 @@ package com.example.tripplanner;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
-import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Objects;
 
 public class MyCameraActivity extends Activity
 {
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
+    public static final int GALLERY_REQUEST =1;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -46,11 +31,12 @@ public class MyCameraActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_layout);
         this.imageView = (ImageView)this.findViewById(R.id.imageView1);
-        Button photoButton = (Button) this.findViewById(R.id.button1);
+        Button cameraButton = (Button) this.findViewById(R.id.buttonOpenCamera);
+        Button buttonFromMemory = (Button) this.findViewById(R.id.buttonFromMemory);
 //        getMapImage(31.7749837,35.21760829999999);
 
 
-        photoButton.setOnClickListener(v -> {
+        cameraButton.setOnClickListener(v -> {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
@@ -61,7 +47,14 @@ public class MyCameraActivity extends Activity
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
+
+        buttonFromMemory.setOnClickListener(v -> {
+            Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+            photoPickerIntent.setType("image/*");
+            startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+        });
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
@@ -83,14 +76,27 @@ public class MyCameraActivity extends Activity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
-        {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
         }
+        if (resultCode == RESULT_OK) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                imageView.setImageBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+        }
     }
+
+
+
 //    public Bitmap getMapImage(double latitude, double longitude) {
 //
 //        Bitmap bmp = null;
