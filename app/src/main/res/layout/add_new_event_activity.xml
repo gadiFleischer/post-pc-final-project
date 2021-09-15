@@ -39,28 +39,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024" />
 
+
     <EditText
         android:id="@+id/nickNameEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginTop="172dp"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
+
         android:hint="Enter nickname here"
 
         android:text=""
-        app:layout_constraintBaseline_toBaselineOf="@+id/nickNameTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
         app:layout_constraintStart_toEndOf="@+id/nickNameTitle"
-        app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
-
-        />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/addressTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="Address"
         android:textColor="#D53E71"
         android:textSize="16dp"
@@ -70,36 +71,19 @@
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"
 
         app:layout_constraintVertical_bias="0.158" />
 
-    <EditText
-        android:id="@+id/addressTitleEditEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="26dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:hint="Enter address here"
-        android:text=""
-
-        app:layout_constraintBaseline_toBaselineOf="@+id/addressTitle"
-        app:layout_constraintStart_toEndOf="@+id/addressTitle"
-
-
-        />
 
     <TextView
         android:id="@+id/nickNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="Nick name"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:gravity="center"
 
         app:layout_constraintStart_toStartOf="@id/addressTitle"
         app:layout_constraintTop_toBottomOf="@id/addressTitle"
@@ -110,14 +94,13 @@
         android:id="@+id/categoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="Choose category"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintStart_toStartOf="@id/nickNameTitle"
-        app:layout_constraintTop_toBottomOf="@id/nickNameTitle"
-        />
+        app:layout_constraintTop_toBottomOf="@id/nickNameTitle" />
 
 
     <Spinner
@@ -138,11 +121,11 @@
         android:id="@+id/dayTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="Choose Day"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintStart_toStartOf="@id/categoryTitle"
         app:layout_constraintTop_toBottomOf="@id/categoryTitle"
 
@@ -152,11 +135,11 @@
         android:id="@+id/startTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="start time"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:gravity="center"
 
         app:layout_constraintStart_toStartOf="@id/dayTitle"
         app:layout_constraintTop_toBottomOf="@id/dayTitle" />
@@ -165,10 +148,10 @@
         android:id="@+id/endTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="End time"
         android:textColor="#D53E71"
         android:textSize="16dp"
-        android:gravity="center"
 
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/startTimeTitle"
@@ -178,11 +161,11 @@
         android:id="@+id/commentTitle"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:gravity="center"
         android:text="Comment"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:gravity="center"
 
         app:layout_constraintStart_toStartOf="@id/endTimeTitle"
         app:layout_constraintTop_toBottomOf="@id/endTimeTitle"
@@ -233,8 +216,7 @@
         android:focusableInTouchMode="false"
         android:hint="Enter end time"
         app:layout_constraintStart_toEndOf="@+id/endTimeTitle"
-        app:layout_constraintTop_toBottomOf="@+id/startTimeTitle"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/startTimeTitle" />
 
     <Spinner
         android:id="@+id/daySpinner"
@@ -254,13 +236,13 @@
         android:id="@+id/commentEdit"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="top"
         android:hint="add comment"
         android:inputType="textMultiLine"
         android:padding="10dp"
-        android:layout_marginStart="20dp"
 
         android:textAppearance="?android:attr/textAppearanceSmall"
         app:layout_constraintStart_toEndOf="@+id/commentTitle"

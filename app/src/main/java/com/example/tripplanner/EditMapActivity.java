@@ -165,6 +165,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         }else{
             try {
                 if(addedEvents.size()==0){
+                    //TODO: karin here I get the location of the country and you need to play with the zoom
                     double lat = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLatitude();
                     double lon = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLongitude();
                     latLng= new LatLng(lat, lon);
@@ -182,30 +183,27 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
 
 
-        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(@NonNull LatLng point) {
-                List<Address> addresses = null;
-                try {
-                    addresses = geocoder.getFromLocation(point.latitude, point.longitude, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if(mMarkerCount > 0){
-                    mMarker.remove();
-                    mMarkerCount=0;
-                }
-                mMarkerCount++;
+        map.setOnMapClickListener(point1 -> {
+            List<Address> addresses = null;
+            try {
+                addresses = geocoder.getFromLocation(point1.latitude, point1.longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(mMarkerCount > 0){
+                mMarker.remove();
+                mMarkerCount=0;
+            }
+            mMarkerCount++;
 //                Toast.makeText(getApplicationContext(), addresses.get(0).getAddressLine(0), Toast.LENGTH_SHORT).show();
-                searchedAddress = addresses.get(0).getAddressLine(0);
-                String location = addresses.get(0).getAddressLine(0).split(",")[0];
+            searchedAddress = addresses.get(0).getAddressLine(0);
+            String location = addresses.get(0).getAddressLine(0).split(",")[0];
 
-                if (location != null || !location.equals("")) {
-                    mMarker=map.addMarker(new MarkerOptions().position(point).title(location).
-                            snippet(searchedAddress));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 15));
-                    searchedLocation=point;
-                }
+            if (location != null || !location.equals("")) {
+                mMarker=map.addMarker(new MarkerOptions().position(point1).title(location).
+                        snippet(searchedAddress));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(point1, 15));
+                searchedLocation= point1;
             }
         });
 
@@ -327,7 +325,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);
         this.startActivity(addEventActivity);
-        finish();
     }
 
     public void goToEditEventIntent(EventModel event){
@@ -335,7 +332,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         editEventIntent.putExtra("eventId", event.id);
         editEventIntent.putExtra("tripId", this.myTrip.id);
         this.startActivity(editEventIntent);
-        finish();
     }
 
 
