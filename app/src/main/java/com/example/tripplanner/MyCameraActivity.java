@@ -1,5 +1,7 @@
 package com.example.tripplanner;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,13 +11,24 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.PhotoMetadata;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPhotoRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 
 public class MyCameraActivity extends Activity
 {
@@ -33,7 +46,9 @@ public class MyCameraActivity extends Activity
         this.imageView = (ImageView)this.findViewById(R.id.imageView1);
         Button cameraButton = (Button) this.findViewById(R.id.buttonOpenCamera);
         Button buttonFromMemory = (Button) this.findViewById(R.id.buttonFromMemory);
-//        getMapImage(31.7749837,35.21760829999999);
+        getMapImage();
+
+
 
 
         cameraButton.setOnClickListener(v -> {
@@ -95,30 +110,95 @@ public class MyCameraActivity extends Activity
         }
     }
 
+    public void getMapImage() {
 
-
-//    public Bitmap getMapImage(double latitude, double longitude) {
-//
 //        Bitmap bmp = null;
-//        InputStream inputStream = null;
-//        try {
-//            java.net.URL mapUrl = new URL("https://maps.google.com/maps/api/staticmap?center="+latitude+","+longitude+"&zoom=15&size=200x200&sensor=false");
-//
-//            HttpURLConnection httpURLConnection = (HttpURLConnection) mapUrl.openConnection();
-//
-//            inputStream = new BufferedInputStream(httpURLConnection.getInputStream());
-//
-//            bmp = BitmapFactory.decodeStream(inputStream);
-//
-//            inputStream.close();
-//            httpURLConnection.disconnect();
-//
-//        } catch (IllegalStateException e) {
-//            Log.e("tag", e.toString());
-//        } catch (IOException e) {
-//            Log.e("tag", e.toString());
-//        }
-//        imageView.setImageBitmap(bmp);
-//        return bmp;
-//    }
+////        InputStream inputStream = null;
+////        try {
+////            java.net.URL mapUrl = new URL("https://maps.google.com/maps/api/staticmap?center="+latitude+","+longitude+"&zoom=15&size=200x200&sensor=false");
+////
+////            HttpURLConnection httpURLConnection = (HttpURLConnection) mapUrl.openConnection();
+////
+////            inputStream = new BufferedInputStream(httpURLConnection.getInputStream());
+////
+////            bmp = BitmapFactory.decodeStream(inputStream);
+////
+////            inputStream.close();
+////            httpURLConnection.disconnect();
+////
+////        } catch (IllegalStateException e) {
+////            Log.e("tag", e.toString());
+////        } catch (IOException e) {
+////            Log.e("tag", e.toString());
+////        }
+////        imageView.setImageBitmap(bmp);
+////        return bmp;
+
+
+        final Bitmap[] bitmap = {null};
+
+
+        String apiKey = getString(R.string.api_key);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), apiKey);
+        }
+        PlacesClient placesClient = Places.createClient(this);
+
+        // Define a Place ID.
+//        String placeId = "ChIJAAAAAAAAAAARuQodTrNg-TY";
+        String placeId = "";
+        List<Place.Field> fields = Collections.singletonList(Place.Field.PHOTO_METADATAS);
+
+// Get a Place object (this example uses fetchPlace(), but you can also use findCurrentPlace())
+        final FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(placeId, fields);
+
+        placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
+            final Place place = response.getPlace();
+
+            // Get the photo metadata.
+            final List<PhotoMetadata> metadata = place.getPhotoMetadatas();
+            if (metadata == null || metadata.isEmpty()) {
+                Log.w(TAG, "No photo metadata.");
+                return;
+            }
+            final PhotoMetadata photoMetadata = metadata.get(0);
+
+            // Get the attribution text.
+            final String attributions = photoMetadata.getAttributions();
+
+            // Create a FetchPhotoRequest.
+            final FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
+                    .setMaxWidth(500) // Optional.
+                    .setMaxHeight(300) // Optional.
+                    .build();
+            placesClient.fetchPhoto(photoRequest).addOnSuccessListener((fetchPhotoResponse) -> {
+                bitmap[0] = fetchPhotoResponse.getBitmap();
+                imageView.setImageBitmap(bitmap[0]);
+            }).addOnFailureListener((exception) -> {
+                System.out.println("check place not found");
+                Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
+                        R.drawable.image_unavailable_foreground);
+                imageView.setImageBitmap(icon);
+                if (exception instanceof ApiException) {
+
+                    final ApiException apiException = (ApiException) exception;
+                    Log.e(TAG, "Place not found: " + exception.getMessage());
+                    final int statusCode = apiException.getStatusCode();
+                    // TODO: Handle error with given status code.
+                }
+            });
+        });
+        System.out.println(bitmap[0]);
+        if (bitmap[0] == null){
+            System.out.println("before");
+            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
+
+                    R.drawable.image_unavailable_foreground);
+            System.out.println("after");
+
+            bitmap[0] = icon;
+        }
+        System.out.println(bitmap[0]);
+        imageView.setImageResource(R.drawable.image_unavailable_foreground);
+    }
 }

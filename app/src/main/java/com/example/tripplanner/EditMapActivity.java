@@ -1,10 +1,10 @@
 package com.example.tripplanner;
-import com.example.tripplanner.models.DayModel;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import static android.content.ContentValues.TAG;
+
+import com.google.android.gms.common.api.ApiException;
+
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,14 +12,12 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 import com.google.android.gms.common.api.Status;
@@ -31,7 +29,6 @@ import android.location.Address;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,8 +43,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPhotoRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
@@ -59,6 +60,7 @@ import java.util.Arrays;
 
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -75,8 +77,10 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     String searchedAddress="";
     int mMarkerCount = 0;
     Marker mMarker;
+    Bitmap curBitmap = null;
     double lat;
     double lon;
+    PlacesClient placesClient;
 
     ArrayList<EventModel> addedEvents ;
 
@@ -105,7 +109,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             Places.initialize(getApplicationContext(), apiKey);
         }
 
-        PlacesClient placesClient = Places.createClient(this);
+        placesClient = Places.createClient(this);
 
 
 
@@ -121,8 +125,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             public void onPlaceSelected(@NonNull Place place) {
                 // TODO: Get info about the selected place.
                 if(mMarkerCount > 0){
-                    mMarker.remove();
-                    mMarkerCount=0;
+                    removeMarker();
                 }
                 mMarkerCount++;
                 Toast.makeText(getApplicationContext(), place.getName(), Toast.LENGTH_SHORT).show();
@@ -132,7 +135,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 if (location != null || !location.equals("")) {
 
                     LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-
+                    getBitmapByPlaceId(place.getId());
                     mMarker=map.addMarker(new MarkerOptions().position(latLng).title(location).
                             snippet(searchedAddress));
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
@@ -181,7 +184,33 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
 
-
+        map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
+            @Override
+            public void onPoiClick(@NonNull PointOfInterest point) {
+                System.out.println("check point of intrest");
+                System.out.println(point.placeId);
+                List<Address> addresses = null;
+                try {
+                    addresses = geocoder.getFromLocation(point.latLng.latitude, point.latLng.longitude, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(mMarkerCount > 0){
+                    removeMarker();
+                }
+                mMarkerCount++;
+//                Toast.makeText(getApplicationContext(), addresses.get(0).getAddressLine(0), Toast.LENGTH_SHORT).show();
+                searchedAddress = addresses.get(0).getAddressLine(0);
+                String location = addresses.get(0).getAddressLine(0).split(",")[0];
+                getBitmapByPlaceId(point.placeId);
+                if (location != null || !location.equals("")) {
+                    mMarker=map.addMarker(new MarkerOptions().position(point.latLng).title(location).
+                            snippet(searchedAddress));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(point.latLng, 15));
+                    searchedLocation=point.latLng;
+                }
+            }
+        });
 
         map.setOnMapClickListener(point1 -> {
             List<Address> addresses = null;
@@ -191,8 +220,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 e.printStackTrace();
             }
             if(mMarkerCount > 0){
-                mMarker.remove();
-                mMarkerCount=0;
+                removeMarker();
             }
             mMarkerCount++;
 //                Toast.makeText(getApplicationContext(), addresses.get(0).getAddressLine(0), Toast.LENGTH_SHORT).show();
@@ -208,6 +236,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         });
 
         map.setOnMarkerClickListener((Marker marker) -> {
+
             LatLng pos = marker.getPosition();
             if(searchedLocation.latitude==pos.latitude && searchedLocation.longitude== pos.longitude) {
                 LayoutInflater inflater = (LayoutInflater)
@@ -321,10 +350,12 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     public void goToNewEventIntent(String address, LatLng position){
         EventModel event = new EventModel("", address, null, position, 0, "", "", "");
+        event.setBitmap(curBitmap);
         Intent addEventActivity = new Intent(this, NewEvent.class);
         addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);
         this.startActivity(addEventActivity);
+        finish();
     }
 
     public void goToEditEventIntent(EventModel event){
@@ -332,8 +363,46 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         editEventIntent.putExtra("eventId", event.id);
         editEventIntent.putExtra("tripId", this.myTrip.id);
         this.startActivity(editEventIntent);
+        finish();
     }
 
+    private void getBitmapByPlaceId(String placeId){
+        List<Place.Field> fields = Collections.singletonList(Place.Field.PHOTO_METADATAS);
+        FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(placeId, fields);
+        this.placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
+            final Place place = response.getPlace();
+            // Get the photo metadata.
+            final List<PhotoMetadata> metadata = place.getPhotoMetadatas();
+            if (metadata == null || metadata.isEmpty()) {
+                Log.w(TAG, "No photo metadata.");
+                return;
+            }
+            final PhotoMetadata photoMetadata = metadata.get(0);
+
+            // Get the attribution text.
+            final String attributions = photoMetadata.getAttributions();
+
+            // Create a FetchPhotoRequest.
+            final FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
+                    .setMaxWidth(500) // Optional.
+                    .setMaxHeight(300) // Optional.
+                    .build();
+            placesClient.fetchPhoto(photoRequest).addOnSuccessListener((fetchPhotoResponse) -> {
+                curBitmap = fetchPhotoResponse.getBitmap();
+            }).addOnFailureListener((exception) -> {
+                if (exception instanceof ApiException) {
+                    ApiException apiException = (ApiException) exception;
+                    Log.e(TAG, "Place not found: " + exception.getMessage());
+                }
+            });
+        });
 
 
+    }
+
+    private void removeMarker(){
+        mMarker.remove();
+        mMarkerCount=0;
+        curBitmap = null;
+    }
 }

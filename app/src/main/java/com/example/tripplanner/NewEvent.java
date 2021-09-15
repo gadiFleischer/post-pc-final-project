@@ -53,7 +53,7 @@ public class NewEvent extends AppCompatActivity {
         categoryDropdown.setAdapter(adapterCategorys);
         ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
-        addressTitle.setText("Address: "+event.address);
+        addressTitle.setText("Address: " + event.address);
 
         startTimeEdit.setInputType(InputType.TYPE_NULL);
         startTimeEdit.setOnClickListener(v -> {

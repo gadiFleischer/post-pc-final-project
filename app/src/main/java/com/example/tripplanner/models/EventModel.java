@@ -1,4 +1,5 @@
 package com.example.tripplanner.models;
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -19,6 +20,7 @@ public class EventModel implements Parcelable, Serializable {
     public String endTime;
     public String comment;
     public LatLng position;
+    public Bitmap bitmap;
 
     public EventModel(String name,String address,CategoryEvent category, LatLng position
             ,int day,String startTime,String endTime,String comment){
@@ -32,6 +34,15 @@ public class EventModel implements Parcelable, Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
         this.comment = comment;
+        this.bitmap = null;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
     protected EventModel(Parcel in) {
