@@ -47,7 +47,6 @@ public class NewTrip extends AppCompatActivity implements Serializable {
 
 
         startPlanningButton.setOnClickListener(view -> {
-            //TODO: uncomment after finishing event edit
             if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
                 Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
                 toast.show();
@@ -70,10 +69,9 @@ public class NewTrip extends AppCompatActivity implements Serializable {
             this.myApp.myTrips.add(newTrip);
             this.myApp.saveMyTrips();
 
-            Intent editMapActivity = new Intent(this, EditMapActivity.class);
-
-            editMapActivity.putExtra("tripId", newTrip); //TODO: change back to newTrip.id
-            this.startActivity(editMapActivity);
+            Intent tripDetailsActivity = new Intent(this, TripDetails.class);
+            tripDetailsActivity.putExtra("tripId", newTrip.id);
+            this.startActivity(tripDetailsActivity);
             finish();
 
         });
