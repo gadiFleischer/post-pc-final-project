@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +29,9 @@ public class EditTrip extends AppCompatActivity implements Serializable {
     EditText tripTitleEdit;
     EditText startDateEdit;
     EditText endDateEdit;
+    TextView destination;
     Date startDate;
     Date endDate;
-    CountryPickerView ccp;
     String countryName="";
     String countryCode="";
     String title="";
@@ -47,7 +48,7 @@ public class EditTrip extends AppCompatActivity implements Serializable {
         tripTitleEdit = findViewById(R.id.editTripTitleEdit);
         startDateEdit = findViewById(R.id.editStartDateEdit);
         endDateEdit = findViewById(R.id.editEndDateEdit);
-        ccp=findViewById(R.id.editCountry);
+        destination = findViewById(R.id.editDestinationView);
         myApp = new MyApp(this);
 
         Intent getTripIntent=getIntent();
@@ -58,17 +59,11 @@ public class EditTrip extends AppCompatActivity implements Serializable {
         tripTitleEdit.setText(myTrip.title);
         startDateEdit.setText(sdf.format(myTrip.startDate));
         endDateEdit.setText(sdf.format((myTrip.endDate)));
+        destination.setText("Destination: "+myTrip.destination);
 
 
         finishEditingButton.setOnClickListener(view -> {
-            //TODO: uncomment after finishing event edit
-            if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
-                Toast toast = Toast.makeText(this,"Please choose a country", Toast.LENGTH_LONG);
-                toast.show();
-                return;
-            }
-            myTrip.destination = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
-            myTrip.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
+
             myTrip.title =tripTitleEdit.getText().toString();
             myTrip.startDate = startDate;
             myTrip.endDate = endDate;

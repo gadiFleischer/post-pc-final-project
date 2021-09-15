@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,10 @@ public class MyTrips extends AppCompatActivity implements Serializable {
             holder = new TripItemsHolder();
         }
         holder.setItems(myApp.myTrips);
-
+        TextView noTripsMsg = findViewById(R.id.noTripsMsg);
+        if(myApp.myTrips.size()==0){
+            noTripsMsg.setText("You have no trips yet");
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerTrips);
         TripItemAdapter recyclerAdapter = new TripItemAdapter(holder, this);

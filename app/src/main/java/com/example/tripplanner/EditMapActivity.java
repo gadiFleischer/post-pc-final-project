@@ -95,9 +95,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         geocoder = new Geocoder(this, Locale.getDefault());
         myApp = new MyApp(this);
 
-        Geocoder geocoder;
-        geocoder = new Geocoder(this, Locale.getDefault());
-
         Intent getTripIntent=getIntent();
         String id= getTripIntent.getStringExtra("tripId");
         lat= getTripIntent.getDoubleExtra("lat",0.00);

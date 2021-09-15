@@ -7,12 +7,10 @@
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/bg_round.xml" value="0.22135416666666666" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/food_icon.xml" value="0.22135416666666666" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/image_unavailable_foreground.xml" value="0.22291666666666668" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/rounded_button.xml" value="0.22135416666666666" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/app_bar_trip_map.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/content_trip_map.xml" value="0.20520833333333333" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/create_trip_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/edit_event_activty.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/edit_map_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/fragment_gallery.xml" value="0.20520833333333333" />
@@ -20,7 +18,6 @@
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/fragment_slideshow.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/main_map_activity.xml" value="0.2957427536231884" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/nav_header_trip_map.xml" value="0.20520833333333333" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/new_trip_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/trip_details_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/trip_item.xml" value="0.20520833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/trip_map_activity.xml" value="0.20520833333333333" />
@@ -76,6 +73,7 @@
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/add_to_trip_window.xml" value="0.18541666666666667" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/dfgfdg.xml" value="0.18541666666666667" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/edit_event_activty.xml" value="0.36666666666666664" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/edit_trip_activity.xml" value="0.18541666666666667" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/go_to_edit_event_window.xml" value="0.20520833333333333" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/image_layout.xml" value="0.22" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/list_group.xml" value="0.24427083333333333" />
