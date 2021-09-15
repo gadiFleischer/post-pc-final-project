@@ -14,6 +14,8 @@ import java.util.List;
 public class ExpandableListDataPump {
     public static HashMap<String, List<String>> getData(TripModel myTrip) {
         HashMap<String, List<String>> expandableListDetail = new HashMap<>();
+        String eventStr="";
+        String dayStr="";
         for (DayModel day : myTrip.days)
         {
             List<String> dayList = new ArrayList<>();
@@ -21,9 +23,10 @@ public class ExpandableListDataPump {
             Collections.sort(events, (o1, o2) -> o1.startTime.compareTo(o2.startTime));
 
             for (EventModel event: events) {
-                dayList.add(event.name);
+                eventStr = event.name+" at "+event.startTime+" - "+event.endTime;
+                dayList.add(eventStr);
             }
-            String dayStr="Day number: "+day.dayNum+" "+day.dayString;
+            dayStr="Day "+day.dayNum+": "+day.dayString;
 
             expandableListDetail.put(dayStr, dayList);
         }
