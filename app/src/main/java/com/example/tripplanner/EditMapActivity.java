@@ -163,6 +163,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
         LatLng latLng;
+        int zoom = 17;
         if(lat!=0 && lon !=0){
             latLng= new LatLng(lat, lon);
         }else{
@@ -172,6 +173,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                     double lat = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLatitude();
                     double lon = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLongitude();
                     latLng= new LatLng(lat, lon);
+                    zoom = 6;
                 }else{
                     LatLng defaultPos = addedEvents.get(0).position;
                     latLng= new LatLng(defaultPos.latitude, defaultPos.longitude);
@@ -183,6 +185,10 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         }
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
+
+        populateLocations();
+        map.moveCamera(point);
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
             @Override
@@ -309,9 +315,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             return false;
         });
 
-        populateLocations();
-        map.moveCamera(point);
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+
     }
 
     public int findEventByPos(LatLng pos){
