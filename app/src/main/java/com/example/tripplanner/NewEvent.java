@@ -47,7 +47,7 @@ public class NewEvent extends AppCompatActivity {
         myApp = new MyApp(this);
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
-        EventModel event = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
+        EventModel event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
 
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);

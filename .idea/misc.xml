@@ -70,6 +70,7 @@
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/drawable/rounded_button.xml" value="0.3828125" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/add_new_event_activity.xml" value="0.36666666666666664" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/add_to_trip_window.xml" value="0.18541666666666667" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/dfgfdg.xml" value="0.18541666666666667" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/edit_event_activty.xml" value="0.36666666666666664" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/go_to_edit_event_window.xml" value="0.20520833333333333" />
@@ -77,6 +78,8 @@
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/list_group.xml" value="0.24427083333333333" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/list_item.xml" value="0.24427083333333333" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/my_trips_activty.xml" value="0.2453125" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/nav_header.xml" value="0.2484375" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/new_trip_activity.xml" value="0.2484375" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/popup_window.xml" value="0.20520833333333333" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/trip_details_activity.xml" value="0.24427083333333333" />
         <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/trip_item.xml" value="0.1" />
