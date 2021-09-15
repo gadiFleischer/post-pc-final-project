@@ -81,6 +81,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     double lat;
     double lon;
     PlacesClient placesClient;
+    int markerZoom = 12;
 
     ArrayList<EventModel> addedEvents ;
 
@@ -138,7 +139,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                     getBitmapByPlaceId(place.getId());
                     mMarker=map.addMarker(new MarkerOptions().position(latLng).title(location).
                             snippet(searchedAddress));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, markerZoom));
                     searchedLocation=latLng;
                 }
             }
@@ -212,7 +213,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 if (location != null || !location.equals("")) {
                     mMarker=map.addMarker(new MarkerOptions().position(point.latLng).title(location).
                             snippet(searchedAddress));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(point.latLng, 15));
+                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(point.latLng, markerZoom));
                     searchedLocation=point.latLng;
                 }
             }
@@ -236,7 +237,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             if (location != null || !location.equals("")) {
                 mMarker=map.addMarker(new MarkerOptions().position(point1).title(location).
                         snippet(searchedAddress));
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(point1, 15));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(point1, markerZoom));
                 searchedLocation= point1;
             }
         });

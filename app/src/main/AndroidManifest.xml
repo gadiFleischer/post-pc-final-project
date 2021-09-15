@@ -36,6 +36,7 @@
         <activity android:name=".EditTrip" />
         <activity android:name=".EditMapActivity" />
         <activity android:name=".MyCameraActivity" />
+
     </application>
 
 </manifest>
