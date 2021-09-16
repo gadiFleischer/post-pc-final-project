@@ -325,6 +325,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void setPhotoToEvent(LatLng pos, ImageView imageView){
+//        imageView.setBackgroundResource(R.drawable.image_unavailable_foreground);
         imageView.setImageResource(R.drawable.image_unavailable_foreground);
         int index = findEventByPos(pos);
         if (index != -1){
