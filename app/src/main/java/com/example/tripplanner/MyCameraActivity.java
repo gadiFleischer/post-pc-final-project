@@ -116,30 +116,17 @@ public class MyCameraActivity extends Activity
             Places.initialize(getApplicationContext(), apiKey);
         }
         PlacesClient placesClient = Places.createClient(this);
-
-        // Define a Place ID.
-//        String placeId = "ChIJAAAAAAAAAAARuQodTrNg-TY";
         String placeId = "";
         List<Place.Field> fields = Collections.singletonList(Place.Field.PHOTO_METADATAS);
-
-// Get a Place object (this example uses fetchPlace(), but you can also use findCurrentPlace())
         final FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(placeId, fields);
-
         placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
             final Place place = response.getPlace();
-
-            // Get the photo metadata.
             final List<PhotoMetadata> metadata = place.getPhotoMetadatas();
             if (metadata == null || metadata.isEmpty()) {
                 Log.w(TAG, "No photo metadata.");
                 return;
             }
             final PhotoMetadata photoMetadata = metadata.get(0);
-
-            // Get the attribution text.
-            final String attributions = photoMetadata.getAttributions();
-
-            // Create a FetchPhotoRequest.
             final FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
                     .setMaxWidth(500) // Optional.
                     .setMaxHeight(300) // Optional.
@@ -148,30 +135,18 @@ public class MyCameraActivity extends Activity
                 bitmap[0] = fetchPhotoResponse.getBitmap();
                 imageView.setImageBitmap(bitmap[0]);
             }).addOnFailureListener((exception) -> {
-                System.out.println("check place not found");
                 Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
                         R.drawable.image_unavailable_foreground);
                 imageView.setImageBitmap(icon);
                 if (exception instanceof ApiException) {
-
                     final ApiException apiException = (ApiException) exception;
-                    Log.e(TAG, "Place not found: " + exception.getMessage());
-                    final int statusCode = apiException.getStatusCode();
-                    // TODO: Handle error with given status code.
                 }
             });
         });
-        System.out.println(bitmap[0]);
         if (bitmap[0] == null){
-            System.out.println("before");
-            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
-
-                    R.drawable.image_unavailable_foreground);
-            System.out.println("after");
-
+            Bitmap icon = BitmapFactory.decodeResource(this.getResources(), R.drawable.image_unavailable_foreground);
             bitmap[0] = icon;
         }
-        System.out.println(bitmap[0]);
         imageView.setImageResource(R.drawable.image_unavailable_foreground);
     }
 }
