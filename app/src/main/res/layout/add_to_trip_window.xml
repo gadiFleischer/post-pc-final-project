@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="300dp"
     android:background="#FFFFFF"
     android:orientation="vertical">
 
@@ -26,7 +26,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:gravity="left"
-                android:src="@drawable/no_image" />
+                android:src="@drawable/image_unavailable_foreground"
+                />
         </LinearLayout>
 
         <LinearLayout
