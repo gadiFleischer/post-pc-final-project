@@ -3,25 +3,17 @@ package com.example.tripplanner;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.tripplanner.models.TripModel;
-
 import java.io.Serializable;
-
-
-
 
 
 public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripItemViewHolder> implements Serializable {

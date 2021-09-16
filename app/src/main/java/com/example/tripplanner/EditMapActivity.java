@@ -183,7 +183,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 removeMarker();
             }
             mMarkerCount++;
-            if(addresses!=null){
+            if(addresses!=null && addresses.size()>0){
                 searchedAddress = addresses.get(0).getAddressLine(0);
                 location = addresses.get(0).getAddressLine(0).split(",")[0];
             }
@@ -208,7 +208,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 removeMarker();
             }
             mMarkerCount++;
-            if(addresses!=null) {
+            if(addresses!=null && addresses.size()>0) {
                 searchedAddress = addresses.get(0).getAddressLine(0);
                 location = addresses.get(0).getAddressLine(0).split(",")[0];
             }

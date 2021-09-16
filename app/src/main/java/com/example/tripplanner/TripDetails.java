@@ -2,29 +2,17 @@ package com.example.tripplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.PopupMenu;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Serializable;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -38,7 +26,6 @@ public class TripDetails extends AppCompatActivity {
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
-    List<String> expandableListFilterTitle;
 
     HashMap<String, List<String>> expandableListDetail;
 
@@ -54,27 +41,19 @@ public class TripDetails extends AppCompatActivity {
         setContentView(R.layout.trip_details_activity);
         showOnMapButton = findViewById(R.id.showOnMapButton);
         finishPlanningButton = findViewById(R.id.finishPlanningButton);
-        System.out.println("Shir 0");
 
         myApp = new MyApp(this);
         Intent getTripIntent = getIntent();
         myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
 
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        expandableListView = findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData(myTrip);
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         Collections.sort(expandableListTitle);
-        System.out.println("Shir 97");
-        System.out.println("Shir 1 : " + expandableListDetail.keySet());
-        System.out.println("Shir 2: " + expandableListTitle);
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
-        System.out.println("Shir 98");
-
         expandableListView.setAdapter(expandableListAdapter);
-        System.out.println("Shir 99");
 
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
-            System.out.println("Shir 100");
             String name = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
             String[] splitted=name.split(" \\| At: ");
             EventModel event = myTrip.getEventByName(splitted[0]);
@@ -87,13 +66,13 @@ public class TripDetails extends AppCompatActivity {
             return false;
 
         });
-        dl = (DrawerLayout) findViewById(R.id.trip_details_activity);
+        dl = findViewById(R.id.trip_details_activity);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nv = (NavigationView) findViewById(R.id.nv);
+        nv =  findViewById(R.id.nv);
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -114,6 +93,7 @@ public class TripDetails extends AppCompatActivity {
 
             }
         });
+
         finishPlanningButton.setOnClickListener(view -> {
             Intent MyTripsActivity = new Intent(this, MyTrips.class);
             this.startActivity(MyTripsActivity);
@@ -130,10 +110,8 @@ public class TripDetails extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (t.onOptionsItemSelected(item))
             return true;
-
         return super.onOptionsItemSelected(item);
     }
 }

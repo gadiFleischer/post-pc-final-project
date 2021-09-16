@@ -32,9 +32,6 @@ public class EditTrip extends AppCompatActivity implements Serializable {
     TextView destination;
     Date startDate;
     Date endDate;
-    String countryName="";
-    String countryCode="";
-    String title="";
     final Calendar myCalendar = Calendar.getInstance();
     MyApp myApp;
     TripModel myTrip;

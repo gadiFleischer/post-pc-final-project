@@ -4,16 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MyApp extends Application {
     float[] colors = new float[]{
@@ -103,7 +100,4 @@ public class MyApp extends Application {
         this.myTrips.remove(index);
         this.saveMyTrips();
     }
-
-
-
 }
