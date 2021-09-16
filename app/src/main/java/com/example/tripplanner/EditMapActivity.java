@@ -319,7 +319,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void setPhotoToEvent(LatLng pos, ImageView imageView){
-//        imageView.setBackgroundResource(R.drawable.image_unavailable_foreground);
         imageView.setImageResource(R.drawable.image_unavailable_foreground);
         int index = findEventByPos(pos);
         if (index != -1){
@@ -345,7 +344,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         curBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
         addEventActivity.putExtra("image",byteArray);
-
         addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);
         this.startActivity(addEventActivity);

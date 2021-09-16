@@ -143,8 +143,12 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             finish();
         });
         editImageButton.setOnClickListener(view -> {
-            Intent editMapActivity = new Intent(this, MyCameraActivity.class);
-            editMapActivity.putExtra("eventId", myEvent.id);
+            Intent editImageActivity = new Intent(this, MyCameraActivity.class);
+            editImageActivity.putExtra("tripId", this.myTrip.id);
+            editImageActivity.putExtra("eventId", myEvent.id);
+            editImageActivity.putExtra("activity", "edit");
+            this.startActivity(editImageActivity);
+            finish();
         });
     }
 }

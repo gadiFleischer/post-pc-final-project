@@ -10,25 +10,25 @@
         android:id="@+id/buttonOpenCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="open camera"
+        android:text="Load from camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095"></Button>
+        app:layout_constraintVertical_bias="0.078"></Button>
 
     <Button
         android:id="@+id/buttonFromMemory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="get img from memory"
+        android:text="Load from memory"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203"></Button>
+        app:layout_constraintVertical_bias="0.153"></Button>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -39,8 +39,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+    <Button
+        android:id="@+id/returnToActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756"></ImageView>
+        app:layout_constraintVertical_bias="0.858"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

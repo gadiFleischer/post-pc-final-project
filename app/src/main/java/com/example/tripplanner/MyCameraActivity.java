@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 
+import com.example.tripplanner.models.EventModel;
+import com.example.tripplanner.models.TripModel;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
@@ -25,8 +27,10 @@ import com.google.android.libraries.places.api.net.FetchPhotoRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,7 +40,11 @@ public class MyCameraActivity extends Activity
     private ImageView imageView;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     public static final int GALLERY_REQUEST =1;
-
+    MyApp myApp;
+    TripModel myTrip;
+    EventModel event;
+    Bitmap curBitMap=null;
+    String activity;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -46,7 +54,25 @@ public class MyCameraActivity extends Activity
         this.imageView = (ImageView)this.findViewById(R.id.imageView1);
         Button cameraButton = (Button) this.findViewById(R.id.buttonOpenCamera);
         Button buttonFromMemory = (Button) this.findViewById(R.id.buttonFromMemory);
-        getMapImage();
+        Button returnToActivity = (Button) this.findViewById(R.id.returnToActivity);
+
+
+        myApp=new MyApp(this);
+        Intent getTripIntent=getIntent();
+        myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
+        activity = getTripIntent.getStringExtra("activity");
+        if(activity.equals("add")){
+            event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
+        }else{
+            event = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
+        }
+
+        if(event.bitmap!=null){
+            this.imageView.setImageBitmap(event.bitmap);
+        }else{
+            imageView.setImageResource(R.drawable.image_unavailable_foreground);
+        }
+
 
         cameraButton.setOnClickListener(v -> {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
@@ -64,6 +90,29 @@ public class MyCameraActivity extends Activity
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+        });
+
+        returnToActivity.setOnClickListener(view -> {
+            if(curBitMap!=null){
+                event.bitmap=curBitMap;
+            }
+            Intent backToIntent;
+            if(activity.equals("edit")){
+                backToIntent = new Intent(this, EditEvent.class);
+                backToIntent.putExtra("eventId", event.id);
+
+            }else{ //ADD EVENT
+                backToIntent = new Intent(this, NewEvent.class);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                event.bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                backToIntent.putExtra("image",byteArray);
+                backToIntent.putExtra("newEvent", (Serializable) event);
+            }
+            backToIntent.putExtra("tripId", this.myTrip.id);
+            myApp.saveTrip(myTrip);
+            this.startActivity(backToIntent);
+            finish();
         });
     }
 
@@ -94,6 +143,7 @@ public class MyCameraActivity extends Activity
             if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(photo);
+                curBitMap=photo;
             }
             else if (resultCode == RESULT_OK) {
                 try {
@@ -101,52 +151,12 @@ public class MyCameraActivity extends Activity
                     final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                     imageView.setImageBitmap(selectedImage);
+                    curBitMap=selectedImage;
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
                 }
             }
         }
-    }
-
-    public void getMapImage() {
-        final Bitmap[] bitmap = {null};
-        String apiKey = getString(R.string.api_key);
-        if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), apiKey);
-        }
-        PlacesClient placesClient = Places.createClient(this);
-        String placeId = "";
-        List<Place.Field> fields = Collections.singletonList(Place.Field.PHOTO_METADATAS);
-        final FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(placeId, fields);
-        placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
-            final Place place = response.getPlace();
-            final List<PhotoMetadata> metadata = place.getPhotoMetadatas();
-            if (metadata == null || metadata.isEmpty()) {
-                Log.w(TAG, "No photo metadata.");
-                return;
-            }
-            final PhotoMetadata photoMetadata = metadata.get(0);
-            final FetchPhotoRequest photoRequest = FetchPhotoRequest.builder(photoMetadata)
-                    .setMaxWidth(500) // Optional.
-                    .setMaxHeight(300) // Optional.
-                    .build();
-            placesClient.fetchPhoto(photoRequest).addOnSuccessListener((fetchPhotoResponse) -> {
-                bitmap[0] = fetchPhotoResponse.getBitmap();
-                imageView.setImageBitmap(bitmap[0]);
-            }).addOnFailureListener((exception) -> {
-                Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
-                        R.drawable.image_unavailable_foreground);
-                imageView.setImageBitmap(icon);
-                if (exception instanceof ApiException) {
-                    final ApiException apiException = (ApiException) exception;
-                }
-            });
-        });
-        if (bitmap[0] == null){
-            Bitmap icon = BitmapFactory.decodeResource(this.getResources(), R.drawable.image_unavailable_foreground);
-            bitmap[0] = icon;
-        }
-        imageView.setImageResource(R.drawable.image_unavailable_foreground);
     }
 }

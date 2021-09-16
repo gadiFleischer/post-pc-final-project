@@ -16,10 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 public class NewEvent extends AppCompatActivity {
     Button addNewEventButton;
+    Button editImgAddEvent;
     TextView addressTitle;
     EditText nickNameEdit;
     EditText startTimeEdit;
@@ -35,6 +37,7 @@ public class NewEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_event_activity);
         addNewEventButton = findViewById(R.id.addThisEventButton);
+        editImgAddEvent = findViewById(R.id.editImgAddEvent);
         Spinner categoryDropdown = findViewById(R.id.categorySpinner);
         addressTitle = findViewById(R.id.addressTitle);
         nickNameEdit = findViewById(R.id.nickNameEdit);
@@ -104,6 +107,14 @@ public class NewEvent extends AppCompatActivity {
             editMapActivity.putExtra("lat", event.position.latitude);
             editMapActivity.putExtra("long", event.position.longitude);
             this.startActivity(editMapActivity);
+            finish();
+        });
+        editImgAddEvent.setOnClickListener(view -> {
+            Intent editImageActivity = new Intent(this, MyCameraActivity.class);
+            editImageActivity.putExtra("tripId", this.myTrip.id);
+            editImageActivity.putExtra("newEvent", (Serializable) event);
+            editImageActivity.putExtra("activity", "add");
+            this.startActivity(editImageActivity);
             finish();
         });
 
