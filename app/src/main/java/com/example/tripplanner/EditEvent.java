@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +23,8 @@ import java.util.Calendar;
 
 public class EditEvent extends AppCompatActivity implements Serializable {
     Button deleteEditButton;
-    Button DoneEditButton;
+    Button doneEditButton;
+    Button editImageButton;
     TextView addressTitle;
     EditText nickNameEdit;
     EditText startTimeEdit;
@@ -44,7 +44,8 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         setContentView(R.layout.edit_event_activty);
 
         deleteEditButton = findViewById(R.id.deleteEditButton);
-        DoneEditButton = findViewById(R.id.DoneEditButton);
+        doneEditButton = findViewById(R.id.DoneEditButton);
+        editImageButton = findViewById(R.id.editImageButton);
         Spinner categoryDropdown = findViewById(R.id.categorySpinnerEditEvent);
         addressTitle = findViewById(R.id.addressTitleEditEvent);
         nickNameEdit = findViewById(R.id.nickNameEditEditEvent);
@@ -91,7 +92,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             this.myEvent.endTime=endTimeEdit.getText().toString();
         });
 
-        DoneEditButton.setOnClickListener(view -> {
+        doneEditButton.setOnClickListener(view -> {
             myEvent.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
             myEvent.comment=this.commentEdit.getText().toString();
             myEvent.name=this.nickNameEdit.getText().toString();
@@ -140,6 +141,10 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             editMapActivity.putExtra("tripId", this.myTrip.id);
             this.startActivity(editMapActivity);
             finish();
+        });
+        editImageButton.setOnClickListener(view -> {
+            Intent editMapActivity = new Intent(this, MyCameraActivity.class);
+            editMapActivity.putExtra("eventId", myEvent.id);
         });
     }
 }

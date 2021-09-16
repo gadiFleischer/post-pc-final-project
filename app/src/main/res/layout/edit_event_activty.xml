@@ -40,10 +40,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
 
+
+    <Button
+        android:id="@+id/editImageButton"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#8BC34A"
+        android:text="Edit Image"
+        android:textSize="20dp"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.834" />
+
     <Button
         android:id="@+id/DoneEditButton"
-        android:layout_width="300dp"
-        android:layout_height="56dp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="Done edit"
@@ -51,14 +71,13 @@
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintVertical_bias="0.871" />
-
+        app:layout_constraintVertical_bias="0.9" />
 
     <TextView
         android:id="@+id/addressTitleEditEvent"
@@ -96,10 +115,10 @@
 
     <EditText
         android:id="@+id/nickNameEditEditEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="199dp"
+        android:layout_height="38dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="196dp"
         android:ems="10"
 
         android:focusableInTouchMode="false"
@@ -166,9 +185,9 @@
         android:id="@+id/categorySpinnerEditEvent"
         android:layout_width="231dp"
         android:layout_height="38dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="28dp"
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@android:drawable/btn_dropdown"
         android:paddingTop="60dp"
         android:spinnerMode="dropdown"
@@ -211,7 +230,7 @@
         app:layout_constraintBaseline_toBottomOf="@id/endTimeTitleEditEvent"
         app:layout_constraintStart_toStartOf="@id/endTimeTitleEditEvent"
 
-        />
+        tools:layout_editor_absoluteY="608dp" />
 
     <TextView
         android:id="@+id/startTimeTitleEditEvent"
@@ -243,8 +262,8 @@
 
     <Button
         android:id="@+id/deleteEditButton"
-        android:layout_width="300dp"
-        android:layout_height="56dp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="Delete event"
@@ -253,10 +272,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.966" />
 </androidx.constraintlayout.widget.ConstraintLayout>
