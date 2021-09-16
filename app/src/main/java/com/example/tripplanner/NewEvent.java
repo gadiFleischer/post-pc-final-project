@@ -2,6 +2,8 @@ package com.example.tripplanner;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.ArrayAdapter;
@@ -46,6 +48,9 @@ public class NewEvent extends AppCompatActivity {
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
         EventModel event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        event.setBitmap(bitmap);
 
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);

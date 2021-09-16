@@ -23,7 +23,7 @@ public class EventModel implements Parcelable, Serializable {
     public Bitmap bitmap;
 
     public EventModel(String name,String address,CategoryEvent category, LatLng position
-            ,int day,String startTime,String endTime,String comment){
+            ,int day,String startTime,String endTime,String comment, Bitmap bitmap){
 
         this.id = UUID.randomUUID().toString();
         this.name = name;

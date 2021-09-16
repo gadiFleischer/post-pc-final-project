@@ -43,7 +43,8 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -241,9 +242,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Button button = popupView.findViewById(R.id.button_add_to_trip);
                 ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
                 setPhotoToEvent(pos, imageView);
-                Picasso.get().load(marker.getSnippet()).centerCrop()
-                        .resize(400, 400)
-                        .into(imageView);
                 title.setText(marker.getTitle());
                 location1.setText(marker.getSnippet());
                 button.setOnClickListener(v ->{
@@ -271,7 +269,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 boolean focusable = true; // lets taps outside the popup also dismiss it
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
@@ -280,9 +277,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Button button = popupView.findViewById(R.id.button_edit_event);
                 ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
                 setPhotoToEvent(pos, imageView);
-                Picasso.get().load(addedEvents.get(position).name).centerCrop()
-                        .resize(400, 400)
-                        .into(imageView);
                 title.setText(addedEvents.get(position).name);
                 location.setText(addedEvents.get(position).address);
                 button.setOnClickListener(v ->{
@@ -328,18 +322,30 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         imageView.setImageResource(R.drawable.image_unavailable_foreground);
         int index = findEventByPos(pos);
         if (index != -1){
-            if (addedEvents.get(index).bitmap != null){
-                EventModel event = addedEvents.get(index);
+            EventModel event = addedEvents.get(index);
+            if (event.bitmap != null){
                 imageView.setImageBitmap(event.bitmap);
             }
         }
+        else{
+            if (curBitmap != null){
+                imageView.setImageBitmap(curBitmap);
+            }
+        }
+
     }
 
 
     public void goToNewEventIntent(String address, LatLng position){
-        EventModel event = new EventModel("", address, null, position, 0, "", "", "");
-        event.setBitmap(curBitmap);
+        EventModel event = new EventModel("", address, null, position, 0, "", "", "", curBitmap);
         Intent addEventActivity = new Intent(this, NewEvent.class);
+
+        //Convert to byte array
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        curBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        addEventActivity.putExtra("image",byteArray);
+
         addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);
         this.startActivity(addEventActivity);
