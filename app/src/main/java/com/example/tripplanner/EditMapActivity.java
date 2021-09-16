@@ -333,7 +333,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 imageView.setImageBitmap(curBitmap);
             }
         }
-
     }
 
 
