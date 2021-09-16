@@ -48,9 +48,6 @@ public class MyCameraActivity extends Activity
         Button buttonFromMemory = (Button) this.findViewById(R.id.buttonFromMemory);
         getMapImage();
 
-
-
-
         cameraButton.setOnClickListener(v -> {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             {
@@ -93,51 +90,27 @@ public class MyCameraActivity extends Activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(photo);
-        }
-        if (resultCode == RESULT_OK) {
-            try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                imageView.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+        if(resultCode != RESULT_CANCELED) {
+            if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(photo);
+            }
+            else if (resultCode == RESULT_OK) {
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    imageView.setImageBitmap(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
 
     public void getMapImage() {
-
-//        Bitmap bmp = null;
-////        InputStream inputStream = null;
-////        try {
-////            java.net.URL mapUrl = new URL("https://maps.google.com/maps/api/staticmap?center="+latitude+","+longitude+"&zoom=15&size=200x200&sensor=false");
-////
-////            HttpURLConnection httpURLConnection = (HttpURLConnection) mapUrl.openConnection();
-////
-////            inputStream = new BufferedInputStream(httpURLConnection.getInputStream());
-////
-////            bmp = BitmapFactory.decodeStream(inputStream);
-////
-////            inputStream.close();
-////            httpURLConnection.disconnect();
-////
-////        } catch (IllegalStateException e) {
-////            Log.e("tag", e.toString());
-////        } catch (IOException e) {
-////            Log.e("tag", e.toString());
-////        }
-////        imageView.setImageBitmap(bmp);
-////        return bmp;
-
-
         final Bitmap[] bitmap = {null};
-
-
         String apiKey = getString(R.string.api_key);
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), apiKey);
