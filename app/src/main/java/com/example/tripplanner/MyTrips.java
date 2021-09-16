@@ -40,16 +40,16 @@ public class MyTrips extends AppCompatActivity implements Serializable {
         }
         holder.setItems(myApp.myTrips);
         TextView noTripsMsg = findViewById(R.id.noTripsMsg);
-        if(myApp.myTrips.size()==0){
-            noTripsMsg.setText("You have no trips yet");
-        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerTrips);
         TripItemAdapter recyclerAdapter = new TripItemAdapter(holder, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
+        if(myApp.myTrips.size()==0){
+            noTripsMsg.setText("You have no trips yet");
+        }
     }
+
 }
 

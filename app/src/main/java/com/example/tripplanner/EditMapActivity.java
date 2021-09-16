@@ -4,27 +4,20 @@ import static android.content.ContentValues.TAG;
 import com.google.android.gms.common.api.ApiException;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-
 import android.location.Address;
 import android.util.Log;
 import android.view.Gravity;
@@ -35,15 +28,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.model.Place;
@@ -53,21 +43,15 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.squareup.picasso.Picasso;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class EditMapActivity extends FragmentActivity implements OnMapReadyCallback {
-
-    Button editEventMarkerButton;
-
     GoogleMap map;
     SupportMapFragment mapFragment;
     Geocoder geocoder;
@@ -157,6 +141,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
@@ -167,7 +152,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         }else{
             try {
                 if(addedEvents.size()==0){
-                    //TODO: karin here I get the location of the country and you need to play with the zoom
                     double lat = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLatitude();
                     double lon = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLongitude();
                     latLng= new LatLng(lat, lon);
@@ -183,41 +167,38 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         }
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
-
         populateLocations();
         map.moveCamera(point);
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
-        map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
-            @Override
-            public void onPoiClick(@NonNull PointOfInterest point) {
-                System.out.println("check point of intrest");
-                System.out.println(point.placeId);
-                List<Address> addresses = null;
-                try {
-                    addresses = geocoder.getFromLocation(point.latLng.latitude, point.latLng.longitude, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if(mMarkerCount > 0){
-                    removeMarker();
-                }
-                mMarkerCount++;
-//                Toast.makeText(getApplicationContext(), addresses.get(0).getAddressLine(0), Toast.LENGTH_SHORT).show();
+        map.setOnPoiClickListener(point12 -> {
+            List<Address> addresses = null;
+            String location="";
+            try {
+                addresses = geocoder.getFromLocation(point12.latLng.latitude, point12.latLng.longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(mMarkerCount > 0){
+                removeMarker();
+            }
+            mMarkerCount++;
+            if(addresses!=null){
                 searchedAddress = addresses.get(0).getAddressLine(0);
-                String location = addresses.get(0).getAddressLine(0).split(",")[0];
-                getBitmapByPlaceId(point.placeId);
-                if (location != null || !location.equals("")) {
-                    mMarker=map.addMarker(new MarkerOptions().position(point.latLng).title(location).
-                            snippet(searchedAddress));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(point.latLng, markerZoom));
-                    searchedLocation=point.latLng;
-                }
+                location = addresses.get(0).getAddressLine(0).split(",")[0];
+            }
+            getBitmapByPlaceId(point12.placeId);
+            if (!location.equals("")) {
+                mMarker=map.addMarker(new MarkerOptions().position(point12.latLng).title(location).
+                        snippet(searchedAddress));
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(point12.latLng, markerZoom));
+                searchedLocation= point12.latLng;
             }
         });
 
         map.setOnMapClickListener(point1 -> {
             List<Address> addresses = null;
+            String location="";
             try {
                 addresses = geocoder.getFromLocation(point1.latitude, point1.longitude, 1);
             } catch (IOException e) {
@@ -227,11 +208,11 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 removeMarker();
             }
             mMarkerCount++;
-//                Toast.makeText(getApplicationContext(), addresses.get(0).getAddressLine(0), Toast.LENGTH_SHORT).show();
-            searchedAddress = addresses.get(0).getAddressLine(0);
-            String location = addresses.get(0).getAddressLine(0).split(",")[0];
-
-            if (location != null || !location.equals("")) {
+            if(addresses!=null) {
+                searchedAddress = addresses.get(0).getAddressLine(0);
+                location = addresses.get(0).getAddressLine(0).split(",")[0];
+            }
+            if (!location.equals("")) {
                 mMarker=map.addMarker(new MarkerOptions().position(point1).title(location).
                         snippet(searchedAddress));
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(point1, markerZoom));
@@ -240,7 +221,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         });
 
         map.setOnMarkerClickListener((Marker marker) -> {
-
             LatLng pos = marker.getPosition();
             if(searchedLocation.latitude==pos.latitude && searchedLocation.longitude== pos.longitude) {
                 LayoutInflater inflater = (LayoutInflater)
@@ -267,7 +247,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
 
                 location1.setText(marker.getSnippet());
                 button.setOnClickListener(v -> goToNewEventIntent(searchedAddress, marker.getPosition()));
-
                 // dismiss the popup window when touched
                 popupView.setOnTouchListener((v, event) -> {
                     popupWindow.dismiss();
@@ -327,8 +306,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     public void populateLocations() {
-        float iconColor = BitmapDescriptorFactory.HUE_RED;
-
         for (int i = 0; i < addedEvents.size(); i++) {
             EventModel event = addedEvents.get(i);
             float color = myApp.colors[event.day];
@@ -338,17 +315,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                     .icon(BitmapDescriptorFactory.defaultMarker(color)));
             marker.setTag(i);
         }
-
     }
 
-    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
-        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
-    }
 
     public void goToNewEventIntent(String address, LatLng position){
         EventModel event = new EventModel("", address, null, position, 0, "", "", "");
@@ -398,8 +366,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 }
             });
         });
-
-
     }
 
     private void removeMarker(){
