@@ -324,6 +324,17 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
+    private void setPhotoToEvent(LatLng pos, ImageView imageView){
+        imageView.setImageResource(R.drawable.image_unavailable_foreground);
+        int index = findEventByPos(pos);
+        if (index != -1){
+            if (addedEvents.get(index).bitmap != null){
+                EventModel event = addedEvents.get(index);
+                imageView.setImageBitmap(event.bitmap);
+            }
+        }
+    }
+
 
     public void goToNewEventIntent(String address, LatLng position){
         EventModel event = new EventModel("", address, null, position, 0, "", "", "");
