@@ -23,7 +23,7 @@ public class ExpandableListDataPump {
             Collections.sort(events, (o1, o2) -> o1.startTime.compareTo(o2.startTime));
 
             for (EventModel event: events) {
-                eventStr = event.name+" at "+event.startTime+" - "+event.endTime;
+                eventStr = event.name+" | At: "+event.startTime+" - "+event.endTime;
                 dayList.add(eventStr);
             }
             dayStr="Day "+day.dayNum+": "+day.dayString;

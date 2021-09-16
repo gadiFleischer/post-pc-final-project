@@ -76,7 +76,7 @@ public class TripDetails extends AppCompatActivity {
         expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             System.out.println("Shir 100");
             String name = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-            String[] splitted=name.split("\\s+");
+            String[] splitted=name.split(" \\| At: ");
             EventModel event = myTrip.getEventByName(splitted[0]);
             Intent showOnMapButtonActivity = new Intent(this, EditMapActivity.class);
             showOnMapButtonActivity.putExtra("tripId", this.myTrip.id);
