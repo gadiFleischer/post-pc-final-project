@@ -6,6 +6,7 @@ import com.google.android.gms.common.api.ApiException;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -232,7 +233,6 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 boolean focusable = true; // lets taps outside the popup also dismiss it
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-
                 // show the popup window
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
@@ -240,11 +240,11 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 TextView location1 = popupView.findViewById(R.id.location_add_to_trip);
                 Button button = popupView.findViewById(R.id.button_add_to_trip);
                 ImageView imageView = popupView.findViewById(R.id.imageView_add_to_trip);
+                setPhotoToEvent(pos, imageView);
                 Picasso.get().load(marker.getSnippet()).centerCrop()
                         .resize(400, 400)
                         .into(imageView);
                 title.setText(marker.getTitle());
-
                 location1.setText(marker.getSnippet());
                 button.setOnClickListener(v -> goToNewEventIntent(searchedAddress, marker.getPosition()));
                 // dismiss the popup window when touched
@@ -276,6 +276,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                 TextView location = popupView.findViewById(R.id.location_edit_event);
                 Button button = popupView.findViewById(R.id.button_edit_event);
                 ImageView imageView = popupView.findViewById(R.id.imageView_edit_event);
+                setPhotoToEvent(pos, imageView);
                 Picasso.get().load(addedEvents.get(position).name).centerCrop()
                         .resize(400, 400)
                         .into(imageView);
@@ -291,8 +292,17 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
             return false;
         });
+    }
 
-
+    private void setPhotoToEvent(LatLng pos, ImageView imageView){
+        imageView.setImageResource(R.drawable.image_unavailable_foreground);
+        int index = findEventByPos(pos);
+        if (index != -1){
+            if (addedEvents.get(index).bitmap != null){
+                EventModel event = addedEvents.get(index);
+                imageView.setImageBitmap(event.bitmap);
+            }
+        }
     }
 
     public int findEventByPos(LatLng pos){

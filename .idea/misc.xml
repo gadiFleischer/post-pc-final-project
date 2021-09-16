@@ -3,6 +3,39 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/bg_round.xml" value="0.22135416666666666" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/food_icon.xml" value="0.22135416666666666" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/image_unavailable_foreground.xml" value="0.22291666666666668" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/drawable/rounded_button.xml" value="0.22135416666666666" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/add_to_trip_window.xml" value="0.36666666666666664" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/app_bar_trip_map.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/content_trip_map.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/create_trip_activity.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/edit_event_activty.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/edit_map_activity.xml" value="0.36666666666666664" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/edit_trip_activity.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/fragment_gallery.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/fragment_home.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/fragment_slideshow.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/go_to_edit_event_window.xml" value="0.36666666666666664" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/image_layout.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/main_map_activity.xml" value="0.2957427536231884" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/nav_header.xml" value="0.36666666666666664" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/nav_header_trip_map.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/new_trip_activity.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/trip_details_activity.xml" value="0.25" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/trip_item.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/trip_map_activity.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/menu/navigation_map.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/menu/navigation_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/menu/popup_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/menu/trip_map.xml" value="0.19114583333333332" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/menu/trip_map_activity_drawer.xml" value="0.20520833333333333" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/food_icon.xml" value="0.22135416666666666" />
+        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/food_icon_round.xml" value="0.22135416666666666" />
         <entry key="..\:/University/Year 4/Semester B/post pc/post-pc-final-project/app/src/main/res/drawable/bg_round.xml" value="0.14895833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/post-pc-final-project/app/src/main/res/layout/activity_main.xml" value="0.2078804347826087" />
         <entry key="..\:/University/Year 4/Semester B/post pc/post-pc-final-project/app/src/main/res/layout/add_new_event_activity.xml" value="0.20520833333333333" />
@@ -19,30 +52,21 @@
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/drawable/rounded_button.xml" value="0.1175925925925926" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/drawable/three_dots.xml" value="0.296875" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/activity_check_box.xml" value="0.3171875" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/add_new_event_activity.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/add_to_trip_window.xml" value="0.22" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/days_checkbox.xml" value="0.325" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/days_list.xml" value="0.325" />
+        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/add_to_trip_window.xml" value="0.35144927536231885" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/edit_event_activty.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/edit_map_activity.xml" value="0.21014492753623187" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/edit_trip_activity.xml" value="0.3671875" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/go_to_edit_event_window.xml" value="0.22" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/image_layout.xml" value="0.1640625" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/list_group.xml" value="0.3671875" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/list_item.xml" value="0.3671875" />
+        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/go_to_edit_event_window.xml" value="0.35144927536231885" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/main_map_activity.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/my_trips_activty.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/nav_header.xml" value="0.1" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/new_trip_activity.xml" value="0.30116959064327486" />
+        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/new_trip_activity.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/popup_edit_remove.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/popup_window.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/popup_window_remove_edit.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/row_trip.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/trip_details_activity.xml" value="0.12" />
+        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/trip_details_activity.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/layout/trip_item.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/menu/navigation_menu.xml" value="0.325" />
         <entry key="..\:/Users/shirs/Documents/fourth_year_sem_2/post_pc/post-pc-final-project/app/src/main/res/menu/popup_menu.xml" value="0.24427083333333333" />
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/activity_main.xml" value="0.23072916666666668" />
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/add_new_event_activity.xml" value="0.26666666666666666" />
