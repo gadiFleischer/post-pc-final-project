@@ -81,7 +81,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     double lat;
     double lon;
     PlacesClient placesClient;
-    int markerZoom = 12;
+    int markerZoom = 15;
 
     ArrayList<EventModel> addedEvents ;
 
