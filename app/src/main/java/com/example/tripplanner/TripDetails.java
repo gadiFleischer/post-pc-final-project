@@ -15,6 +15,7 @@ import com.example.tripplanner.models.TripModel;
 import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,7 +50,17 @@ public class TripDetails extends AppCompatActivity {
         expandableListView = findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData(myTrip);
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
-        Collections.sort(expandableListTitle);
+        Collections.sort(expandableListTitle, new Comparator<String>() {
+            public int compare(String o1, String o2) {
+                return extractInt(o1) - extractInt(o2);
+            }
+
+            int extractInt(String s) {
+                String num = s.split("\\s+")[1];
+                return num.isEmpty() ? 0 : Integer.parseInt(num);
+            }
+        });
+//        Collections.sort(expandableListTitle);
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
@@ -114,4 +125,5 @@ public class TripDetails extends AppCompatActivity {
             return true;
         return super.onOptionsItemSelected(item);
     }
+
 }

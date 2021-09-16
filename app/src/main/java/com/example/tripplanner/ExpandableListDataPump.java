@@ -26,7 +26,7 @@ public class ExpandableListDataPump {
                 eventStr = event.name+" | At: "+event.startTime+" - "+event.endTime;
                 dayList.add(eventStr);
             }
-            dayStr="Day "+day.dayNum+": "+day.dayString;
+            dayStr="Day "+day.dayNum+" : "+day.dayString;
 
             expandableListDetail.put(dayStr, dayList);
         }
