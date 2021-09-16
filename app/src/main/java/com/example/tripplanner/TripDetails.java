@@ -60,7 +60,7 @@ public class TripDetails extends AppCompatActivity {
                 return num.isEmpty() ? 0 : Integer.parseInt(num);
             }
         });
-//        Collections.sort(expandableListTitle);
+
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 

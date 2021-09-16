@@ -1,6 +1,9 @@
 package com.example.tripplanner;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +35,7 @@ public class MyTrips extends AppCompatActivity implements Serializable {
         if(myApp.myTrips.size()==0){
             noTripsMsg.setText("You have no trips yet");
         }
+
     }
 
 }

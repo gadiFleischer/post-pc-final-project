@@ -1,5 +1,6 @@
 package com.example.tripplanner;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripIt
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         myApp = new MyApp(context);
+
     }
 
     @NonNull
@@ -62,14 +64,13 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripIt
         ImageView actionButton;
         private static final String TAG = "MyViewHolder";
 
-
-
         public TripItemViewHolder(@NonNull View itemView) {
             super(itemView);
             this.countryCodeView = itemView.findViewById(R.id.countryCode);
             this.tripNameView = itemView.findViewById(R.id.tripName);
             this.actionButton = itemView.findViewById(R.id.actionButton);
             this.actionButton.setOnClickListener(this);
+
         }
 
         @Override
@@ -89,13 +90,15 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripIt
                             Intent editEventIntent = new Intent(view.getContext(), EditTrip.class);
                             editEventIntent.putExtra("tripId", myTrip.id);
                             view.getContext().startActivity(editEventIntent);
-                            Log.d(TAG, "onMenuItemClick: action_popup_edit @ " + getAdapterPosition());
                             return true;
                         case R.id.action_popup_delete:
                             itemHolder.deleteItem(itemHolder.getItemByIndex(getAdapterPosition()));
                             myApp.deleteTrip(getAdapterPosition());
+                            TextView noTripsMsg = (TextView) ((Activity)context).findViewById(R.id.noTripsMsg);
+                            if(myApp.myTrips.size()==0){
+                                noTripsMsg.setText("You have no trips yet");
+                            }
                             notifyDataSetChanged();
-                            Log.d(TAG, "onMenuItemClick: action_popup_delete @ " + getAdapterPosition());
                             return true;
                         default:
                             return false;
