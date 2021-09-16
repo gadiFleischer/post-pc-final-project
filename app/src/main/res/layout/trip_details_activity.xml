@@ -74,10 +74,10 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="80dp"
             android:backgroundTint="#8BC34A"
             android:text="Go to map"
             app:cornerRadius="28dp"
-            android:layout_marginBottom="80dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
