@@ -246,7 +246,10 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                         .into(imageView);
                 title.setText(marker.getTitle());
                 location1.setText(marker.getSnippet());
-                button.setOnClickListener(v -> goToNewEventIntent(searchedAddress, marker.getPosition()));
+                button.setOnClickListener(v ->{
+                    popupWindow.dismiss();
+                    goToNewEventIntent(searchedAddress, marker.getPosition());
+                });
                 // dismiss the popup window when touched
                 popupView.setOnTouchListener((v, event) -> {
                     popupWindow.dismiss();
@@ -282,7 +285,10 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                         .into(imageView);
                 title.setText(addedEvents.get(position).name);
                 location.setText(addedEvents.get(position).address);
-                button.setOnClickListener(v -> goToEditEventIntent(addedEvents.get(position)));
+                button.setOnClickListener(v ->{
+                    popupWindow.dismiss();
+                    goToEditEventIntent(addedEvents.get(position));
+                });
                 // dismiss the popup window when touched
                 popupView.setOnTouchListener((v, event) -> {
                     popupWindow.dismiss();
@@ -292,17 +298,8 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
             return false;
         });
-    }
 
-    private void setPhotoToEvent(LatLng pos, ImageView imageView){
-        imageView.setImageResource(R.drawable.image_unavailable_foreground);
-        int index = findEventByPos(pos);
-        if (index != -1){
-            if (addedEvents.get(index).bitmap != null){
-                EventModel event = addedEvents.get(index);
-                imageView.setImageBitmap(event.bitmap);
-            }
-        }
+
     }
 
     public int findEventByPos(LatLng pos){
