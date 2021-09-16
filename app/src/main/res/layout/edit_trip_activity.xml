@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="0dp"
+    android:background="#FFFFFF"
     tools:layout_editor_absoluteY="0dp">
 
     <TextView
@@ -70,13 +71,13 @@
         android:paddingTop="30dp"
         android:text=""
         android:textSize="20dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTripTitleView"
-        app:layout_constraintStart_toEndOf="@+id/editTripTitleView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editDestinationView"
+        app:layout_constraintStart_toEndOf="@+id/editDestinationView"
 
         />
 
     <TextView
-        android:id="@+id/editTripTitleView"
+        android:id="@+id/editDestinationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
@@ -95,7 +96,7 @@
         />
 
     <TextView
-        android:id="@+id/editDestinationView"
+        android:id="@+id/editTripTitleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="70dp"
@@ -103,8 +104,8 @@
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@id/editTripTitleView"
-        app:layout_constraintStart_toStartOf="@id/editTripTitleView" />
+        app:layout_constraintBaseline_toBottomOf="@id/editDestinationView"
+        app:layout_constraintStart_toStartOf="@id/editDestinationView" />
 
     <TextView
         android:id="@+id/editStartDateView"
@@ -115,8 +116,8 @@
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@+id/editDestinationView"
-        app:layout_constraintStart_toStartOf="@+id/editDestinationView" />
+        app:layout_constraintBaseline_toBottomOf="@+id/editTripTitleView"
+        app:layout_constraintStart_toStartOf="@+id/editTripTitleView" />
 
 
     <EditText
@@ -147,7 +148,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBottomOf="@+id/editStartDateView"
-        app:layout_constraintStart_toStartOf="@+id/editDestinationView" />
+        app:layout_constraintStart_toStartOf="@+id/editTripTitleView" />
 
 
     <EditText

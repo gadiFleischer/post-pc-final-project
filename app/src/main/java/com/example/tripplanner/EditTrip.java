@@ -1,20 +1,15 @@
 package com.example.tripplanner;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.tripplanner.models.TripModel;
-import com.hbb20.CountryPickerView;
-import com.hbb20.countrypicker.models.CPCountry;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -22,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class EditTrip extends AppCompatActivity implements Serializable {
     Button finishEditingButton;
@@ -45,7 +39,7 @@ public class EditTrip extends AppCompatActivity implements Serializable {
         tripTitleEdit = findViewById(R.id.editTripTitleEdit);
         startDateEdit = findViewById(R.id.editStartDateEdit);
         endDateEdit = findViewById(R.id.editEndDateEdit);
-        destination = findViewById(R.id.editDestinationView);
+        destination = findViewById(R.id.editTripTitleView);
         myApp = new MyApp(this);
 
         Intent getTripIntent=getIntent();
