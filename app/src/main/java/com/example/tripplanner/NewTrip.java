@@ -48,15 +48,20 @@ public class NewTrip extends AppCompatActivity implements Serializable {
 
         startPlanningButton.setOnClickListener(view -> {
             if(this.ccp.getCpViewHelper().getSelectedCountry().getValue()==null){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(this,"You did not Pick a country", Toast.LENGTH_LONG);
                 toast.show();
                 return;
             }
             this.countryName = Objects.requireNonNull(this.ccp.getCpViewHelper().getSelectedCountry().getValue()).getEnglishName();
             this.countryCode = this.ccp.getCpViewHelper().getSelectedCountry().getValue().getFlagEmoji();
             this.title =tripTitleEdit.getText().toString();
-            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null||endDate.compareTo(startDate)<0){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+            if(this.title.equals("") || this.countryName.equals("") ||startDate==null||endDate==null){
+                Toast toast = Toast.makeText(this,"One or more fields are empty", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            if(endDate.compareTo(startDate)<0){
+                Toast toast = Toast.makeText(this,"Start date is after end date", Toast.LENGTH_LONG);
                 toast.show();
                 return;
             }

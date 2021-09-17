@@ -89,8 +89,13 @@ public class NewEvent extends AppCompatActivity {
             event.startTime=startTimeEdit.getText().toString();
             event.endTime=endTimeEdit.getText().toString();
             String dayString = daysDropDown.getSelectedItem().toString();
-            if(event.name.equals("") || event.endTime.compareTo(event.startTime)<0){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+            if(event.name.equals("")){
+                Toast toast = Toast.makeText(this,"Event name Cant be empty", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            if(event.endTime.compareTo(event.startTime)<0){
+                Toast toast = Toast.makeText(this,"start time can't be bigger than end time", Toast.LENGTH_LONG);
                 toast.show();
                 return;
             }

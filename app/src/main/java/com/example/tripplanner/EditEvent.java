@@ -11,13 +11,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
-
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -32,7 +29,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
     EditText commentEdit;
     TimePickerDialog picker;
     TripModel myTrip;
-    EventModel myEvent;
+    EventModel event;
     MyApp myApp;
     int lastDay;
 
@@ -58,22 +55,22 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         myApp = new MyApp(this);
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
-        this.myEvent = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
+        this.event = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
         //Edit fields
-        this.addressTitle.setText("Address: " +myEvent.address);
-        this.nickNameEdit.setText(myEvent.name);
-        this.startTimeEdit.setText(myEvent.startTime);
-        this.endTimeEdit.setText(myEvent.endTime);
-        this.commentEdit.setText(myEvent.comment);
-        lastDay=myEvent.day;
+        this.addressTitle.setText("Address: " + event.address);
+        this.nickNameEdit.setText(event.name);
+        this.startTimeEdit.setText(event.startTime);
+        this.endTimeEdit.setText(event.endTime);
+        this.commentEdit.setText(event.comment);
+        lastDay= event.day;
 
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
-        categoryDropdown.setSelection(myEvent.category.ordinal());
+        categoryDropdown.setSelection(event.category.ordinal());
 
         ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
-        daysDropDown.setSelection(myEvent.day);
+        daysDropDown.setSelection(event.day);
 
         startTimeEdit.setOnClickListener(v -> {
             int hour = cldr.get(Calendar.HOUR_OF_DAY);
@@ -89,35 +86,40 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             picker = new TimePickerDialog(EditEvent.this,
                     (tp, sHour, sMinute) -> endTimeEdit.setText(String.format("%02d:%02d", sHour, sMinute)), hour, minutes, true);
             picker.show();
-            this.myEvent.endTime=endTimeEdit.getText().toString();
+            this.event.endTime=endTimeEdit.getText().toString();
         });
 
         doneEditButton.setOnClickListener(view -> {
-            myEvent.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
-            myEvent.comment=this.commentEdit.getText().toString();
-            myEvent.name=this.nickNameEdit.getText().toString();
+            event.category=myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
+            event.comment=this.commentEdit.getText().toString();
+            event.name=this.nickNameEdit.getText().toString();
             String dayString = daysDropDown.getSelectedItem().toString();
-            myEvent.startTime=startTimeEdit.getText().toString();
-            myEvent.endTime=endTimeEdit.getText().toString();
-            if(myEvent.name.equals("") || myEvent.endTime.compareTo(myEvent.startTime)<0){
-                Toast toast = Toast.makeText(this,"your inputs are invalid", Toast.LENGTH_LONG);
+            event.startTime=startTimeEdit.getText().toString();
+            event.endTime=endTimeEdit.getText().toString();
+            if(event.name.equals("")){
+                Toast toast = Toast.makeText(this,"Event name Cant be empty", Toast.LENGTH_LONG);
                 toast.show();
                 return;
             }
-            if(myTrip.isNameTaken(myEvent)){
+            if(myTrip.isNameTaken(event)){
                 Toast toast = Toast.makeText(this,"name already taken", Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            if(event.endTime.compareTo(event.startTime)<0){
+                Toast toast = Toast.makeText(this,"start time can't be bigger than end time", Toast.LENGTH_LONG);
                 toast.show();
                 return;
             }
             int day = dayString.equals("")? 0 : this.myTrip.dayToInt.get(dayString);
             if(lastDay!=day){
-                myTrip.days.get(lastDay).events.removeIf(x->x.id.equals(myEvent.id));
-                myTrip.days.get(day).events.add(myEvent);
-                myEvent.day=day;
+                myTrip.days.get(lastDay).events.removeIf(x->x.id.equals(event.id));
+                myTrip.days.get(day).events.add(event);
+                event.day=day;
             }else{
-                int index = MyApp.getEventByIdIndex(this.myTrip,day,myEvent.id);
+                int index = MyApp.getEventByIdIndex(this.myTrip,day, event.id);
                 if(index!=-1){
-                    this.myTrip.days.get(day).events.set(index,myEvent);
+                    this.myTrip.days.get(day).events.set(index, event);
                 }
             }
             this.myApp.saveTrip(myTrip);
@@ -125,14 +127,14 @@ public class EditEvent extends AppCompatActivity implements Serializable {
 
             Intent editMapActivity = new Intent(this, EditMapActivity.class);
             editMapActivity.putExtra("tripId", this.myTrip.id);
-            editMapActivity.putExtra("lat", myEvent.position.latitude);
-            editMapActivity.putExtra("long", myEvent.position.longitude);
+            editMapActivity.putExtra("lat", event.position.latitude);
+            editMapActivity.putExtra("long", event.position.longitude);
             this.startActivity(editMapActivity);
             finish();
         });
         deleteEditButton.setOnClickListener(view -> {
-            int day = myEvent.day;
-            int index = MyApp.getEventByIdIndex(this.myTrip,day,myEvent.id);
+            int day = event.day;
+            int index = MyApp.getEventByIdIndex(this.myTrip,day, event.id);
             if(index!=-1){
                 this.myTrip.days.get(day).events.remove(index);
             }
@@ -145,7 +147,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         editImageButton.setOnClickListener(view -> {
             Intent editImageActivity = new Intent(this, MyCameraActivity.class);
             editImageActivity.putExtra("tripId", this.myTrip.id);
-            editImageActivity.putExtra("eventId", myEvent.id);
+            editImageActivity.putExtra("eventId", event.id);
             editImageActivity.putExtra("activity", "edit");
             this.startActivity(editImageActivity);
             finish();
@@ -155,8 +157,8 @@ public class EditEvent extends AppCompatActivity implements Serializable {
     public void onBackPressed() {
         Intent editMapActivity = new Intent(this, EditMapActivity.class);
         editMapActivity.putExtra("tripId", this.myTrip.id);
-        editMapActivity.putExtra("lat", myEvent.position.latitude);
-        editMapActivity.putExtra("long", myEvent.position.longitude);
+        editMapActivity.putExtra("lat", event.position.latitude);
+        editMapActivity.putExtra("long", event.position.longitude);
         this.startActivity(editMapActivity);
         finish();
         super.onBackPressed();
