@@ -3,12 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/layout/edit_event_activty.xml" value="0.33" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/tripPlanner_icon.xml" value="0.11927083333333334" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/tripPlanner_icon_round.xml" value="0.14635416666666667" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/trip_planner_app_icon.xml" value="0.11927083333333334" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/trip_planner_app_icon_round.xml" value="0.11927083333333334" />
-        <entry key="..\:/University/Year 4/Semester B/post pc/final_project/app/src/main/res/mipmap-anydpi-v26/trip_planner_icon.xml" value="0.14635416666666667" />
         <entry key="..\:/University/Year 4/Semester B/post pc/post-pc-final-project/app/src/main/res/drawable/bg_round.xml" value="0.14895833333333333" />
         <entry key="..\:/University/Year 4/Semester B/post pc/post-pc-final-project/app/src/main/res/layout/activity_main.xml" value="0.2078804347826087" />
         <entry key="..\:/University/Year 4/Semester B/post pc/post-pc-final-project/app/src/main/res/layout/add_new_event_activity.xml" value="0.20520833333333333" />
@@ -59,6 +53,11 @@
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/my_trips_activty.xml" value="0.25104166666666666" />
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/new_trip_activity.xml" value="0.23072916666666668" />
         <entry key="..\:/coding projects/post pc/TripPlanner/app/src/main/res/layout/trip_details_activity.xml" value="0.25104166666666666" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/activity_main.xml" value="0.3428442028985507" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/add_new_event_activity.xml" value="0.20208333333333334" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/ar_activity.xml" value="0.36666666666666664" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/edit_event_activty.xml" value="0.36666666666666664" />
+        <entry key="..\:/coding projects/post pc/updated final project/post-pc-final-project/app/src/main/res/layout/image_layout.xml" value="0.33" />
       </map>
     </option>
   </component>
