@@ -393,8 +393,10 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void removeMarker(){
-        mMarker.remove();
-        mMarkerCount=0;
-        curBitmap = null;
+        if(mMarkerCount>0){
+            mMarker.remove();
+            mMarkerCount=0;
+            curBitmap = null;
+        }
     }
 }

@@ -151,4 +151,14 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             finish();
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent editMapActivity = new Intent(this, EditMapActivity.class);
+        editMapActivity.putExtra("tripId", this.myTrip.id);
+        editMapActivity.putExtra("lat", myEvent.position.latitude);
+        editMapActivity.putExtra("long", myEvent.position.longitude);
+        this.startActivity(editMapActivity);
+        finish();
+        super.onBackPressed();
+    }
 }

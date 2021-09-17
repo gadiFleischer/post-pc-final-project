@@ -30,6 +30,7 @@ public class NewEvent extends AppCompatActivity {
     TimePickerDialog picker;
     TripModel myTrip;
     MyApp myApp;
+    EventModel event;
 
 
     @Override
@@ -50,7 +51,7 @@ public class NewEvent extends AppCompatActivity {
         myApp = new MyApp(this);
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
-        EventModel event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
+        event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         if(byteArray!=null){
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
@@ -120,5 +121,15 @@ public class NewEvent extends AppCompatActivity {
             finish();
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent editMapActivity = new Intent(this, EditMapActivity.class);
+        editMapActivity.putExtra("tripId", this.myTrip.id);
+        editMapActivity.putExtra("lat", event.position.latitude);
+        editMapActivity.putExtra("long", event.position.longitude);
+        this.startActivity(editMapActivity);
+        finish();
+        super.onBackPressed();
     }
 }
