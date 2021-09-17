@@ -55,9 +55,9 @@ public class NewEvent extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         event.setBitmap(bitmap);
 
-        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
+        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, R.layout.spinner_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
-        ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
+        ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, R.layout.spinner_item, this.myTrip.daysDropdown);
         daysDropDown.setAdapter(adapterDays);
         addressTitle.setText("Address: " + event.address);
 

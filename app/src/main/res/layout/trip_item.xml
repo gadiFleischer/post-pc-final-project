@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="36dp"
-
+        android:padding="15dp"
         android:text="+"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +35,11 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#5F9521"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/actionButton"
-        app:layout_constraintStart_toEndOf="@+id/countryCode"
+
         app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/countryCode"
+        app:layout_constraintStart_toEndOf="@+id/countryCode"
         />
 
     <ImageButton

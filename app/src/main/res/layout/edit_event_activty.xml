@@ -51,26 +51,31 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="Edit Image"
-        android:textSize="20dp"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.835" />
 
     <Button
         android:id="@+id/DoneEditButton"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#8BC34A"
         android:text="Done edit"
-        android:textSize="20dp"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,188 +84,200 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <TextView
         android:id="@+id/addressTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingBottom="70dp"
+        android:layout_height="60dp"
+        android:gravity="center"
         android:text="Address"
         android:textColor="#D53E71"
-        android:textSize="20dp"
+        android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152"
-
+        app:layout_constraintVertical_bias="0.158"
         />
 
     <TextView
         android:id="@+id/nickNameTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        android:text="Nickname"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Nick name"
         android:textColor="#D53E71"
-        android:textSize="20dp"
-
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@id/addressTitleEditEvent"
         app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
-        tools:layout_editor_absoluteY="213dp" />
+        app:layout_constraintTop_toBottomOf="@id/addressTitleEditEvent"
+
+        />
 
 
     <EditText
         android:id="@+id/nickNameEditEditEvent"
-        android:layout_width="199dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="196dp"
-        android:ems="10"
-
-        android:focusableInTouchMode="false"
-        android:paddingBottom="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="188dp"
+        android:background="@drawable/textlines"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="Enter nickname here"
+        android:text=""
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.248"
         app:layout_constraintStart_toEndOf="@+id/nickNameTitleEditEvent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/endTimeTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="70dp"
-        android:text="End Time"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="End time"
         android:textColor="#D53E71"
-        android:textSize="20dp"
+        android:textSize="16dp"
 
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@id/startTimeTitleEditEvent"
-        app:layout_constraintStart_toStartOf="@id/startTimeTitleEditEvent" />
+        app:layout_constraintStart_toStartOf="@id/startTimeTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@id/startTimeTitleEditEvent" />
 
     <TextView
         android:id="@+id/dayTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
+        android:layout_height="60dp"
+        android:gravity="center"
         android:text="Choose Day"
         android:textColor="#D53E71"
-        android:textSize="20dp"
-
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@id/categoryTitleEditEvent"
-        app:layout_constraintStart_toStartOf="@id/categoryTitleEditEvent" />
+        app:layout_constraintStart_toStartOf="@id/categoryTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@id/categoryTitleEditEvent"
+        />
 
 
     <Spinner
         android:id="@+id/daySpinnerEditEvent"
-        android:layout_width="231dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="152dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
+        android:layout_marginTop="12dp"
         android:background="@android:drawable/btn_dropdown"
+        android:gravity="center"
+        android:padding="0dip"
+
         android:spinnerMode="dropdown"
-        app:layout_constraintBaseline_toBottomOf="@id/categorySpinnerEditEvent"
-        app:layout_constraintStart_toStartOf="@id/dayTitleEditEvent"
-        tools:layout_editor_absoluteY="309dp" />
+        app:layout_constraintStart_toEndOf="@+id/dayTitleEditEvent"
+        app:layout_constraintTop_toTopOf="@+id/dayTitleEditEvent" />
 
     <EditText
         android:id="@+id/commentEditEvent"
-        android:layout_width="282dp"
-        android:layout_height="48dp"
-        android:ems="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/textlines"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="top"
+        android:hint="Add comment"
+        android:textColor="@color/black"
+
         android:inputType="textMultiLine"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintStart_toEndOf="@+id/commentTitleEditEvent"
+        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
+        app:layout_constraintTop_toBottomOf="@+id/endTimeTitleEditEvent">
+
+    </EditText>
 
     <Spinner
         android:id="@+id/categorySpinnerEditEvent"
-        android:layout_width="231dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="28dp"
-
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:background="@android:drawable/btn_dropdown"
-        android:paddingTop="60dp"
+        android:gravity="center"
+        android:padding="0dip"
         android:spinnerMode="dropdown"
+
         app:layout_constraintStart_toEndOf="@+id/categoryTitleEditEvent"
-        app:layout_constraintTop_toBottomOf="@+id/nickNameEditEditEvent" />
+        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
+        app:layout_constraintTop_toTopOf="@+id/categoryTitleEditEvent" />
 
     <EditText
         android:id="@+id/startTimeEditEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textlines"
         android:focusableInTouchMode="false"
+        android:hint="Enter start time"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/startTimeTitleEditEvent"
-        app:layout_constraintTop_toBottomOf="@+id/daySpinnerEditEvent"
-
-
-        />
+        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
+        app:layout_constraintTop_toBottomOf="@id/dayTitleEditEvent" />
 
     <EditText
         android:id="@+id/endTimeEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/textlines"
         android:focusableInTouchMode="false"
-        app:layout_constraintStart_toEndOf="@id/endTimeTitleEditEvent"
-        app:layout_constraintTop_toBottomOf="@id/startTimeEditEditEvent" />
+        android:hint="Enter end time"
+        android:textColor="@color/black"
+
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintStart_toEndOf="@+id/endTimeTitleEditEvent"
+        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
+        app:layout_constraintTop_toBottomOf="@+id/startTimeTitleEditEvent" />
 
     <TextView
         android:id="@+id/commentTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Comment"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Comment"
         android:textColor="#D53E71"
-        android:textSize="20dp"
+        android:textSize="16dp"
         android:textStyle="bold"
-
-        app:layout_constraintBaseline_toBottomOf="@id/endTimeTitleEditEvent"
         app:layout_constraintStart_toStartOf="@id/endTimeTitleEditEvent"
-
-        tools:layout_editor_absoluteY="608dp" />
+        app:layout_constraintTop_toBottomOf="@id/endTimeTitleEditEvent"
+        tools:layout_editor_absoluteY="491dp" />
 
     <TextView
         android:id="@+id/startTimeTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        android:text="Start Time"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Start time"
         android:textColor="#D53E71"
-        android:textSize="20dp"
-
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@id/dayTitleEditEvent"
+
         app:layout_constraintStart_toStartOf="@id/dayTitleEditEvent"
-        tools:layout_editor_absoluteY="381dp" />
+        app:layout_constraintTop_toBottomOf="@id/dayTitleEditEvent"/>
 
     <TextView
         android:id="@+id/categoryTitleEditEvent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        android:text="Category"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Choose category"
         android:textColor="#D53E71"
-        android:textSize="20dp"
-
+        android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBottomOf="@id/nickNameTitleEditEvent"
-        app:layout_constraintStart_toStartOf="@id/nickNameTitleEditEvent" />
+        app:layout_constraintStart_toStartOf="@id/nickNameTitleEditEvent"
+        app:layout_constraintTop_toBottomOf="@id/nickNameTitleEditEvent" />
 
 
     <Button
@@ -270,8 +287,9 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="Delete event"
-        android:textSize="20dp"
+        android:textSize="16dp"
         app:cornerRadius="28dp"
+        android:textColor="@color/white"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -282,3 +300,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.966" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

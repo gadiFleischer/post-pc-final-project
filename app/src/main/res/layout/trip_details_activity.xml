@@ -74,9 +74,11 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="90dp"
             android:backgroundTint="#8BC34A"
             android:text="Go to map"
+            android:textColor="@color/white"
+
             app:cornerRadius="28dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -96,17 +98,19 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="#8BC34A"
             android:text="Finish Planning"
             app:cornerRadius="28dp"
+            android:textColor="@color/white"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
-            app:layout_constraintVertical_bias="0.872" />
+            app:layout_constraintVertical_bias="0.852" />
 
     </RelativeLayout>
 

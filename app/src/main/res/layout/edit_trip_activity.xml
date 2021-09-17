@@ -17,6 +17,7 @@
         android:textColor="#D53E71"
         android:textSize="56dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
@@ -41,6 +42,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.082" />
 
+
+    <com.hbb20.CountryPickerView
+        android:id="@+id/editCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="28dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toEndOf="@+id/editDestinationView"
+        app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
+        app:layout_constraintTop_toBottomOf="@+id/editTripTitleEdit" />
+
     <Button
         android:id="@+id/finishEditingButton"
         android:layout_width="300dp"
@@ -63,17 +77,16 @@
         android:id="@+id/editTripTitleEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginLeft="36dp"
         android:focusableInTouchMode="true"
-        android:hint="enter title here..."
+        android:hint="Enter title here"
         android:paddingTop="30dp"
         android:text=""
         android:textSize="20dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editDestinationView"
         app:layout_constraintStart_toEndOf="@+id/editDestinationView"
-
         />
 
     <TextView
@@ -92,7 +105,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.288"
-
         />
 
     <TextView
@@ -116,6 +128,7 @@
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
+
         app:layout_constraintBaseline_toBottomOf="@+id/editTripTitleView"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleView" />
 
@@ -124,20 +137,20 @@
         android:id="@+id/editStartDateEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:clickable="false"
         android:cursorVisible="false"
-        android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="select start date"
+        android:hint="Select start date"
         android:inputType="date"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintStart_toEndOf="@+id/editStartDateView"
+        app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
+
+        app:layout_constraintTop_toBottomOf="@+id/editCountry"
+
+        />
 
     <TextView
         android:id="@+id/editEndDateView"
@@ -155,20 +168,18 @@
         android:id="@+id/editEndDateEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
+        android:layout_marginTop="30dp"
         android:clickable="false"
         android:cursorVisible="false"
-        android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="select end date"
+        android:hint="Select end date"
         android:inputType="date"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62" />
+        app:layout_constraintStart_toEndOf="@+id/editStartDateView"
+        app:layout_constraintTop_toBottomOf="@+id/editStartDateEdit"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

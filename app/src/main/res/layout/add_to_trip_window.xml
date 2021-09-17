@@ -85,10 +85,12 @@
         <Button
             android:id="@+id/button_add_to_trip"
             android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#8BC34A"
             android:text="Add to trip"
+            android:textColor="@color/white"
+
             app:cornerRadius="28dp" />
 
     </LinearLayout>
