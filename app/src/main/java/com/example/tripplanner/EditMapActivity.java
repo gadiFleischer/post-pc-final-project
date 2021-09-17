@@ -6,7 +6,6 @@ import com.google.android.gms.common.api.ApiException;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -324,7 +323,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         if (index != -1){
             EventModel event = addedEvents.get(index);
             if (event.bitmap != null){
-                imageView.setImageBitmap(event.bitmap);
+                imageView.setImageBitmap(event.getEventImage());
             }
         }
         else{

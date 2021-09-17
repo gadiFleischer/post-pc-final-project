@@ -1,10 +1,15 @@
 package com.example.tripplanner.models;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Base64;
+import android.widget.ImageView;
 
+import com.example.tripplanner.R;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -20,7 +25,7 @@ public class EventModel implements Parcelable, Serializable {
     public String endTime;
     public String comment;
     public LatLng position;
-    public Bitmap bitmap;
+    public String bitmap;
 
     public EventModel(String name,String address,CategoryEvent category, LatLng position
             ,int day,String startTime,String endTime,String comment, Bitmap bitmap){
@@ -34,15 +39,26 @@ public class EventModel implements Parcelable, Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
         this.comment = comment;
-        this.bitmap = null;
+        this.bitmap = convertBitmapToString(bitmap);
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    private String convertBitmapToString(Bitmap bitmap){
+        if (bitmap != null){
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos); //bm is the bitmap object
+            byte[] b = baos.toByteArray();
+            return Base64.encodeToString(b, Base64.DEFAULT);
+        }
+        return "";
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public void setEventImage(Bitmap bitmap) {
+        this.bitmap = convertBitmapToString(bitmap);
+    }
+
+    public Bitmap getEventImage() {
+        byte[] imageAsBytes = Base64.decode(bitmap.getBytes(), Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
 
     protected EventModel(Parcel in) {

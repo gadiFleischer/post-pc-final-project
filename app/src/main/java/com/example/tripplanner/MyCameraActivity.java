@@ -1,7 +1,5 @@
 package com.example.tripplanner;
 
-import static android.content.ContentValues.TAG;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,20 +16,11 @@ import androidx.annotation.NonNull;
 
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.PhotoMetadata;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.FetchPhotoRequest;
-import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
 
 public class MyCameraActivity extends Activity
 {
@@ -68,7 +56,7 @@ public class MyCameraActivity extends Activity
         }
 
         if(event.bitmap!=null){
-            this.imageView.setImageBitmap(event.bitmap);
+            this.imageView.setImageBitmap(event.getEventImage());
         }else{
             imageView.setImageResource(R.drawable.image_unavailable_foreground);
         }
@@ -94,7 +82,7 @@ public class MyCameraActivity extends Activity
 
         returnToActivity.setOnClickListener(view -> {
             if(curBitMap!=null){
-                event.bitmap=curBitMap;
+                event.setEventImage(curBitMap);
             }
             Intent backToIntent;
             if(activity.equals("edit")){
@@ -104,7 +92,7 @@ public class MyCameraActivity extends Activity
             }else{ //ADD EVENT
                 backToIntent = new Intent(this, NewEvent.class);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                event.bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                event.getEventImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 backToIntent.putExtra("image",byteArray);
                 backToIntent.putExtra("newEvent", (Serializable) event);

@@ -53,7 +53,7 @@ public class NewEvent extends AppCompatActivity {
         EventModel event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        event.setBitmap(bitmap);
+        event.setEventImage(bitmap);
 
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, R.layout.spinner_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
