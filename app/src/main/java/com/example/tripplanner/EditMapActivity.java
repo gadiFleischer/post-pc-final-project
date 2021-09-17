@@ -339,9 +339,12 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
         Intent addEventActivity = new Intent(this, NewEvent.class);
 
         //Convert to byte array
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        curBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
+        byte[] byteArray=null;
+        if(curBitmap!=null){
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            curBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byteArray = stream.toByteArray();
+        }
         addEventActivity.putExtra("image",byteArray);
         addEventActivity.putExtra("newEvent", (Serializable) event);
         addEventActivity.putExtra("tripId", this.myTrip.id);

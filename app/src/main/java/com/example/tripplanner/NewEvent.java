@@ -52,8 +52,10 @@ public class NewEvent extends AppCompatActivity {
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
         EventModel event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
         byte[] byteArray = getIntent().getByteArrayExtra("image");
-        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        event.setEventImage(bitmap);
+        if(byteArray!=null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            event.setEventImage(bitmap);
+        }
 
         ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, R.layout.spinner_item, myApp.categoryItems);
         categoryDropdown.setAdapter(adapterCategorys);
