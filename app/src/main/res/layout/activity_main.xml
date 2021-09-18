@@ -61,63 +61,63 @@
 
     <Button
         android:id="@+id/createTripButton"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="Create new trip"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:layout_constraintVertical_bias="0.885" />
-
-    <Button
-        android:id="@+id/mytripsButton"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-
-        android:backgroundTint="#8BC34A"
-        android:text="My trips"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:cornerRadius="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
-
-        />
+        app:layout_constraintVertical_bias="0.854" />
 
     <Button
         android:id="@+id/ArButton"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
 
         android:backgroundTint="#8BC34A"
         android:text="planet earth AR"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.991"
+        app:layout_constraintVertical_bias="0.934"
+
+        />
+
+    <Button
+        android:id="@+id/mytripsButton"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+
+        android:backgroundTint="#8BC34A"
+        android:text="My trips"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774"
 
         />
 
