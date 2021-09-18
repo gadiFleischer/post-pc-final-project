@@ -65,14 +65,3 @@ dependencies {
 
 }
 apply plugin: 'com.google.ar.sceneform.plugin'
-
-
-sceneform.asset('sampledata/wolves.obj',
-        'default',
-        'sampledata/wolves.sfa',
-        'src/main/res/raw/wolves')
-
-//sceneform.asset('sampledata/Earth.gltf',
-//        'default',
-//        'sampledata/Earth.sfa',
-//        'src/main/res/raw//earth')
