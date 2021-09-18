@@ -49,13 +49,10 @@ public class MyCameraActivity extends Activity
         Intent getTripIntent=getIntent();
         myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
         activity = getTripIntent.getStringExtra("activity");
-        if(activity.equals("add")){
-            event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
-        }else{
-            event = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
-        }
+        myApp.loadTempEvent();
+        event = myApp.curTempEvent;
 
-        if(event.bitmap!=null){
+        if(!event.bitmap.equals("")){
             this.imageView.setImageBitmap(event.getEventImage());
         }else{
             imageView.setImageResource(R.drawable.image_unavailable_foreground);
@@ -87,15 +84,21 @@ public class MyCameraActivity extends Activity
             Intent backToIntent;
             if(activity.equals("edit")){
                 backToIntent = new Intent(this, EditEvent.class);
-                backToIntent.putExtra("eventId", event.id);
+                myApp.curTempEvent = event;
+                myApp.saveTempEvent();
+//                backToIntent.putExtra("eventId", event.id);
 
             }else{ //ADD EVENT
                 backToIntent = new Intent(this, NewEvent.class);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                event.getEventImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-                backToIntent.putExtra("image",byteArray);
-                backToIntent.putExtra("newEvent", (Serializable) event);
+                if (curBitMap != null){
+                    event.getEventImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    backToIntent.putExtra("image",byteArray);
+
+                }
+                myApp.curTempEvent = event;
+                myApp.saveTempEvent();
             }
             backToIntent.putExtra("tripId", this.myTrip.id);
             myApp.saveTrip(myTrip);
