@@ -38,8 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
+            android:layout_marginStart="37dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_toEndOf="@+id/tripDetailsTitle1"
             android:shadowColor="#00ccff"
             android:text="Details"
             android:textColor="#8BC34A"
@@ -48,24 +50,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.724"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             app:layout_constraintVertical_bias="0.024" />
 
         <ExpandableListView
             android:id="@+id/expandableListView"
             android:layout_width="398dp"
             android:layout_height="465dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="110dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="156dp"
             android:divider="@android:color/darker_gray"
+
             android:dividerHeight="0.5dp"
             android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.417" />
 
