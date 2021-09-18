@@ -14,10 +14,13 @@
         android:layout_height="match_parent"
         >
 
+
         <TextView
             android:id="@+id/tripDetailsTitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
             android:shadowColor="#00ccff"
             android:text="Trip"
             android:textColor="#D53E71"
@@ -28,14 +31,15 @@
             app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="40dp"
             app:layout_constraintVertical_bias="0.024" />
-
 
         <TextView
             android:id="@+id/tripDetailsTitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
             android:shadowColor="#00ccff"
             android:text="Details"
             android:textColor="#8BC34A"
@@ -46,8 +50,6 @@
             app:layout_constraintHorizontal_bias="0.724"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
 
             app:layout_constraintVertical_bias="0.024" />
 
@@ -114,15 +116,7 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        android:id="@+id/nv">
 
-    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

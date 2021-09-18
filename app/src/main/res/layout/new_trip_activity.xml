@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowColor="#00ccff"
-        android:text="Create          Trip"
+        android:text="Create            Trip"
         android:textColor="#D53E71"
-        android:textSize="50dp"
+        android:textSize="45dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,11 +35,11 @@
         android:shadowColor="#00ccff"
         android:text="New"
         android:textColor="#8BC34A"
-        android:textSize="50dp"
+        android:textSize="45dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintHorizontal_bias="0.593"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.083"
@@ -53,9 +53,10 @@
         android:background="@drawable/textlines"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:hint="Enter title here"
         android:text=""
+        android:scrollHorizontally="false"
+        android:focusableInTouchMode="true"
+        android:hint="Enter title here "
         android:textSize="20dp"
 
         android:textColor="#000000"
@@ -116,15 +117,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
+        android:contentDescription="hey"
+        android:background="@android:drawable/divider_horizontal_textfield"
         android:clickable="true"
         android:focusable="true"
-        android:textColor="@color/black"
-        android:background="@android:drawable/divider_horizontal_textfield"
         android:outlineSpotShadowColor="@color/black"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/editTripTitleEdit"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
         app:layout_constraintTop_toBottomOf="@+id/editTripTitleEdit" />
-
 
     <EditText
         android:id="@+id/editEndDateEdit"
@@ -136,11 +139,11 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="Select end date"
+        android:hint="Select end date "
         android:inputType="date"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20dp"
-
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/editStartDateView"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
         app:layout_constraintTop_toBottomOf="@+id/editStartDateEdit" />
@@ -171,9 +174,8 @@
         android:inputType="date"
         android:textColorHint="@android:color/darker_gray"
         android:background="@drawable/textlines"
-
-
         android:textSize="20dp"
+        android:textColor="#000000"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/editStartDateView"
         app:layout_constraintStart_toEndOf="@+id/editStartDateView"
@@ -187,9 +189,9 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#8BC34A"
         android:text="start planning"
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:cornerRadius="28dp"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -197,5 +199,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867" />
+        app:layout_constraintVertical_bias="0.836" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,53 +8,90 @@
 
     >
 
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        >
 
-    <Button
-        android:id="@+id/buttonOpenCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Use Camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078"></Button>
+        <Button
+            android:id="@+id/buttonOpenCamera"
+            android:layout_width="267dp"
+            android:layout_height="58dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#8BC34A"
+            android:text="Use Camera"
 
-    <Button
-        android:id="@+id/buttonFromMemory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Load from memory"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153"></Button>
+            android:textColor="@color/white"
+            app:cornerRadius="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="212dp"
-        android:layout_height="435dp"
-        android:src="@drawable/common_google_signin_btn_icon_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        </Button>
 
-    <Button
-        android:id="@+id/returnToActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.858"></Button>
+        <Button
+            android:id="@+id/buttonFromMemory"
+            android:layout_width="267dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#8BC34A"
+            android:textColor="@color/white"
+            app:cornerRadius="28dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.184"
+            android:text="Load from memory"
+            >
+        </Button>
 
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="212dp"
+            android:layout_height="405dp"
+            android:src="@drawable/common_google_signin_btn_icon_dark"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+        </ImageView>
+
+        <Button
+            android:id="@+id/returnToActivity"
+            android:layout_width="267dp"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#8BC34A"
+            android:textColor="@color/white"
+            app:cornerRadius="28dp"
+            android:gravity="center"
+            android:text="Done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.858">
+
+        </Button>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

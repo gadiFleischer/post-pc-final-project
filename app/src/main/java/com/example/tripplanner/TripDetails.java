@@ -30,9 +30,6 @@ public class TripDetails extends AppCompatActivity {
 
     HashMap<String, List<String>> expandableListDetail;
 
-    private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
 
 
     @Override
@@ -77,33 +74,6 @@ public class TripDetails extends AppCompatActivity {
             return false;
 
         });
-        dl = findViewById(R.id.trip_details_activity);
-        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
-        dl.addDrawerListener(t);
-        t.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        nv =  findViewById(R.id.nv);
-
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                switch (id) {
-                    case R.id.day:
-                        //TODO: open new window
-                        break;
-                    case R.id.category:
-                        //TODO: open new window
-                        break;
-                    default:
-                        return true;
-                }
-                return true;
-
-            }
-        });
 
         finishPlanningButton.setOnClickListener(view -> {
             Intent MyTripsActivity = new Intent(this, MyTrips.class);
@@ -119,11 +89,6 @@ public class TripDetails extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (t.onOptionsItemSelected(item))
-            return true;
-        return super.onOptionsItemSelected(item);
-    }
+
 
 }

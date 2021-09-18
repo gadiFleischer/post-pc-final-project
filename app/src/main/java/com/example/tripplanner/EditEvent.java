@@ -64,11 +64,13 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         this.commentEdit.setText(event.comment);
         lastDay= event.day;
 
-        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myApp.categoryItems);
+        ArrayAdapter<String> adapterCategorys = new ArrayAdapter<>(this, R.layout.selected_item_in_spinner, myApp.categoryItems);
+        adapterCategorys.setDropDownViewResource(R.layout.spinner_item);
         categoryDropdown.setAdapter(adapterCategorys);
         categoryDropdown.setSelection(event.category.ordinal());
 
-        ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, this.myTrip.daysDropdown);
+        ArrayAdapter<String> adapterDays = new ArrayAdapter<>(this, R.layout.selected_item_in_spinner, this.myTrip.daysDropdown);
+        adapterDays.setDropDownViewResource(R.layout.spinner_item);
         daysDropDown.setAdapter(adapterDays);
         daysDropDown.setSelection(event.day);
 
