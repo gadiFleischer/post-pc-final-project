@@ -147,7 +147,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
         LatLng latLng;
-        int zoom = 17;
+        int zoom = 13;
         if(lat!=0 && lon !=0){
             latLng= new LatLng(lat, lon);
         }else{
@@ -156,7 +156,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
                     double lat = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLatitude();
                     double lon = geocoder.getFromLocationName(myTrip.destination,1).get(0).getLongitude();
                     latLng= new LatLng(lat, lon);
-                    zoom = 6;
+                    zoom = 7;
                 }else{
                     LatLng defaultPos = addedEvents.get(0).position;
                     latLng= new LatLng(defaultPos.latitude, defaultPos.longitude);
