@@ -74,6 +74,7 @@
         android:focusableInTouchMode="true"
         android:hint="Enter title here"
         android:paddingTop="30dp"
+        android:maxLength="20"
         android:text=""
         android:textColor="#000000"
 

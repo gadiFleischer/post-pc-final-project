@@ -18,7 +18,7 @@ public class MyApp extends Application {
             225, 285, 150, 300, 0,
     };
 
-    String[] categoryItems = new String[]{"FOOD", "SIGHT", "HOTEL","OTHER"};
+    String[] categoryItems = new String[]{"SIGHT", "FOOD", "HOTEL","OTHER"};
 
     SharedPreferences sharedPref;
     public ArrayList<TripModel> myTrips;

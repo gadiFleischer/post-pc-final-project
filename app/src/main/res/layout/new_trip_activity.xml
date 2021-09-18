@@ -54,6 +54,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text=""
+        android:maxLength="20"
         android:scrollHorizontally="false"
         android:focusableInTouchMode="true"
         android:hint="Enter title here "

@@ -90,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:gravity="center"
+        android:maxLength="20"
         android:text="Nick name"
         android:textColor="#D53E71"
         android:textSize="16dp"
