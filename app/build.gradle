@@ -72,3 +72,7 @@ sceneform.asset('sampledata/wolves.obj',
         'sampledata/wolves.sfa',
         'src/main/res/raw/wolves')
 
+//sceneform.asset('sampledata/Earth.gltf',
+//        'default',
+//        'sampledata/Earth.sfa',
+//        'src/main/res/raw//earth')
