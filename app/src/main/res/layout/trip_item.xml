@@ -30,7 +30,7 @@
         android:id="@+id/tripName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="5dp"
         android:text="please_enter_task"
