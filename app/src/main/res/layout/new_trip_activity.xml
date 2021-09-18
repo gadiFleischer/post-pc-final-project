@@ -15,36 +15,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowColor="#00ccff"
-        android:text="Create            Trip"
+        android:text="Create "
         android:textColor="#D53E71"
         android:textSize="45dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083"
+        app:layout_constraintVertical_bias="0.083" />
 
-        />
 
+    <TextView
+        android:id="@+id/createNewTripTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#00ccff"
+        android:text="Trip"
+        android:textColor="#D53E71"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/createNewTripTitle2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083" />
 
     <TextView
         android:id="@+id/createNewTripTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowColor="#00ccff"
-        android:text="New"
+        android:text="New "
         android:textColor="#8BC34A"
         android:textSize="45dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editTripTitleEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.593"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/createNewTripTitle1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083"
-
-        />
+        app:layout_constraintVertical_bias="0.388" />
 
     <EditText
         android:id="@+id/editTripTitleEdit"
@@ -57,7 +70,8 @@
         android:maxLength="20"
         android:scrollHorizontally="false"
         android:focusableInTouchMode="true"
-        android:hint="Enter title here "
+
+        android:hint="Enter title here      "
         android:textSize="20dp"
 
         android:textColor="#000000"
@@ -90,27 +104,30 @@
         android:id="@+id/editDestinationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="127dp"
+        android:paddingBottom="70dp"
         android:text="Destination"
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/editTripTitleView"
         app:layout_constraintBaseline_toBottomOf="@id/editTripTitleView"
-        android:paddingBottom="70dp"
-        />
+        app:layout_constraintStart_toStartOf="@id/editTripTitleView"
+        tools:layout_editor_absoluteY="280dp" />
 
     <TextView
         android:id="@+id/editStartDateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:paddingBottom="70dp"
         android:text="Start Date"
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/editDestinationView"
         app:layout_constraintBaseline_toBottomOf="@+id/editDestinationView"
-        android:paddingBottom="70dp"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/editStartDateEdit"
+        app:layout_constraintStart_toStartOf="@+id/editDestinationView"
+        tools:layout_editor_absoluteY="356dp" />
 
 
     <com.hbb20.CountryPickerView
@@ -118,15 +135,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        android:contentDescription="hey"
         android:background="@android:drawable/divider_horizontal_textfield"
         android:clickable="true"
+        android:contentDescription="hey"
         android:focusable="true"
         android:outlineSpotShadowColor="@color/black"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/editTripTitleEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
         app:layout_constraintTop_toBottomOf="@+id/editTripTitleEdit" />
 
@@ -135,17 +153,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:layout_marginBottom="103dp"
         android:background="@drawable/textlines"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="Select end date "
+        android:hint="Select end date     "
         android:inputType="date"
+        android:textColor="#000000"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20dp"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/editStartDateView"
+        app:layout_constraintBottom_toTopOf="@+id/startPlanningButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
         app:layout_constraintTop_toBottomOf="@+id/editStartDateEdit" />
 
@@ -153,32 +174,39 @@
         android:id="@+id/editEndDateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="102dp"
         android:text="End Date"
         android:textColor="#D53E71"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/editDestinationView"
         app:layout_constraintBaseline_toBottomOf="@+id/editStartDateView"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/startPlanningButton"
+        app:layout_constraintEnd_toStartOf="@+id/editEndDateEdit"
+        app:layout_constraintStart_toStartOf="@+id/editDestinationView"
+        app:layout_constraintTop_toTopOf="@+id/editDestinationView" />
 
 
     <EditText
         android:id="@+id/editStartDateEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/textlines"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:hint="Select start date"
+        android:hint="Select start date    "
         android:inputType="date"
-        android:textColorHint="@android:color/darker_gray"
-        android:background="@drawable/textlines"
-        android:textSize="20dp"
         android:textColor="#000000"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="20dp"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/editStartDateView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editStartDateView"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
         app:layout_constraintTop_toBottomOf="@+id/editCountry" />

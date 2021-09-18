@@ -13,16 +13,17 @@
         android:id="@+id/myTripsTitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My  "
+        android:layout_marginBottom="14dp"
+        android:text="My "
         android:textColor="#D53E71"
         android:textSize="62dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerTrips"
+        app:layout_constraintEnd_toStartOf="@+id/myTripsTitle2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.547" />
 
     <TextView
         android:id="@+id/myTripsTitle2"
@@ -33,19 +34,20 @@
         android:textSize="62dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerTrips"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintHorizontal_bias="0.712"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTrips"
         android:layout_width="413dp"
         android:layout_height="405dp"
-        android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myTripsTitle2"
         app:layout_constraintVertical_bias="0.0" />
 

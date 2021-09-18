@@ -15,7 +15,7 @@
         android:layout_marginBottom="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="15dp"
         android:layout_marginLeft="36dp"
         android:text="+"
         android:textSize="30sp"
@@ -30,7 +30,7 @@
         android:id="@+id/tripName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="5dp"
         android:text="please_enter_task"
@@ -41,18 +41,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/countryCode"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <ImageButton
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="268dp"
         android:layout_marginEnd="60dp"
         android:background="?android:attr/selectableItemBackground"
         android:padding="16dp"
         android:src="@drawable/three_dots"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tripName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
