@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 import java.io.Serializable;
@@ -56,6 +58,10 @@ public class EditEvent extends AppCompatActivity implements Serializable {
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
         this.event = myTrip.getEventById(getTripIntent.getStringExtra("eventId"));
+        if (this.event == null){
+            myApp.loadTempEvent();
+            event = myApp.curTempEvent;
+        }
         //Edit fields
         this.addressTitle.setText("Address: " + event.address);
         this.nickNameEdit.setText(event.name);
@@ -147,9 +153,15 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             finish();
         });
         editImageButton.setOnClickListener(view -> {
+            event.category= myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
+            event.comment=this.commentEdit.getText().toString();
+            event.name=this.nickNameEdit.getText().toString();
+            event.startTime=startTimeEdit.getText().toString();
+            event.endTime=endTimeEdit.getText().toString();
+            myApp.curTempEvent = event;
+            myApp.saveTempEvent();
             Intent editImageActivity = new Intent(this, MyCameraActivity.class);
             editImageActivity.putExtra("tripId", this.myTrip.id);
-            editImageActivity.putExtra("eventId", event.id);
             editImageActivity.putExtra("activity", "edit");
             this.startActivity(editImageActivity);
             finish();

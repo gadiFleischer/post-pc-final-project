@@ -57,8 +57,12 @@ public class EventModel implements Parcelable, Serializable {
     }
 
     public Bitmap getEventImage() {
-        byte[] imageAsBytes = Base64.decode(bitmap.getBytes(), Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        if (bitmap != null){
+            byte[] imageAsBytes = Base64.decode(bitmap.getBytes(), Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        }
+        return null;
+
     }
 
     protected EventModel(Parcel in) {

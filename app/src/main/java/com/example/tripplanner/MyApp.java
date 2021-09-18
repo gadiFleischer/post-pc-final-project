@@ -22,6 +22,7 @@ public class MyApp extends Application {
 
     SharedPreferences sharedPref;
     public ArrayList<TripModel> myTrips;
+    public EventModel curTempEvent;
     public MyApp(Context context){
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         loadMyTrips();
@@ -41,6 +42,15 @@ public class MyApp extends Application {
         }
     }
 
+    public void loadTempEvent(){
+        String tripsJson = sharedPref.getString("tempEvent", "");
+        if (!tripsJson.equals("")) {
+            Type listType = new TypeToken<EventModel>(){}.getType();
+            curTempEvent = new Gson().fromJson(tripsJson, listType);
+        }
+    }
+
+
     public void saveMyTrips(ArrayList<TripModel> trips) {
         myTrips=trips;
         String itemsJson = new Gson().toJson(myTrips);
@@ -49,6 +59,11 @@ public class MyApp extends Application {
     public void saveMyTrips() {
         String itemsJson = new Gson().toJson(myTrips);
         sharedPref.edit().putString("myTrips", itemsJson).apply();
+    }
+
+    public void saveTempEvent(){
+        String itemsJson = new Gson().toJson(curTempEvent);
+        sharedPref.edit().putString("tempEvent", itemsJson).apply();
     }
     public void saveTrip(TripModel toSaveTrip) {
         ArrayList<TripModel> trips = this.myTrips;
