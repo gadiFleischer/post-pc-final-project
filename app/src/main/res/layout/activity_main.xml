@@ -60,33 +60,33 @@
         app:layout_constraintVertical_bias="0.179" />
 
     <Button
-            android:id="@+id/createTripButton"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#8BC34A"
-            android:text="Create new trip"
-            app:cornerRadius="28dp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/createTripButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#8BC34A"
+        android:text="Create new trip"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
 
-            app:layout_constraintVertical_bias="0.901" />
+        app:layout_constraintVertical_bias="0.885" />
 
     <Button
         android:id="@+id/mytripsButton"
         android:layout_width="300dp"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
+
         android:backgroundTint="#8BC34A"
         android:text="My trips"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,18 +95,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789"
+        app:layout_constraintVertical_bias="0.777"
 
         />
 
     <Button
-        android:id="@+id/tempButton"
+        android:id="@+id/ArButton"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
 
         android:backgroundTint="#8BC34A"
-        android:text="AR temp"
+        android:text="planet earth AR"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:cornerRadius="28dp"

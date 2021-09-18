@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity  implements Serializable {
     MyApp myapp;
     Button createTripButton;
     Button mytripsButton;
-    Button tempButton;
+    Button ArButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity  implements Serializable {
 
         createTripButton = findViewById(R.id.createTripButton);
         mytripsButton = findViewById(R.id.mytripsButton);
-        tempButton = findViewById(R.id.tempButton);
+        ArButton = findViewById(R.id.ArButton);
 
         createTripButton.setOnClickListener(view -> {
             Intent createNewActivity = new Intent(this, NewTrip.class);
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity  implements Serializable {
             Intent myTripsActivity = new Intent(this, MyTrips.class);
             this.startActivity(myTripsActivity);
         });
-        tempButton.setOnClickListener(view -> {
+        ArButton.setOnClickListener(view -> {
             Intent myTripsActivity = new Intent(this, AR.class);
             this.startActivity(myTripsActivity);
         });
