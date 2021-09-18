@@ -35,14 +35,6 @@ public class AR extends AppCompatActivity
                     Toast.makeText(AR.this,"Model can't be Loaded", Toast.LENGTH_SHORT).show();
                     return null;
                 });
-//        ModelRenderable.builder()
-//                .setSource(this, Uri.parse("wolves.sfb"))
-//                .build()
-//                .thenAccept(renderable -> modelRenderable = renderable)
-//                .exceptionally(throwable -> {
-//                    Toast.makeText(AR.this,"Model can't be Loaded", Toast.LENGTH_SHORT).show();
-//                    return null;
-//                });
     }
     private void setUpPlane(){
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {

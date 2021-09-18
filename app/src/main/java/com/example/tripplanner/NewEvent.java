@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tripplanner.models.CategoryEvent;
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
 
@@ -52,6 +54,14 @@ public class NewEvent extends AppCompatActivity {
         Intent getTripIntent=getIntent();
         this.myTrip = myApp.getTripById(getTripIntent.getStringExtra("tripId"));
         event =(EventModel) getTripIntent.getSerializableExtra("newEvent");
+        if (event == null){
+            myApp.loadTempEvent();
+            event = myApp.curTempEvent;
+        }
+        this.nickNameEdit.setText(event.name);
+        this.startTimeEdit.setText(event.startTime);
+        this.endTimeEdit.setText(event.endTime);
+        this.commentEdit.setText(event.comment);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         if(byteArray!=null){
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
@@ -120,9 +130,17 @@ public class NewEvent extends AppCompatActivity {
             finish();
         });
         editImgAddEvent.setOnClickListener(view -> {
+            EventModel curEvent = new EventModel(event.name, event.address, event.category, event.position, event.day
+                    , event.startTime, event.endTime, event.comment, event.getEventImage());
+            curEvent.category= myApp.getCategoryFromString(categoryDropdown.getSelectedItem().toString());
+            curEvent.comment=this.commentEdit.getText().toString();
+            curEvent.name=this.nickNameEdit.getText().toString();
+            curEvent.startTime=this.startTimeEdit.getText().toString();
+            curEvent.endTime=this.endTimeEdit.getText().toString();
+            myApp.curTempEvent = curEvent;
+            myApp.saveTempEvent();
             Intent editImageActivity = new Intent(this, MyCameraActivity.class);
             editImageActivity.putExtra("tripId", this.myTrip.id);
-            editImageActivity.putExtra("newEvent", (Serializable) event);
             editImageActivity.putExtra("activity", "add");
             this.startActivity(editImageActivity);
             finish();
