@@ -28,7 +28,7 @@ public class AR extends AppCompatActivity
 
     private void setUpModel() {
         ModelRenderable.builder()
-                .setSource(this, R.raw.earth2)
+                .setSource(this, R.raw.wolves)
                 .build()
                 .thenAccept(renderable -> modelRenderable = renderable)
                 .exceptionally(throwable -> {

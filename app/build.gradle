@@ -60,5 +60,15 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0" //RecyclerView depedency
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
     implementation 'com.google.ar:core:1.26.0'
-    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.7.0"
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.15.0"
+    implementation 'com.google.ar.sceneform:core:1.15.0'
+
 }
+apply plugin: 'com.google.ar.sceneform.plugin'
+
+
+sceneform.asset('sampledata/wolves.obj',
+        'default',
+        'sampledata/wolves.sfa',
+        'src/main/res/raw/wolves')
+
