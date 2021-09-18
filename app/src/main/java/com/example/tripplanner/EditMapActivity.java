@@ -136,12 +136,12 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
     @Override
     public void onBackPressed() {
-        Intent tripDetails = new Intent(this, NewEvent.class);
-        tripDetails.putExtra("tripId", this.myTrip.id);
+        Intent tripDetialsActivity = new Intent(this, TripDetails.class);
+        tripDetialsActivity.putExtra("tripId", this.myTrip.id);
+        this.startActivity(tripDetialsActivity);
         finish();
+        super.onBackPressed();
     }
-
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -391,6 +391,7 @@ public class EditMapActivity extends FragmentActivity implements OnMapReadyCallb
             });
         });
     }
+
 
     private void removeMarker(){
         if(mMarkerCount>0){
