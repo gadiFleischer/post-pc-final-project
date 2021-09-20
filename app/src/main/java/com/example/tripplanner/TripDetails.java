@@ -37,6 +37,8 @@ public class TripDetails extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trip_details_activity);
+
+
         showOnMapButton = findViewById(R.id.showOnMapButton);
         finishPlanningButton = findViewById(R.id.finishPlanningButton);
 

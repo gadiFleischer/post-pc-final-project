@@ -1,11 +1,13 @@
 package com.example.tripplanner;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity  implements Serializable {
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity  implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         myapp = new MyApp(this);
 
         createTripButton = findViewById(R.id.createTripButton);

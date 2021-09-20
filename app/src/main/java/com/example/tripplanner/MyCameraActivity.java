@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+
 
 import com.example.tripplanner.models.EventModel;
 import com.example.tripplanner.models.TripModel;
@@ -39,6 +43,8 @@ public class MyCameraActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_layout);
+
+
         this.imageView = (ImageView)this.findViewById(R.id.imageView1);
         Button cameraButton = (Button) this.findViewById(R.id.buttonOpenCamera);
         Button buttonFromMemory = (Button) this.findViewById(R.id.buttonFromMemory);

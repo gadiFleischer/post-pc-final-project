@@ -100,7 +100,7 @@
         android:textSize="20dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editDestinationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editDestinationView" />
 
     <TextView

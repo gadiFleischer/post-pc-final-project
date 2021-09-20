@@ -66,19 +66,19 @@
         android:background="@drawable/textlines"
         android:clickable="true"
         android:focusable="true"
-        android:text=""
+        android:focusableInTouchMode="true"
+        android:hint="Enter title here      "
         android:maxLength="20"
         android:scrollHorizontally="false"
-        android:focusableInTouchMode="true"
 
-        android:hint="Enter title here      "
-        android:textSize="20dp"
-
+        android:text=""
         android:textColor="#000000"
+
         android:textColorHint="@android:color/darker_gray"
+        android:textSize="20dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTripTitleView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.232"
+        app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toEndOf="@+id/editTripTitleView" />
 
     <TextView
@@ -125,8 +125,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBottomOf="@+id/editDestinationView"
-        app:layout_constraintEnd_toStartOf="@+id/editStartDateEdit"
-        app:layout_constraintStart_toStartOf="@+id/editDestinationView"
+        app:layout_constraintStart_toStartOf="@id/editTripTitleView"
         tools:layout_editor_absoluteY="356dp" />
 
 
@@ -143,10 +142,12 @@
         android:scaleX="0.9"
         android:scaleY="0.9"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/startPlanningButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="@+id/editTripTitleEdit"
-        app:layout_constraintTop_toBottomOf="@+id/editTripTitleEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/editTripTitleEdit"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editEndDateEdit"
@@ -182,9 +183,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBottomOf="@+id/editStartDateView"
-        app:layout_constraintBottom_toTopOf="@+id/startPlanningButton"
-        app:layout_constraintEnd_toStartOf="@+id/editEndDateEdit"
-        app:layout_constraintStart_toStartOf="@+id/editDestinationView"
+        app:layout_constraintStart_toStartOf="@id/editTripTitleView"
         app:layout_constraintTop_toTopOf="@+id/editDestinationView" />
 
 

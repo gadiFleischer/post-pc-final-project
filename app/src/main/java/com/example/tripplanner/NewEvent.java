@@ -39,6 +39,8 @@ public class NewEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_event_activity);
+
+
         addNewEventButton = findViewById(R.id.addThisEventButton);
         editImgAddEvent = findViewById(R.id.editImgAddEvent);
         Spinner categoryDropdown = findViewById(R.id.categorySpinner);

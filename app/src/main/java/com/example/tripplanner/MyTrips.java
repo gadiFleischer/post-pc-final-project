@@ -18,6 +18,8 @@ public class MyTrips extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_trips_activty);
+
+
         MyApp myApp;
         myApp = new MyApp(this);
 

@@ -50,7 +50,7 @@ public class EditTrip extends AppCompatActivity implements Serializable {
         tripTitleEdit.setText(myTrip.title);
         startDateEdit.setText(sdf.format(myTrip.startDate));
         endDateEdit.setText(sdf.format((myTrip.endDate)));
-        destination.setText("Destination: "+myTrip.destination);
+        destination.setText("Destination:    "+myTrip.destination);
 
 
         finishEditingButton.setOnClickListener(view -> {

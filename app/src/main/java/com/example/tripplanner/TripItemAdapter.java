@@ -36,6 +36,7 @@ public class TripItemAdapter extends RecyclerView.Adapter<TripItemAdapter.TripIt
     @Override
     public TripItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = this.inflater.inflate(R.layout.trip_item, parent, false);
+
         return new TripItemViewHolder(view);
     }
 
