@@ -1,13 +1,11 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
-import com.example.tripplanner.models.DayModel;
-import com.example.tripplanner.models.EventModel;
-import com.example.tripplanner.models.TripModel;
+import com.postpc.tripplanner.models.DayModel;
+import com.postpc.tripplanner.models.EventModel;
+import com.postpc.tripplanner.models.TripModel;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 

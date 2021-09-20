@@ -1,6 +1,6 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
-import com.example.tripplanner.models.TripModel;
+import com.postpc.tripplanner.models.TripModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;

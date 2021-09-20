@@ -1,4 +1,4 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,16 +13,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 
 
-import com.example.tripplanner.models.EventModel;
-import com.example.tripplanner.models.TripModel;
+import com.postpc.tripplanner.R;
+import com.postpc.tripplanner.models.EventModel;
+import com.postpc.tripplanner.models.TripModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.Serializable;
 
 public class MyCameraActivity extends Activity
 {

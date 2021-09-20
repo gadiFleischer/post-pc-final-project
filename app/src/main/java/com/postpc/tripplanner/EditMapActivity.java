@@ -1,6 +1,7 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 import static android.content.ContentValues.TAG;
 
+import com.postpc.tripplanner.R;
 import com.google.android.gms.common.api.ApiException;
 
 import android.annotation.SuppressLint;
@@ -12,8 +13,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
-import com.example.tripplanner.models.EventModel;
-import com.example.tripplanner.models.TripModel;
+import com.postpc.tripplanner.models.EventModel;
+import com.postpc.tripplanner.models.TripModel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

@@ -1,17 +1,14 @@
-package com.example.tripplanner.models;
+package com.postpc.tripplanner.models;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import android.widget.ImageView;
 
-import com.example.tripplanner.R;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.UUID;
 
 public class EventModel implements Parcelable, Serializable {

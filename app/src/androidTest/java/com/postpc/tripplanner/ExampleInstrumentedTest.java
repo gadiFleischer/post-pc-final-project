@@ -1,4 +1,4 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
 import android.content.Context;
 

@@ -1,14 +1,15 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.postpc.tripplanner.R;
+
 import java.io.Serializable;
 
 

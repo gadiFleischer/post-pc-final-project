@@ -1,4 +1,4 @@
-package com.example.tripplanner.models;
+package com.postpc.tripplanner.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

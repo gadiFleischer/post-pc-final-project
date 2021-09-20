@@ -1,4 +1,4 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -14,11 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tripplanner.models.CategoryEvent;
-import com.example.tripplanner.models.EventModel;
-import com.example.tripplanner.models.TripModel;
+import com.postpc.tripplanner.R;
+import com.postpc.tripplanner.models.EventModel;
+import com.postpc.tripplanner.models.TripModel;
 
-import java.io.Serializable;
 import java.util.Calendar;
 
 public class NewEvent extends AppCompatActivity {

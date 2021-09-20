@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tripplanner">
+    package="com.postpc.tripplanner">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -20,22 +20,22 @@
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.postpc.tripplanner.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewTrip" />
-        <activity android:name=".NewEvent" />
-        <activity android:name=".EditEvent" />
-        <activity android:name=".MyTrips" />
-        <activity android:name=".TripDetails" />
-        <activity android:name=".EditTrip" />
-        <activity android:name=".EditMapActivity" />
-        <activity android:name=".MyCameraActivity" />
-        <activity android:name=".AR" />
+        <activity android:name="com.postpc.tripplanner.NewTrip" />
+        <activity android:name="com.postpc.tripplanner.NewEvent" />
+        <activity android:name="com.postpc.tripplanner.EditEvent" />
+        <activity android:name="com.postpc.tripplanner.MyTrips" />
+        <activity android:name="com.postpc.tripplanner.TripDetails" />
+        <activity android:name="com.postpc.tripplanner.EditTrip" />
+        <activity android:name="com.postpc.tripplanner.EditMapActivity" />
+        <activity android:name="com.postpc.tripplanner.MyCameraActivity" />
+        <activity android:name="com.postpc.tripplanner.AR" />
         <meta-data android:name="com.google.ar.core" android:value="required" />
 
     </application>

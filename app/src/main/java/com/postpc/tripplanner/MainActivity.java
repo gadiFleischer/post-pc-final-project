@@ -1,13 +1,13 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
+import com.postpc.tripplanner.R;
+
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity  implements Serializable {

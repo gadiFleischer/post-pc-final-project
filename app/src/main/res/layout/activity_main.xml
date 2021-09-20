@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
 
-    tools:context=".MainActivity">
+    tools:context="com.postpc.tripplanner.MainActivity">
 
     <pl.droidsonroids.gif.GifImageButton
         android:id="@+id/gifImageButton"

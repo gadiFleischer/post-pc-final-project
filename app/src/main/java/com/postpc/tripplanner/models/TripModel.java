@@ -1,8 +1,4 @@
-package com.example.tripplanner.models;
-
-import android.os.Parcelable;
-
-import com.hbb20.CountryPickerView;
+package com.postpc.tripplanner.models;
 
 import java.io.Serializable;
 import java.text.DateFormat;

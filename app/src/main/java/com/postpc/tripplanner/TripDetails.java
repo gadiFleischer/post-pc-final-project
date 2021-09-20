@@ -1,18 +1,17 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import com.example.tripplanner.models.EventModel;
-import com.example.tripplanner.models.TripModel;
-import com.google.android.material.navigation.NavigationView;
+
+import com.postpc.tripplanner.R;
+import com.postpc.tripplanner.models.EventModel;
+import com.postpc.tripplanner.models.TripModel;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

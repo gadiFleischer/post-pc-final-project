@@ -1,14 +1,15 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import com.example.tripplanner.models.CategoryEvent;
-import com.example.tripplanner.models.EventModel;
-import com.example.tripplanner.models.TripModel;
+import com.postpc.tripplanner.models.CategoryEvent;
+import com.postpc.tripplanner.models.EventModel;
+import com.postpc.tripplanner.models.TripModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 

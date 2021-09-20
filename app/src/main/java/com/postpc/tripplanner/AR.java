@@ -1,10 +1,11 @@
-package com.example.tripplanner;
+package com.postpc.tripplanner;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.postpc.tripplanner.R;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.ArCoreApk;
 import com.google.ar.sceneform.AnchorNode;
