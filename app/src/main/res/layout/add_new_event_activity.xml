@@ -312,7 +312,7 @@
         android:stateListAnimator="@drawable/spinner_sla"
         app:layout_constraintBottom_toTopOf="@+id/editImgAddEvent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="@+id/nickNameEdit"
         app:layout_constraintTop_toTopOf="@+id/categoryTitle"
 
