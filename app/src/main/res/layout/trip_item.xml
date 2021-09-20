@@ -15,8 +15,8 @@
         android:layout_marginBottom="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="46dp"
         android:text="+"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/tripName"
-        android:layout_width="0dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:paddingTop="10dp"
@@ -36,7 +36,9 @@
         android:text="please_enter_task"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#5F9521"
-
+        android:maxLength="20"
+        android:maxLines="2"
+        android:textSize="20dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/countryCode"
@@ -47,14 +49,13 @@
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="268dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="20dp"
         android:background="?android:attr/selectableItemBackground"
         android:padding="16dp"
         android:src="@drawable/three_dots"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tripName"
+        app:layout_constraintStart_toEndOf="@+id/tripName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 

@@ -23,7 +23,11 @@
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.024"
+
+
+
+        />
 
     <TextView
         android:id="@+id/addNewEventTitle3"
@@ -62,38 +66,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="168dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/textlines"
         android:clickable="true"
+        android:ems="8"
         android:focusable="true"
-        android:maxLength="20"
         android:focusableInTouchMode="true"
-        android:hint="Enter nickname here"
+        android:hint="Enter nickname here   "
+        android:maxLength="20"
+        android:maxLines="2"
         android:text=""
         android:textColor="@color/black"
-
         android:textColorHint="@android:color/darker_gray"
-
-
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/categorySpinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.268"
-        app:layout_constraintStart_toEndOf="@+id/nickNameTitle"
 
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/nickNameTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toEndOf="@+id/nickNameTitle"
+        />
 
     <TextView
         android:id="@+id/addressTitle"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:maxWidth="400dp"
         android:layout_marginStart="10dp"
         android:text="Address"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
@@ -148,7 +152,6 @@
         app:layout_constraintEnd_toStartOf="@+id/daySpinner"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintBottom_toTopOf="@+id/startTimeTitle"
-
         app:layout_constraintStart_toStartOf="@id/addressTitle"
         app:layout_constraintTop_toBottomOf="@id/categoryTitle" />
 
@@ -166,7 +169,8 @@
         app:layout_constraintBottom_toTopOf="@+id/endTimeTitle"
         app:layout_constraintEnd_toStartOf="@+id/startTimeEdit"
         app:layout_constraintStart_toStartOf="@id/dayTitle"
-        app:layout_constraintTop_toBottomOf="@id/dayTitle" />
+        app:layout_constraintTop_toBottomOf="@id/addressTitle"
+         />
 
     <TextView
         android:id="@+id/endTimeTitle"
@@ -243,17 +247,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/textlines"
         android:focusableInTouchMode="false"
-        android:hint="Enter start time          "
-
+        android:hint="Enter start time"
+        android:ems="8"
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/endTimeEdit"
-
-
         app:layout_constraintStart_toEndOf="@+id/startTimeTitle"
         app:layout_constraintStart_toStartOf="@id/nickNameEdit"
         app:layout_constraintTop_toBottomOf="@id/dayTitle" />
@@ -265,8 +267,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/textlines"
+        android:ems="8"
         android:focusableInTouchMode="false"
-        android:hint="Enter end time            "
+        android:hint="Enter end time"
+
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="16dp"
@@ -274,7 +278,7 @@
         app:layout_constraintStart_toEndOf="@+id/endTimeTitle"
         app:layout_constraintStart_toStartOf="@id/nickNameEdit"
         app:layout_constraintTop_toBottomOf="@+id/startTimeTitle"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/daySpinner"
@@ -306,9 +310,13 @@
         android:popupBackground="@android:color/white"
         android:popupElevation="3dp"
         android:stateListAnimator="@drawable/spinner_sla"
-        app:layout_constraintStart_toEndOf="@+id/categoryTitle"
-        app:layout_constraintStart_toStartOf="@id/nickNameEdit"
-        app:layout_constraintTop_toTopOf="@+id/categoryTitle" />
+        app:layout_constraintBottom_toTopOf="@+id/editImgAddEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nickNameEdit"
+        app:layout_constraintTop_toTopOf="@+id/categoryTitle"
+
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/commentEdit"
@@ -321,17 +329,19 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="top"
-        android:maxLength="20"
-        android:hint="Add comment             "
+        android:ems="8"
+        android:maxLength="25"
+        android:maxLines="3"
+        android:hint="Add comment"
         android:inputType="textMultiLine"
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/editImgAddEvent"
         app:layout_constraintStart_toEndOf="@+id/commentTitle"
         app:layout_constraintStart_toStartOf="@id/nickNameEdit"
         app:layout_constraintTop_toBottomOf="@+id/endTimeTitle">
 
     </EditText>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,8 +51,7 @@
         android:backgroundTint="#8BC34A"
         android:text="Edit Image"
         android:textColor="@color/white"
-        android:textSize="16dp"
-
+        android:textSize="15dp"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toTopOf="@+id/DoneEditButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,9 +59,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.968" />
+        app:layout_constraintVertical_bias="0.980" />
 
     <Button
         android:id="@+id/DoneEditButton"
@@ -72,28 +70,29 @@
         android:backgroundTint="#8BC34A"
         android:text="Done edit"
         android:textColor="@color/white"
-        android:textSize="16dp"
-
+        android:textSize="15dp"
         app:cornerRadius="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/deleteEditButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.983" />
+        app:layout_constraintBottom_toTopOf="@+id/deleteEditButton"
+        app:layout_constraintTop_toBottomOf="@+id/editImageButton"
+         />
 
     <Button
         android:id="@+id/deleteEditButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="#8BC34A"
+        android:backgroundTint="#EA3745"
         android:text="Delete event"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="15dp"
         app:cornerRadius="28dp"
+        android:layout_marginBottom="30dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,20 +100,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957" />
+        app:layout_constraintTop_toBottomOf="@+id/DoneEditButton"
+
+        />
 
     <TextView
         android:id="@+id/addressTitleEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintHorizontal_bias="0.045"
+
         android:text="Address"
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.157" />
@@ -148,17 +150,21 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="Enter nickname here"
+        android:hint="Enter nickname here   "
         android:text=""
-
+        android:ems="8"
+        android:maxLength="20"
+        android:maxLines="2"
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/categorySpinnerEditEvent"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/nickNameTitleEditEvent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toEndOf="@+id/nickNameTitleEditEvent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+ />
 
     <TextView
         android:id="@+id/endTimeTitleEditEvent"
@@ -170,8 +176,8 @@
         android:textSize="16dp"
 
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
         app:layout_constraintBottom_toTopOf="@+id/commentTitleEditEvent"
-        app:layout_constraintStart_toStartOf="@id/startTimeTitleEditEvent"
         app:layout_constraintTop_toBottomOf="@id/startTimeTitleEditEvent" />
 
 
@@ -187,8 +193,8 @@
         app:layout_constraintBottom_toTopOf="@+id/startTimeTitleEditEvent"
         app:layout_constraintEnd_toStartOf="@+id/daySpinnerEditEvent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
 
-        app:layout_constraintStart_toStartOf="@id/categoryTitleEditEvent"
         app:layout_constraintTop_toBottomOf="@id/categoryTitleEditEvent" />
 
     <Spinner
@@ -202,29 +208,38 @@
         android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
         android:popupBackground="@android:color/white"
         android:popupElevation="3dp"
+        android:layout_marginTop="8dp"
+
+
         android:stateListAnimator="@drawable/spinner_sla"
         app:layout_constraintBottom_toTopOf="@+id/startTimeEditEditEvent"
-        app:layout_constraintStart_toEndOf="@+id/dayTitleEditEvent"
-        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
-        app:layout_constraintTop_toTopOf="@+id/dayTitleEditEvent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nickNameEditEditEvent"
+        app:layout_constraintTop_toTopOf="@+id/dayTitleEditEvent"
+
+
+        app:layout_constraintVertical_bias="0.25" />
 
     <EditText
         android:id="@+id/commentEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/textlines"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="top"
-        android:hint="Add comment             "
+        android:hint="Add comment"
         android:inputType="textMultiLine"
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/editImageButton"
+        android:ems="8"
+        android:maxLength="25"
+        android:maxLines="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/commentTitleEditEvent"
@@ -233,6 +248,7 @@
         app:layout_constraintVertical_bias="0.0">
 
     </EditText>
+
 
     <Spinner
         android:id="@+id/categorySpinnerEditEvent"
@@ -245,12 +261,14 @@
         android:popupBackground="@android:color/white"
         android:popupElevation="3dp"
         android:stateListAnimator="@drawable/spinner_sla"
+        android:layout_marginTop="8dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/editImageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/categoryTitleEditEvent"
-        app:layout_constraintStart_toStartOf="@id/nickNameEditEditEvent"
-        app:layout_constraintTop_toTopOf="@+id/categoryTitleEditEvent" />
-
+        app:layout_constraintStart_toStartOf="@+id/nickNameEditEditEvent"
+        app:layout_constraintTop_toTopOf="@+id/categoryTitleEditEvent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/startTimeEditEditEvent"
@@ -259,10 +277,11 @@
         android:layout_marginBottom="47dp"
         android:background="@drawable/textlines"
         android:focusableInTouchMode="false"
-        android:hint="     Enter start time     "
+        android:hint="Enter start time"
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="16dp"
+        android:ems="8"
         app:layout_constraintBottom_toBottomOf="@+id/endTimeEditEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -277,9 +296,10 @@
         android:layout_marginTop="19dp"
         android:background="@drawable/textlines"
         android:focusableInTouchMode="false"
-        android:hint="      Enter end time      "
+        android:hint="Enter end time"
         android:textColor="@color/black"
         android:textColorHint="@android:color/darker_gray"
+        android:ems="8"
 
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/commentEditEvent"
@@ -294,7 +314,7 @@
         android:id="@+id/commentTitleEditEvent"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="Comment"
         android:textColor="#D53E71"
@@ -314,9 +334,9 @@
         android:textColor="#D53E71"
         android:textSize="16dp"
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
         app:layout_constraintBottom_toTopOf="@+id/endTimeTitleEditEvent"
-        app:layout_constraintEnd_toStartOf="@+id/startTimeEditEditEvent"
-        app:layout_constraintStart_toStartOf="@id/dayTitleEditEvent"
+
         app:layout_constraintTop_toBottomOf="@id/dayTitleEditEvent" />
 
     <TextView
@@ -329,10 +349,10 @@
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/dayTitleEditEvent"
+        app:layout_constraintStart_toStartOf="@id/addressTitleEditEvent"
 
         app:layout_constraintEnd_toStartOf="@+id/categorySpinnerEditEvent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/nickNameTitleEditEvent"
         app:layout_constraintTop_toBottomOf="@id/nickNameTitleEditEvent" />
 
 

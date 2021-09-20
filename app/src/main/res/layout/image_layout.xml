@@ -61,8 +61,11 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="212dp"
-            android:layout_height="405dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="79dp"
+            android:layout_marginBottom="80dp"
+
             android:src="@drawable/common_google_signin_btn_icon_dark"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
