@@ -167,6 +167,7 @@ public class EditEvent extends AppCompatActivity implements Serializable {
             finish();
         });
     }
+
     @Override
     public void onBackPressed() {
         Intent editMapActivity = new Intent(this, EditMapActivity.class);

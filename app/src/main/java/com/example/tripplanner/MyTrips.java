@@ -1,4 +1,5 @@
 package com.example.tripplanner;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -38,6 +39,14 @@ public class MyTrips extends AppCompatActivity implements Serializable {
             noTripsMsg.setText("You have no trips yet");
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnToMain = new Intent(this, MainActivity.class);
+        this.startActivity(returnToMain);
+        finish();
+        super.onBackPressed();
     }
 
 }
